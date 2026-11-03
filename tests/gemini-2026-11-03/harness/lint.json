@@ -1,0 +1,160 @@
+{
+ "gemini-codes/T1-ohm-gemini.js": {
+  "lines": 77,
+  "comment_lines": 20,
+  "forbidden_api": false,
+  "plain_labels": [],
+  "flow_varying_speed_without_pos": [
+   "100 * I_val"
+  ],
+  "flow_hidden_when_zero": false,
+  "plotWindow": "10",
+  "trail": null,
+  "ball_start_y": null,
+  "resetOn": false
+ },
+ "gemini-codes/T2-transformer-gemini.js": {
+  "lines": 99,
+  "comment_lines": 25,
+  "forbidden_api": false,
+  "plain_labels": [],
+  "flow_varying_speed_without_pos": [
+   "80 * sin(wt)",
+   "80 * sin(wt)"
+  ],
+  "flow_hidden_when_zero": false,
+  "plotWindow": "0.4",
+  "trail": null,
+  "ball_start_y": null,
+  "resetOn": false
+ },
+ "gemini-codes/T3-projectile-gemini.js": {
+  "lines": 77,
+  "comment_lines": 16,
+  "forbidden_api": false,
+  "plain_labels": [],
+  "flow_varying_speed_without_pos": [],
+  "flow_hidden_when_zero": false,
+  "plotWindow": null,
+  "trail": "nyomvonal",
+  "ball_start_y": "0",
+  "resetOn": true
+ },
+ "gemini-codes/T4-transformer-noload-gemini.js": {
+  "lines": 101,
+  "comment_lines": 13,
+  "forbidden_api": false,
+  "plain_labels": [],
+  "flow_varying_speed_without_pos": [
+   "80 * sin(wt) * (P.noLoad ? 0.05 : 1)",
+   "80 * sin(wt)"
+  ],
+  "flow_hidden_when_zero": false,
+  "plotWindow": "0.4",
+  "trail": null,
+  "ball_start_y": null,
+  "resetOn": false
+ },
+ "gemini-codes/T5-fixed-gemini.js": {
+  "lines": 101,
+  "comment_lines": 13,
+  "forbidden_api": false,
+  "plain_labels": [],
+  "flow_varying_speed_without_pos": [
+   "80 * sin(wt) * (P.noLoad ? 0.05 : 1)",
+   "80 * sin(wt)"
+  ],
+  "flow_hidden_when_zero": false,
+  "plotWindow": "0.4",
+  "trail": null,
+  "ball_start_y": null,
+  "resetOn": false
+ },
+ "gemini-codes/T6-dcmotor-photo-gemini.js": {
+  "lines": 44,
+  "comment_lines": 11,
+  "forbidden_api": false,
+  "plain_labels": [],
+  "flow_varying_speed_without_pos": [],
+  "flow_hidden_when_zero": false,
+  "plotWindow": null,
+  "trail": null,
+  "ball_start_y": null,
+  "resetOn": false
+ },
+ "reference-codes/T1-ohm-reference.js": {
+  "lines": 78,
+  "comment_lines": 31,
+  "forbidden_api": false,
+  "plain_labels": [],
+  "flow_varying_speed_without_pos": [],
+  "flow_hidden_when_zero": true,
+  "plotWindow": "10",
+  "trail": null,
+  "ball_start_y": null,
+  "resetOn": false
+ },
+ "reference-codes/T2-transformer-reference.js": {
+  "lines": 83,
+  "comment_lines": 26,
+  "forbidden_api": false,
+  "plain_labels": [],
+  "flow_varying_speed_without_pos": [],
+  "flow_hidden_when_zero": true,
+  "plotWindow": "2 / f",
+  "trail": null,
+  "ball_start_y": null,
+  "resetOn": false
+ },
+ "reference-codes/T3-projectile-reference.js": {
+  "lines": 59,
+  "comment_lines": 18,
+  "forbidden_api": false,
+  "plain_labels": [],
+  "flow_varying_speed_without_pos": [],
+  "flow_hidden_when_zero": false,
+  "plotWindow": "4",
+  "trail": "600",
+  "ball_start_y": "r",
+  "resetOn": true
+ },
+ "reference-codes/T4-transformer-noload-reference.js": {
+  "lines": 91,
+  "comment_lines": 32,
+  "forbidden_api": false,
+  "plain_labels": [],
+  "flow_varying_speed_without_pos": [],
+  "flow_hidden_when_zero": true,
+  "plotWindow": "2 / f",
+  "trail": null,
+  "ball_start_y": null,
+  "resetOn": false
+ },
+ "reference-codes/T5-fixed-reference.js": {
+  "lines": 101,
+  "comment_lines": 13,
+  "forbidden_api": false,
+  "plain_labels": [],
+  "flow_varying_speed_without_pos": [
+   "80 * sin(wt) * (P.noLoad ? 0.05 : 1)",
+   "80 * sin(wt)"
+  ],
+  "flow_hidden_when_zero": false,
+  "plotWindow": "0.4",
+  "trail": null,
+  "ball_start_y": null,
+  "resetOn": false
+ },
+ "reference-codes/T6-dcmotor-photo-reference.js": {
+  "lines": 54,
+  "comment_lines": 15,
+  "forbidden_api": false,
+  "plain_labels": [],
+  "flow_varying_speed_without_pos": [],
+  "flow_hidden_when_zero": false,
+  "plotWindow": null,
+  "trail": null,
+  "ball_start_y": null,
+  "resetOn": false
+ }
+}

@@ -1,0 +1,149 @@
+{
+ "T1": {
+  "name": "Ohm v2",
+  "gemini": {
+   "err": "",
+   "readouts": [
+    "Áram (I) 0,57A",
+    "Izzó teljesítménye (P) 4,90W",
+    "Teljes ellenállás (R_tot) 21,0Ω"
+   ]
+  },
+  "reference": {
+   "err": "",
+   "readouts": [
+    "Áram I = U / (R + R_L) 0,667A",
+    "Az izzó teljesítménye P = I²·R_L 5,33W",
+    "Feszültség az ellenálláson U_R 4,00V",
+    "Feszültség az izzón U_L 8,00V",
+    "Teljes teljesítmény U·I 8,00W"
+   ]
+  },
+  "gemini_U0": {
+   "err": "",
+   "readouts": [
+    "Áram (I) 0,00A",
+    "Izzó teljesítménye (P) 0,00W",
+    "Teljes ellenállás (R_tot) 35,0Ω"
+   ]
+  },
+  "reference_U0": {
+   "err": "",
+   "readouts": [
+    "Áram I = U / (R + R_L) 0,000A",
+    "Az izzó teljesítménye P = I²·R_L 0,00W",
+    "Feszültség az ellenálláson U_R 0,00V",
+    "Feszültség az izzón U_L 0,00V",
+    "Teljes teljesítmény U·I 0,00W"
+   ]
+  }
+ },
+ "T2": {
+  "name": "Transformer v2",
+  "gemini": {
+   "err": "",
+   "readouts": [
+    "Szekunder feszültség U₂ 23,0V",
+    "Primer áram I₁ 0,23A",
+    "Szekunder áram I₂ 2,30A",
+    "Áttételi tényező (N₁/N₂) 10,00"
+   ]
+  },
+  "reference": {
+   "err": "",
+   "readouts": [
+    "Szekunder feszültség U₂ = U₁·N₂/N₁ 23,00V",
+    "Primer áram I₁ = I₂·N₂/N₁ 0,230A",
+    "Szekunder áram I₂ = U₂/R 2,300A",
+    "Áttétel N₁/N₂ 10,00",
+    "Teljesítmény P = U₂·I₂ 52,9W"
+   ]
+  }
+ },
+ "T3": {
+  "name": "Projectile v2",
+  "gemini": {
+   "err": "",
+   "readouts": [
+    "Legnagyobb magasság – mért 2,54m",
+    "Legnagyobb magasság – elmélet 2,55m",
+    "Hajítás távolsága – mért 10,18m",
+    "Hajítás távolsága – elmélet 10,19m",
+    "Repülési idő (mért / elmélet) 1,44 / 1,44s"
+   ]
+  },
+  "reference": {
+   "err": "",
+   "readouts": [
+    "Legnagyobb magasság – mért 2,54m",
+    "Legnagyobb magasság – elmélet (v₀·sin α)²/2g 2,55m",
+    "Hajítás távolsága – mért 10,18m",
+    "Hajítás távolsága – elmélet v₀²·sin 2α/g 10,19m",
+    "Repülési idő – mért / elmélet 1,44 / 1,44s",
+    "Sebesség |v| 0,00m/s"
+   ]
+  },
+  "gemini_v20a30": {
+   "err": "",
+   "readouts": [
+    "Legnagyobb magasság – mért 5,08m",
+    "Legnagyobb magasság – elmélet 5,10m",
+    "Hajítás távolsága – mért 35,28m",
+    "Hajítás távolsága – elmélet 35,31m",
+    "Repülési idő (mért / elmélet) 2,04 / 2,04s"
+   ]
+  },
+  "reference_v20a30": {
+   "err": "",
+   "readouts": [
+    "Legnagyobb magasság – mért 5,08m",
+    "Legnagyobb magasság – elmélet (v₀·sin α)²/2g 5,10m",
+    "Hajítás távolsága – mért 35,27m",
+    "Hajítás távolsága – elmélet v₀²·sin 2α/g 35,31m",
+    "Repülési idő – mért / elmélet 2,04 / 2,04s",
+    "Sebesség |v| 0,00m/s"
+   ]
+  }
+ },
+ "T3b": {
+  "name": "Bouncing ball v2",
+  "gemini": {
+   "err": "",
+   "readouts": [
+    "Pattanások száma 3,00",
+    "Első pattanás utáni magasság – mért 3,19m",
+    "Első pattanás utáni magasság – elmélet (e²·h₀) 3,20m",
+    "Aktuális magasság 0,92m"
+   ]
+  },
+  "reference": {
+   "err": "",
+   "readouts": [
+    "Pattanások száma 3",
+    "h₁ – mért 3,18m",
+    "h₁ – elmélet e²·h₀ 3,20m",
+    "Magasság 0,93m"
+   ]
+  }
+ },
+ "T6": {
+  "name": "Rotor photo v2",
+  "gemini": {
+   "err": "",
+   "readouts": [
+    "Fordulatszám (n) 601/min",
+    "Szögsebesség (ω) 6,28rad/s"
+   ]
+  },
+  "reference": {
+   "err": "",
+   "readouts": [
+    "Fordulatszám n 601/min",
+    "Szögsebesség ω = 2π·n/60 6,283rad/s",
+    "Egy fordulat ideje T = 60/n 1,00s",
+    "Forgórész szöge 60°"
+   ]
+  }
+ },
+ "pageErrors": []
+}
