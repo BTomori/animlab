@@ -9,7 +9,7 @@
 
 ---
 
-## Magyarul
+## 
 
 Az AnimLab egy böngészőben futó animációs eszköz villamos és fizika tantárgyakhoz. Csúszkákkal állítható modelleket, élő grafikonokat és mért értékeket mutat, és saját jelenetek is írhatók benne néhány sor JavaScripttel. Telepíteni nem kell semmit, és internet nélkül is működik: elég megnyitni az `index.html` fájlt.
 
