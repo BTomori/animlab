@@ -1,0 +1,11 @@
+{
+ "format": "animlab-scene",
+ "version": 1,
+ "name": "Változó nyíl / Changing arrow",
+ "script": "stage(1000, 600, \"#fbfbf8\");\ntitle({hu: \"Változó nyíl\", en: \"Changing arrow\"});\nparam(\"Imax\", {hu: \"Csúcsáram Î\", en: \"Peak current Î\"}, 0, 10, 8, 0.1, \"A\");\nparam(\"f\", {hu: \"Frekvencia f\", en: \"Frequency f\"}, 0.05, 2, 0.25, 0.05, \"Hz\");\nlet i = 0;\nupdate((dt, t) => { i = P.Imax * sin(2 * PI * P.f * t); });\nboundArrow(\"i-nyíl\", {\n  x: 500, y: 300,\n  angle: 0,\n  length: \"30 * i\",\n  width: \"2 + abs(i)\",\n  color: \"#2f6fd6\",\n  colorBy: \"abs(i)\",\n  colorMin: 0, colorMax: 10,\n  colorTo: \"#d64045\",\n  label: \"i = {i:1} A\"\n});\ndraw(t => {\n  line(500, 150, 500, 450, {stroke: C.light, lw: 1, dash: [4, 4]});\n  circle(500, 300, 6, {fill: C.ink});\n  show({hu: \"Áram i\", en: \"Current i\"}, i, \"A\");\n  plot(\"i\", i, {unit: \"A\", color: C.blue});\n  val({i});\n});\n",
+ "params": {},
+ "assets": {},
+ "marks": [],
+ "overrides": {},
+ "timeScale": 1
+}
