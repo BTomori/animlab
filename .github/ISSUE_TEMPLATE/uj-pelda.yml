@@ -6,8 +6,8 @@ body:
   - type: markdown
     attributes:
       value: |
-        Köszönjük! A tároló nyilvános: csak monogramot és osztályt írj, teljes nevet, arcképet vagy elérhetőséget ne.
-        Thank you! This repository is public: use initials and class only, no full names, photos of people or contact details.
+        Köszönjük! A tároló nyilvános: csak monogramot és osztályt írj. Teljes név, elérhetőség, arc vagy felismerhető személy ne legyen se a jelenetben, se a képeken és videókon.
+        Thank you! This repository is public: use initials and class only. No full names, contact details, faces or recognisable people in the scene, the pictures or the videos.
   - type: input
     id: topic
     attributes:
@@ -35,6 +35,16 @@ body:
       description: Húzd ide a .animlab.json vagy az exportált .html fájlt; ha nem fogadja el, tömörítsd .zip-be. / Drag the .animlab.json or exported .html file here; if it is not accepted, zip it.
     validations:
       required: true
+  - type: textarea
+    id: media
+    attributes:
+      label: Képek, videó (nem kötelező) / Pictures, video (optional)
+      description: Ide húzhatsz képeket vagy egy rövid videót (pl. képernyőfelvétel a jelenetről). Hosszabb videónál inkább linket adj (YouTube, Google Drive). / Drag pictures or a short video here (e.g. a screen recording of the scene). For a longer video, give a link instead (YouTube, Google Drive).
+  - type: textarea
+    id: sources
+    attributes:
+      label: Források (nem kötelező) / Sources (optional)
+      description: Könyv, jegyzet, weboldal, adatlap, amit felhasználtál. / Books, notes, websites or datasheets you used.
   - type: input
     id: ai
     attributes:

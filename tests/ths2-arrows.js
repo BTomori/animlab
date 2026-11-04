@@ -4,7 +4,7 @@
 //  (3) electric and mechanical sides of MG1/MG2 have the same sign.
 const fs = require('fs');
 const path = require('path');
-const code = JSON.parse(fs.readFileSync(path.join(__dirname, '../examples/teacher/toyota-ths2-hajtaslanc.animlab.json'), 'utf8')).script;
+const code = JSON.parse(fs.readFileSync(path.join(__dirname, '../examples/teacher/toyota-ths2-hajtaslanc/scene.animlab.json'), 'utf8')).script;
 function run(init, T, label) {
   const P = {}; let upd = null, drw = null, flows = [];
   const M = Math, noop = () => {};

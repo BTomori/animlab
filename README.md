@@ -56,13 +56,13 @@ Az AnimLab egy böngészőben futó animációs eszköz villamos és fizika tant
 | --- | --- | --- |
 | Később folytatni a szerkesztést | **Mentés** | `.animlab.json` fájl; a **Megnyitás** betölti |
 | Tanulóknak, kollégáknak elküldeni üzenetben | **Exportálás → Megosztás üzenetben** | Önálló `.html` fájl a telefon megosztó menüjével (Messenger, WhatsApp, Teams, e-mail); a címzett böngészőben nyitja meg, internet nélkül is |
-| Egy linket küldeni | Tedd a fájlt az [`examples`](examples/) mappába | `https://btomori.github.io/animlab/?scene=examples/...` – bármelyik üzenetben megnyitható |
+| Egy linket küldeni | Tedd a jelenetet egy saját mappába az [`examples`](examples/) mappán belül | `https://btomori.github.io/animlab/?scene=examples/teacher/lengo-labda` – bármelyik üzenetben megnyitható |
 
 A **Megnyitás** az exportált `.html` fájlt is betölti szerkesztésre, így egy elküldött jelenetet a címzett tovább is fejleszthet.
 
 ### Példák és diákmunkák
 
-Az [`examples`](examples/) mappában tanári minták és a diákok által készített jelenetek vannak, mindegyik linkkel megnyitható. Diákok az **Issues → New issue → Új példa beküldése** űrlappal küldhetnek be új jelenetet; a részletek az [`examples/README.md`](examples/README.md) fájlban vannak.
+Az [`examples`](examples/) mappában tanári minták és a diákok által készített jelenetek vannak. Minden példának saját mappája van a jelenettel, egy leírással (források, órai használat) és egy `media` almappával a képeknek és videóknak; mindegyik linkkel megnyitható. Diákok az **Issues → New issue → Új példa beküldése** űrlappal küldhetnek be új jelenetet; a részletek az [`examples/README.md`](examples/README.md) fájlban vannak.
 
 Billentyűk: Szóköz – lejátszás/szünet, → – léptetés, R – újraindítás, Ctrl+S – mentés, Ctrl+O – megnyitás.
 
@@ -135,13 +135,13 @@ AnimLab is a browser-based animation tool for electrical engineering and physics
 | --- | --- | --- |
 | Continue editing later | **Save** | an `.animlab.json` file; **Open** loads it |
 | Send it to students or colleagues in a chat | **Export → Share in a chat** | a standalone `.html` file via the phone's share sheet (Messenger, WhatsApp, Teams, e-mail); the recipient opens it in a browser, even offline |
-| Send a link | Put the file in the [`examples`](examples/) folder | `https://btomori.github.io/animlab/?scene=examples/...` – opens from any chat |
+| Send a link | Put the scene into its own folder inside [`examples`](examples/) | `https://btomori.github.io/animlab/?scene=examples/teacher/lengo-labda` – opens from any chat |
 
 **Open** also loads an exported `.html` file for editing, so a recipient can build on a scene you sent.
 
 ### Examples and student work
 
-The [`examples`](examples/) folder holds teacher examples and scenes made by students, each one opens with a link. Students submit new scenes with the **Issues → New issue → New example** form; details are in [`examples/README.md`](examples/README.md).
+The [`examples`](examples/) folder holds teacher examples and scenes made by students. Every example has its own folder with the scene, a description (sources, classroom use) and a `media` subfolder for pictures and videos; each one opens with a link. Students submit new scenes with the **Issues → New issue → New example** form; details are in [`examples/README.md`](examples/README.md).
 
 ### Writing scenes with an AI assistant
 

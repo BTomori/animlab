@@ -1,0 +1,45 @@
+{
+  "format": "animlab-examples",
+  "version": 1,
+  "note": "Az összes példa listája (később galéria a programban). Új példánál adj hozzá egy elemet. / List of all examples (a gallery in the app later). Add an entry for each new example.",
+  "examples": [
+    {
+      "path": "teacher/lengo-labda",
+      "group": "teacher",
+      "title": {"hu": "Lengő labda", "en": "Swinging ball"},
+      "description": {"hu": "A legrövidebb teljes jelenet: csúszka, állapotváltozó, mért érték, grafikon.", "en": "The shortest complete scene: slider, state variable, readout, graph."},
+      "topics": ["rezgés / oscillation", "kezdő / starter"],
+      "author": "Tanár / teacher",
+      "added": "2026-11-04"
+    },
+    {
+      "path": "teacher/valtozo-nyil",
+      "group": "teacher",
+      "title": {"hu": "Változó nyíl", "en": "Changing arrow"},
+      "description": {"hu": "Váltakozó áram egy boundArrow nyíllal: hossz, vastagság és szín a pillanatértékből.", "en": "Alternating current shown with a boundArrow: length, width and colour follow the instantaneous value."},
+      "topics": ["váltakozó áram / AC", "Jelölők / Markup"],
+      "author": "Tanár / teacher",
+      "added": "2026-11-04"
+    },
+    {
+      "path": "teacher/toyota-ths2-hajtaslanc",
+      "group": "teacher",
+      "title": {"hu": "Toyota THS-II (Prius II) hajtáslánc", "en": "Toyota THS-II (Prius II) drivetrain"},
+      "description": {"hu": "Hibrid teljesítményosztás bolygóművel, minden üzemmód, forrásmegjelöléssel.", "en": "Hybrid power split with a planetary gear, all operating modes, with cited sources."},
+      "topics": ["hajtástechnika / drives", "hibrid jármű / hybrid vehicle"],
+      "author": "Tanár / teacher",
+      "added": "2026-11-04"
+    },
+    {
+      "path": "students/13d_AD_elhagyott-haz",
+      "group": "students",
+      "title": {"hu": "Elhagyott ház – a szoba", "en": "Abandoned house – the room"},
+      "description": {"hu": "30 másodperces 3D-s ijesztős jelenet: kamera, zseblámpa, szellem.", "en": "A 30-second 3D horror cutscene: camera, flashlight, ghost."},
+      "topics": ["3D", "jelenetvezérlés / cutscene"],
+      "author": "A. D.",
+      "class": "13.D",
+      "ai": "Claude Sonnet",
+      "added": "2026-11-04"
+    }
+  ]
+}

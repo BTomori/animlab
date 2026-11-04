@@ -6,6 +6,8 @@
 - A grafikonsáv magassága húzással állítható (normál és teljes képernyős módban is; dupla kattintás = alapérték) / graph strip height adjustable by dragging, also in full screen (double-click resets)
 - Telefonos nézet: alsó sáv a vászon, vezérlők, kód (teljes magasságú szerkesztő), képek, jelölők és súgó között; tömör felső sáv ☰ menüvel / phone view: bottom bar switching between canvas, controls, full-height code editor, pictures, markup and help; compact top bar with a ☰ menu
 - Telefon elforgatásakor a vászon kitölti a képernyőt / turning the phone sideways fills the screen with the canvas
+- Minden példa saját mappában: `scene.animlab.json`, `README.md` (leírás, források), `media/` (képek, videók); `examples/index.json` a későbbi galériához / every example in its own folder with `scene.animlab.json`, a `README.md` (description, sources) and `media/` (pictures, videos); `examples/index.json` for a later gallery
+- Rövidebb jelenetlink: `?scene=examples/teacher/lengo-labda` (mappa); a régi, fájlra mutató linkek is működnek / shorter scene links pointing to a folder; old links to the file still work
 
 ## v0.3 – 2026-11-04
 

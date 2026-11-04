@@ -1,7 +1,6 @@
 # Toyota THS-II (Prius II) hajtáslánc – teljesítményáramlás / power flow
 
-Jelenet / scene: [`toyota-ths2-hajtaslanc.animlab.json`](toyota-ths2-hajtaslanc.animlab.json) ·
-[megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/toyota-ths2-hajtaslanc.animlab.json)
+**[▶ Megnyitás az AnimLab-ben / Open in AnimLab](https://btomori.github.io/animlab/?scene=examples/teacher/toyota-ths2-hajtaslanc)** · jelenetfájl / scene file: [`scene.animlab.json`](scene.animlab.json) · [média / media](media/)
 
 [Magyar](#magyar) · [English](#english)
 
