@@ -1,0 +1,11 @@
+{
+ "format": "animlab-scene",
+ "version": 1,
+ "name": "Lengő labda",
+ "script": "stage(1000, 600, \"#ffffff\");                                  // vászon: 1000 × 600 px, fehér háttér\ntitle({hu: \"Lengő labda\", en: \"Swinging ball\"});\nparam(\"f\", {hu: \"Frekvencia f\", en: \"Frequency f\"}, 0, 2, 0.5, 0.05, \"Hz\");   // csúszka → P.f\nlet phase = 0;                                                // fázisszög (rad), állapotváltozó\nupdate(dt => { phase += 2 * PI * P.f * dt; });                // fizika: a fázis ω·dt-vel nő, ω = 2πf\ndraw(t => {                                                   // rajzolás minden képkockán\n  const x = 500 + 300 * sin(phase);                           // középpont 500 px, amplitúdó 300 px\n  line(500, 100, x, 300, {stroke: C.gray, lw: 2});            // a fonál\n  circle(x, 300, 30, {fill: C.blue});                         // a labda\n  show({hu: \"Kitérés\", en: \"Displacement\"}, x - 500, \"px\");   // mért érték a Vezérlők fülön\n  plot(\"x\", x - 500, {unit: \"px\"});                           // élő grafikon\n});\n",
+ "params": {},
+ "assets": {},
+ "marks": [],
+ "overrides": {},
+ "timeScale": 1
+}

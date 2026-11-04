@@ -1,5 +1,13 @@
 # Változások / Changelog
 
+## v0.3 – 2026-11-04
+
+- Mentés: a fájltípus megadásával a kiterjesztés megmarad (`.animlab.json`, `.html`) / saving keeps the file extension
+- Exportálás → Megosztás üzenetben: önálló HTML a telefon megosztó menüjével / Export → Share in a chat via the share sheet
+- A Megnyitás az exportált `.html` fájlt is betölti / Open also loads an exported `.html`
+- Link egy jelenetre: `?scene=examples/...` / link to a scene: `?scene=examples/...`
+- `examples/` mappa tanári mintákkal, diákmunkáknak, és beküldő űrlap / `examples/` folder with teacher examples, a place for student work and a submission form
+
 ## v0.2 – 2026-11-03
 
 - 21 mintajelenet; új / new: Ohm törvénye izzóval (Ohm's law with a lamp), RC kör (RC circuit), forgó fázor (rotating phasor), egyfázisú transzformátor (single-phase transformer), forgórész fényképről (rotor from a photo), ferde hajítás: mérés és elmélet (projectile measured vs. theory), pattogó labda (bouncing ball), csillapított rugós rezgés (damped spring)

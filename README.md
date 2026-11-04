@@ -49,6 +49,20 @@ Az AnimLab egy böngészőben futó animációs eszköz villamos és fizika tant
 3. A **Kód** fülön a jelenet programja olvasható és átírható; **Ctrl+Enter** futtatja.
 4. A **Mentés** gombbal a jelenet fájlba menthető, az **Exportálás → Önálló HTML-fájl** pedig egy tanulóknak kiadható fájlt készít.
 
+### Mentés és megosztás
+
+| Mit szeretnél? | Mit válassz? | Mit kapsz? |
+| --- | --- | --- |
+| Később folytatni a szerkesztést | **Mentés** | `.animlab.json` fájl; a **Megnyitás** betölti |
+| Tanulóknak, kollégáknak elküldeni üzenetben | **Exportálás → Megosztás üzenetben** | Önálló `.html` fájl a telefon megosztó menüjével (Messenger, WhatsApp, Teams, e-mail); a címzett böngészőben nyitja meg, internet nélkül is |
+| Egy linket küldeni | Tedd a fájlt az [`examples`](examples/) mappába | `https://btomori.github.io/animlab/?scene=examples/...` – bármelyik üzenetben megnyitható |
+
+A **Megnyitás** az exportált `.html` fájlt is betölti szerkesztésre, így egy elküldött jelenetet a címzett tovább is fejleszthet.
+
+### Példák és diákmunkák
+
+Az [`examples`](examples/) mappában tanári minták és a diákok által készített jelenetek vannak, mindegyik linkkel megnyitható. Diákok az **Issues → New issue → Új példa beküldése** űrlappal küldhetnek be új jelenetet; a részletek az [`examples/README.md`](examples/README.md) fájlban vannak.
+
 Billentyűk: Szóköz – lejátszás/szünet, → – léptetés, R – újraindítás, Ctrl+S – mentés, Ctrl+O – megnyitás.
 
 ### Jelenet írása AI segítségével
@@ -113,6 +127,20 @@ AnimLab is a browser-based animation tool for electrical engineering and physics
 3. The **Code** tab shows the scene's program; edit it and press **Ctrl+Enter** to run.
 4. **Save** writes the scene to a file; **Export → Standalone HTML file** makes a single file you can hand out to students.
 
+### Saving and sharing
+
+| You want to… | Choose | You get |
+| --- | --- | --- |
+| Continue editing later | **Save** | an `.animlab.json` file; **Open** loads it |
+| Send it to students or colleagues in a chat | **Export → Share in a chat** | a standalone `.html` file via the phone's share sheet (Messenger, WhatsApp, Teams, e-mail); the recipient opens it in a browser, even offline |
+| Send a link | Put the file in the [`examples`](examples/) folder | `https://btomori.github.io/animlab/?scene=examples/...` – opens from any chat |
+
+**Open** also loads an exported `.html` file for editing, so a recipient can build on a scene you sent.
+
+### Examples and student work
+
+The [`examples`](examples/) folder holds teacher examples and scenes made by students, each one opens with a link. Students submit new scenes with the **Issues → New issue → New example** form; details are in [`examples/README.md`](examples/README.md).
+
 ### Writing scenes with an AI assistant
 
 You don't need to know how to program: any free AI chat (ChatGPT, Gemini, Copilot, Claude…) can write a scene once it has read the AnimLab [AI instructions](docs/animlab-ai-instructions.md). They are written for machines: the complete command set, rules that prevent common errors and four tested examples.
@@ -156,7 +184,8 @@ Name the physical model (ideal or with losses), the units and the ranges; the mo
 | `docs/animlab-ai-instructions.md` | AI-utasítások (AI-csevegőbe illesztendő) / AI instructions (paste into an AI chat) |
 | `docs/programozasi-utmutato.md` | Programozási útmutató (magyar) / Programming guide (Hungarian) |
 | `docs/programming-guide-en.md` | Programozási útmutató (angol) / Programming guide (English) |
-| `examples/valtozo-nyil.animlab.json` | Példajelenet: változóhoz kötött nyíl / Example scene: arrow bound to a variable |
+| `examples/` | Tanári minták és diákmunkák, beküldési útmutató / Teacher examples and student work, how to submit |
+| `.github/ISSUE_TEMPLATE/uj-pelda.yml` | Űrlap új példa beküldéséhez / Form for submitting a new example |
 | `tests/run-presets.js` | Az összes mintajelenet automatikus tesztje / Automatic test of every example scene |
 | `tests/gemini-2026-11-03/` | Az AI-utasítások tesztje Geminivel: beszélgetések, kódok, képek, jelentés / Test of the AI instructions with Gemini: sessions, codes, screenshots, report |
 

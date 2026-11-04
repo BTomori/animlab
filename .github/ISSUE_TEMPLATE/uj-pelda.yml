@@ -1,0 +1,53 @@
+name: Új példa beküldése / New example
+description: AnimLab-jelenet beküldése a példák közé / Submit an AnimLab scene to the examples
+title: "[Példa / Example] "
+labels: ["example"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Köszönjük! A tároló nyilvános: csak monogramot és osztályt írj, teljes nevet, arcképet vagy elérhetőséget ne.
+        Thank you! This repository is public: use initials and class only, no full names, photos of people or contact details.
+  - type: input
+    id: topic
+    attributes:
+      label: Téma / Topic
+      placeholder: "pl. transzformátor üresjárásban / e.g. transformer at no load"
+    validations:
+      required: true
+  - type: input
+    id: author
+    attributes:
+      label: Osztály és monogram / Class and initials
+      placeholder: "pl. 11.H, K. B."
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Mit mutat a jelenet, mit érdemes kipróbálni? / What does the scene show, what should one try?
+    validations:
+      required: true
+  - type: textarea
+    id: file
+    attributes:
+      label: Fájl / File
+      description: Húzd ide a .animlab.json vagy az exportált .html fájlt; ha nem fogadja el, tömörítsd .zip-be. / Drag the .animlab.json or exported .html file here; if it is not accepted, zip it.
+    validations:
+      required: true
+  - type: input
+    id: ai
+    attributes:
+      label: Segített AI? Melyik? / Did an AI help? Which one?
+      placeholder: "pl. Gemini, ChatGPT, nem / e.g. Gemini, ChatGPT, no"
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Ellenőrzés / Checks
+      options:
+        - label: Hiba nélkül fut. / It runs without errors.
+          required: true
+        - label: Egy értéket kézzel is kiszámoltam, és egyezik. / I checked one value by hand and it matches.
+        - label: A feliratok magyarul és angolul is megvannak. / Labels exist in Hungarian and English.
+        - label: Nincs benne személyes adat. / It contains no personal data.
+          required: true
