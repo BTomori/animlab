@@ -7,4 +7,4 @@ Megnyitás linkkel / open with a link: `https://btomori.github.io/animlab/?scene
 
 | Fájl / File | Téma / Topic | Osztály / Class | Link |
 | --- | --- | --- | --- |
-| | | | |
+| [`AD_elhagyott-haz.animlab.json`](AD_elhagyott-haz.animlab.json) | Elhagyott ház – 3D-s, 30 másodperces ijesztős jelenet (kamera, zseblámpa, szellem; az ijesztés kikapcsolható) / Abandoned house – a 30-second 3D horror cutscene (camera, flashlight, ghost; the jumpscare can be switched off). Készült Claude Sonnet segítségével / made with Claude Sonnet. | A. D. | [megnyitás / open](https://btomori.github.io/animlab/?scene=examples/students/AD_elhagyott-haz.animlab.json) |
