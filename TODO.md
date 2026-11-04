@@ -33,7 +33,7 @@ Közös formátum: soronként `név=érték` (vagy JSON); a jelenetben `input("p
 
 ## Nyitott ügyek / Open items
 
-- **Issue #1 (Raytracing, diákmunka):** felvenni saját mappába; ellenőrizni az osztályt (az issue-ban 13.E, máshol 13.D szerepelt). / add it in its own folder; check the class (13.E in the issue, 13.D elsewhere).
+- **Issue #1 (Raytracing, diákmunka):** felvenni saját mappába (`13e_AD_…`, A. D., 13.E). / add it in its own folder (`13e_AD_…`, A. D., 13.E).
 - **Linkek / links:** „Link másolása” gomb a programban; a `?scene=` fogadja el a GitHubos fájl-URL-t is (`github.com/.../blob/main/...`). / a "Copy link" button in the app; `?scene=` accepting a GitHub file URL too.
 - **README:** kép a program felületéről; az üres `## ` címsor (egyelőre szándékosan marad). / a screenshot of the app; the empty `## ` heading (kept on purpose for now).
 - **Tároló beállításai (a GitHub weboldalán) / repository settings (on the GitHub website):** témák (topics), v0.4 kiadás, social preview kép feltöltése, a Wiki és Projects fül kikapcsolása. / topics, a v0.4 release, uploading the social preview picture, turning off the Wiki and Projects tabs.

@@ -3,6 +3,8 @@
 ## Következő / Unreleased
 
 - Új diákpélda / new student example: Logikai kapuk – fényrendszer / Logic gates – light system (`examples/students/13e_B_logikai-kapuk`, B., 13.E)
+- Új diákpélda / new student example: Vitorlás a nyílt tengeren / Sailing ship at sea (`examples/students/13e_AD_hajo`, A. D., 13.E)
+- Az Elhagyott ház osztálya javítva 13.E-re, a mappa új neve `13e_AD_elhagyott-haz` / Abandoned house: class corrected to 13.E, folder renamed to `13e_AD_elhagyott-haz`
 
 ## v0.4 – 2026-11-04
 

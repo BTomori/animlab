@@ -31,13 +31,13 @@
       "added": "2026-11-04"
     },
     {
-      "path": "students/13d_AD_elhagyott-haz",
+      "path": "students/13e_AD_elhagyott-haz",
       "group": "students",
       "title": {"hu": "Elhagyott ház – a szoba", "en": "Abandoned house – the room"},
       "description": {"hu": "30 másodperces 3D-s ijesztős jelenet: kamera, zseblámpa, szellem.", "en": "A 30-second 3D horror cutscene: camera, flashlight, ghost."},
       "topics": ["3D", "jelenetvezérlés / cutscene"],
       "author": "A. D.",
-      "class": "13.D",
+      "class": "13.E",
       "ai": "Claude Sonnet",
       "added": "2026-11-04"
     },
@@ -50,6 +50,17 @@
       "author": "B.",
       "class": "13.E",
       "ai": "Claude Sonnet",
+      "added": "2026-11-04"
+    },
+    {
+      "path": "students/13e_AD_hajo",
+      "group": "students",
+      "title": {"hu": "Vitorlás a nyílt tengeren", "en": "Sailing ship at sea"},
+      "description": {"hu": "60 másodperces 3D-s filmjelenet öt kameraállással: vitorlás hullámzó tengeren, napfényes csillogás, hegyek, felhők, sirályok.", "en": "A 60-second 3D film scene with five camera shots: a sailing ship on a rolling sea, sun glitter, mountains, clouds, gulls."},
+      "topics": ["3D", "jelenetvezérlés / cutscene", "hullámok / waves"],
+      "author": "A. D.",
+      "class": "13.E",
+      "ai": "Claude",
       "added": "2026-11-04"
     }
   ]

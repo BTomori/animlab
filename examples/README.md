@@ -8,8 +8,9 @@ Every example has its own folder: teacher examples in `teacher`, scenes made by 
 | [Lengő labda / Swinging ball](teacher/lengo-labda/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/lengo-labda) |
 | [Változó nyíl / Changing arrow](teacher/valtozo-nyil/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/valtozo-nyil) |
 | [Toyota THS-II (Prius II) hibrid hajtáslánc / hybrid drivetrain](teacher/toyota-ths2-hajtaslanc/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/toyota-ths2-hajtaslanc) |
-| [Elhagyott ház / Abandoned house](students/13d_AD_elhagyott-haz/) | A. D., 13.D | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/students/13d_AD_elhagyott-haz) |
+| [Elhagyott ház / Abandoned house](students/13e_AD_elhagyott-haz/) | A. D., 13.E | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/students/13e_AD_elhagyott-haz) |
 | [Logikai kapuk / Logic gates](students/13e_B_logikai-kapuk/) | B., 13.E | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/students/13e_B_logikai-kapuk) |
+| [Vitorlás a tengeren / Sailing ship at sea](students/13e_AD_hajo/) | A. D., 13.E | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/students/13e_AD_hajo) |
 
 ## Egy példa mappája / The folder of an example
 
@@ -62,9 +63,9 @@ examples/teacher/toyota-ths2-hajtaslanc/
 
 A GitHub weboldalán / on the GitHub website:
 
-1. A gépeden készíts egy mappát a fenti név szerint (pl. `13d_AD_elhagyott-haz`), tedd bele a jelenetet `scene.animlab.json` néven, a képeket és videókat pedig egy `media` almappába. / On your computer, make a folder named as above (e.g. `13d_AD_elhagyott-haz`), put the scene in it as `scene.animlab.json`, and the pictures and videos into a `media` subfolder.
+1. A gépeden készíts egy mappát a fenti név szerint (pl. `13e_AD_elhagyott-haz`), tedd bele a jelenetet `scene.animlab.json` néven, a képeket és videókat pedig egy `media` almappába. / On your computer, make a folder named as above (e.g. `13e_AD_elhagyott-haz`), put the scene in it as `scene.animlab.json`, and the pictures and videos into a `media` subfolder.
 2. A GitHubon nyisd meg a `examples/students/` (vagy `teacher/`) mappát → **Add file → Upload files**. / On GitHub, open `examples/students/` (or `teacher/`) → **Add file → Upload files**.
 3. Húzd rá az egész mappát a feltöltő mezőre: a GitHub megtartja a mappaszerkezetet. / Drag the whole folder onto the upload area: GitHub keeps the folder structure.
-4. **Add file → Create new file** → `13d_AD_elhagyott-haz/README.md`: másold be egy meglévő példa README-jét, és írd át (cím, megnyitó link, készítő, AI, leírás, források). / Copy the README of an existing example and edit it (title, open link, author, AI, description, sources).
+4. **Add file → Create new file** → `13e_AD_elhagyott-haz/README.md`: másold be egy meglévő példa README-jét, és írd át (cím, megnyitó link, készítő, AI, leírás, források). / Copy the README of an existing example and edit it (title, open link, author, AI, description, sources).
 5. Vedd fel a példát a fenti táblázatba, a [`students/README.md`](students/README.md) táblázatába és az [`index.json`](index.json) fájlba. / Add the example to the table above, to the table in `students/README.md` and to `index.json`.
 6. A commit üzenetébe írd be az issue számát (pl. `Closes #12`), így az issue magától lezárul. / Put the issue number in the commit message (e.g. `Closes #12`) so the issue closes itself.
