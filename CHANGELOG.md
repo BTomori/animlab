@@ -6,6 +6,7 @@
 - Exportálás → Megosztás üzenetben: önálló HTML a telefon megosztó menüjével / Export → Share in a chat via the share sheet
 - A Megnyitás az exportált `.html` fájlt is betölti / Open also loads an exported `.html`
 - Link egy jelenetre: `?scene=examples/...` / link to a scene: `?scene=examples/...`
+- A jelenetlink mindig a legfrissebb változatot tölti be, nem a böngésző gyorsítótárából / a scene link always loads the newest version, not the browser's cached copy
 - `examples/` mappa tanári mintákkal, diákmunkáknak, és beküldő űrlap / `examples/` folder with teacher examples, a place for student work and a submission form
 
 ## v0.2 – 2026-11-03
