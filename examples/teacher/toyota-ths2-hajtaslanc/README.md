@@ -2,6 +2,11 @@
 
 **[▶ Megnyitás az AnimLab-ben / Open in AnimLab](https://btomori.github.io/animlab/?scene=examples/teacher/toyota-ths2-hajtaslanc)** · jelenetfájl / scene file: [`scene.animlab.json`](scene.animlab.json) · [média / media](media/)
 
+| | |
+| --- | --- |
+| Készítette / Made by | Tömöri Balázs, Dobi József |
+| AI segítség / AI help | Claude (Anthropic) |
+
 [Magyar](#magyar) · [English](#english)
 
 ---

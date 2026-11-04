@@ -7,7 +7,7 @@ Every example has its own folder: teacher examples in `teacher`, scenes made by 
 | --- | --- | --- |
 | [Lengő labda / Swinging ball](teacher/lengo-labda/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/lengo-labda) |
 | [Változó nyíl / Changing arrow](teacher/valtozo-nyil/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/valtozo-nyil) |
-| [Toyota THS-II (Prius II) hibrid hajtáslánc / hybrid drivetrain](teacher/toyota-ths2-hajtaslanc/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/toyota-ths2-hajtaslanc) |
+| [Toyota THS-II (Prius II) hibrid hajtáslánc / hybrid drivetrain](teacher/toyota-ths2-hajtaslanc/) | Tömöri Balázs, Dobi József (Claude) | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/toyota-ths2-hajtaslanc) |
 | [Elhagyott ház / Abandoned house](students/13e_AD_elhagyott-haz/) | A. D., 13.E | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/students/13e_AD_elhagyott-haz) |
 | [Logikai kapuk / Logic gates](students/13e_B_logikai-kapuk/) | B., 13.E | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/students/13e_B_logikai-kapuk) |
 | [Vitorlás a tengeren / Sailing ship at sea](students/13e_AD_hajo/) | A. D., 13.E | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/students/13e_AD_hajo) |

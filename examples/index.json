@@ -27,7 +27,8 @@
       "title": {"hu": "Toyota THS-II (Prius II) hajtáslánc", "en": "Toyota THS-II (Prius II) drivetrain"},
       "description": {"hu": "Hibrid teljesítményosztás bolygóművel, minden üzemmód, forrásmegjelöléssel.", "en": "Hybrid power split with a planetary gear, all operating modes, with cited sources."},
       "topics": ["hajtástechnika / drives", "hibrid jármű / hybrid vehicle"],
-      "author": "Tanár / teacher",
+      "author": "Tömöri Balázs, Dobi József",
+      "ai": "Claude",
       "added": "2026-11-04"
     },
     {
