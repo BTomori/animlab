@@ -1,5 +1,12 @@
 # Változások / Changelog
 
+## v0.4 – 2026-11-04
+
+- Csak a vászon teljes képernyőn, lebegő lejátszás / visszaállítás / menü / kilépés gombokkal / canvas-only full screen with floating play, reset, menu and exit buttons
+- A grafikonsáv magassága húzással állítható (normál és teljes képernyős módban is; dupla kattintás = alapérték) / graph strip height adjustable by dragging, also in full screen (double-click resets)
+- Telefonos nézet: alsó sáv a vászon, vezérlők, kód (teljes magasságú szerkesztő), képek, jelölők és súgó között; tömör felső sáv ☰ menüvel / phone view: bottom bar switching between canvas, controls, full-height code editor, pictures, markup and help; compact top bar with a ☰ menu
+- Telefon elforgatásakor a vászon kitölti a képernyőt / turning the phone sideways fills the screen with the canvas
+
 ## v0.3 – 2026-11-04
 
 - Mentés: a fájltípus megadásával a kiterjesztés megmarad (`.animlab.json`, `.html`) / saving keeps the file extension

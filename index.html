@@ -275,14 +275,65 @@ details.bind .mark-f { margin-top: 6px; }
 
 .stage-col:fullscreen { background: var(--bg); padding: 12px; }
 
-@media (max-width: 900px) {
-  body { display: block; height: auto; }
-  .layout { grid-template-columns: minmax(0, 1fr); gap: 12px; }
-  .splitter { display: none; }
-  .side { min-height: 520px; }
-  .scene-name { width: 100%; order: 10; }
-  .speed { margin-left: 0; }
+/* grafikonsáv átméretezése: húzd fel vagy le / resizing the graph strip: drag up or down */
+.hsplit { height: 10px; margin: -4px 0; cursor: row-resize; position: relative; touch-action: none; flex: none; }
+.hsplit::after {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 56px; height: 4px; transform: translate(-50%, -50%);
+  border-radius: 3px; background: var(--line);
 }
+.hsplit:hover::after, .hsplit:focus-visible::after, .hsplit.drag::after { background: var(--accent); }
+.hsplit[hidden] { display: none; }
+body.resizing-v { cursor: row-resize; user-select: none; }
+
+/* csak a vászon: teljes képernyő vagy fekvő telefon / canvas only: full screen or a phone in landscape */
+.cv-overlay {
+  position: absolute; top: 10px; right: 10px; z-index: 3; display: none; gap: 6px;
+  opacity: 0; transition: opacity .25s; pointer-events: none;
+}
+.cv-overlay .btn { background: rgba(20, 26, 36, .72); color: #fff; border-color: rgba(255, 255, 255, .25); width: 42px; height: 42px; }
+#stageWrap:fullscreen .cv-overlay, body.cvonly .cv-overlay { display: flex; }
+.cv-overlay.show { opacity: 1; pointer-events: auto; }
+#stageWrap:fullscreen { background: #000; align-items: center; border: 0; border-radius: 0; }
+body.cvonly #stageWrap {
+  position: fixed; inset: 0; z-index: 40; border: 0; border-radius: 0; background: #000; align-items: center;
+}
+body.cvonly .toast { z-index: 60; }
+
+/* mobil nézet (keskeny képernyő vagy fekvő telefon): egyszerre egy képernyő, alul váltósáv
+   mobile view (narrow screen or a phone in landscape): one screen at a time, switch bar at the bottom */
+.mnav { display: none; }
+.tb-more { display: none; }
+body.mobile { display: flex; flex-direction: column; height: 100vh; height: 100dvh; }
+body.mobile .topbar { padding: 6px 8px; gap: 6px; flex: none; }
+body.mobile .brand { font-size: 17px; margin-right: 0; }
+body.mobile .tb-more { display: inline-flex; order: -1; }
+body.mobile #presetSel { flex: 1; min-width: 0; max-width: none; }
+body.mobile .scene-name, body.mobile .tb-group, body.mobile .topbar .lang { display: none; }
+body.mobile .topbar.open .scene-name { display: block; width: 100%; order: 10; }
+body.mobile .topbar.open .tb-group { display: flex; width: 100%; order: 11; }
+body.mobile .topbar.open .lang { display: inline-flex; order: 12; }
+body.mobile .layout { display: block; flex: 1; min-height: 0; padding: 8px; overflow: auto; }
+body.mobile .splitter { display: none; }
+body.mobile .side .tabs { display: none; }
+body.mobile .side { height: 100%; min-height: 0; }
+body.mobile:not([data-mview="canvas"]) .stage-col { display: none; }
+body.mobile[data-mview="canvas"] .side { display: none; }
+body.mobile #tab-code { height: 100%; }
+body.mobile .editor { min-height: 0; }
+body.mobile .speed { margin-left: 0; }
+body.mobile .speed input { width: 120px; }
+body.mobile .mnav {
+  display: flex; flex: none; background: var(--panel); border-top: 1px solid var(--line);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.mnav button {
+  flex: 1; display: grid; justify-items: center; gap: 2px; padding: 6px 2px 5px; border: 0; background: transparent;
+  color: var(--muted); font-size: 11px; cursor: pointer; min-width: 0;
+}
+.mnav button span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
+.mnav svg { width: 22px; height: 22px; }
+.mnav button[aria-current="true"] { color: var(--accent); font-weight: 600; }
+body.mobile .toast { bottom: calc(70px + env(safe-area-inset-bottom)); }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
 </style>
 </head>
@@ -292,6 +343,7 @@ details.bind .mark-f { margin-top: 6px; }
     <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1.5" y="1.5" width="29" height="29" rx="7" fill="var(--accent)"/><circle cx="16" cy="16" r="8" fill="none" stroke="var(--accent-ink)" stroke-width="2"/><path d="M10.3 21.7 21.7 10.3" stroke="var(--accent-ink)" stroke-width="2.6" stroke-linecap="round"/><circle cx="21.7" cy="10.3" r="2.6" fill="var(--accent-ink)"/></svg>
     AnimLab
   </div>
+  <button class="btn icon tb-more" id="btnMore" type="button" aria-expanded="false" data-i18n-title="menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   <input id="sceneName" class="scene-name" data-i18n-ph="sceneName" data-i18n-title="sceneName">
   <select id="presetSel" class="btn" data-i18n-title="presets"></select>
   <div class="tb-group">
@@ -320,6 +372,14 @@ details.bind .mark-f { margin-top: 6px; }
   <section class="stage-col" id="stageCol">
     <div class="stage-wrap" id="stageWrap">
       <canvas id="stage"></canvas>
+      <!-- Csak-vászon módban (teljes képernyő, fekvő telefon) ezek a gombok úsznak a kép fölött -->
+      <!-- In canvas-only mode (full screen, phone in landscape) these buttons float over the picture -->
+      <div class="cv-overlay" id="cvOverlay">
+        <button class="btn icon" id="cvPlay" type="button" data-i18n-title="play"></button>
+        <button class="btn icon" id="cvReset" type="button" data-i18n-title="resetT"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></svg></button>
+        <button class="btn icon" id="cvMenu" type="button" data-i18n-title="tabControls"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 7h14M5 12h14M5 17h14"/><circle cx="9" cy="7" r="2" fill="currentColor"/><circle cx="15" cy="12" r="2" fill="currentColor"/><circle cx="8" cy="17" r="2" fill="currentColor"/></svg></button>
+        <button class="btn icon" id="cvExit" type="button" data-i18n-title="cvExit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg></button>
+      </div>
       <button class="rec-badge" id="recBadge" type="button" hidden>● REC</button>
       <div class="stage-err" id="stageErr" hidden></div>
     </div>
@@ -328,12 +388,14 @@ details.bind .mark-f { margin-top: 6px; }
       <button class="btn icon" id="btStep" type="button" data-i18n-title="step"><svg viewBox="0 0 24 24"><path d="M6 5v14l9-7z" fill="currentColor"/><rect x="16" y="5" width="2.6" height="14" fill="currentColor"/></svg></button>
       <button class="btn icon" id="btReset" type="button" data-i18n-title="resetT"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></svg></button>
       <button class="btn icon" id="btFull" type="button" data-i18n-title="full"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+      <button class="btn icon" id="btCanvasFull" type="button" data-i18n-title="fullCanvas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9V8h2M17 9V8h-2M7 15v1h2M17 15v1h-2"/></svg></button>
       <span class="time" id="timeLbl">t = 0.00 s</span>
       <label class="speed" for="speed"><span data-i18n="speed"></span>
         <input type="range" id="speed" min="-10" max="1" step="0.01" value="0">
         <output id="speedOut">1×</output>
       </label>
     </div>
+    <div class="hsplit" id="plotSplit" role="separator" aria-orientation="horizontal" tabindex="0" data-i18n-title="plotSplit" hidden></div>
     <div class="plots" id="plotsWrap" hidden><canvas id="plot"></canvas></div>
   </section>
 
@@ -405,6 +467,15 @@ details.bind .mark-f { margin-top: 6px; }
     </div>
   </aside>
 </main>
+<!-- Mobil nézet: alsó sáv a vászon és a menük közötti váltáshoz / mobile view: bottom bar to switch between canvas and menus -->
+<nav class="mnav" id="mnav" aria-label="AnimLab">
+  <button type="button" data-view="canvas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m8 15 3-4 2.5 3 2-2 2.5 3"/></svg><span data-i18n="mCanvas"></span></button>
+  <button type="button" data-view="controls"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 7h14M5 12h14M5 17h14"/><circle cx="9" cy="7" r="2" fill="currentColor"/><circle cx="15" cy="12" r="2" fill="currentColor"/><circle cx="8" cy="17" r="2" fill="currentColor"/></svg><span data-i18n="tabControls"></span></button>
+  <button type="button" data-view="code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 6l-3 12"/></svg><span data-i18n="tabCode"></span></button>
+  <button type="button" data-view="assets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 17-5-5-9 8"/></svg><span data-i18n="tabAssets"></span></button>
+  <button type="button" data-view="marks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 18 6M18 6h-6M18 6v6"/></svg><span data-i18n="tabMarks"></span></button>
+  <button type="button" data-view="help"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"/></svg><span data-i18n="tabHelp"></span></button>
+</nav>
 <div id="toast" class="toast" role="status" hidden></div>
 
 <script type="application/json" id="embedded-scene" data-app></script>
@@ -2870,7 +2941,7 @@ const UI = {
     noReadouts: 'A show(...) hívással jeleníthetsz meg itt értékeket.',
     defaults: 'Csúszkák alapértékre',
     run: 'Futtatás', codeDirty: 'Módosítva – Ctrl+Enter a futtatáshoz', codeClean: 'Ez a kód fut',
-    play: 'Lejátszás / szünet (szóköz)', pause: 'Szünet (szóköz)', step: 'Léptetés (→)', resetT: 'Újraindítás (R)', full: 'Teljes képernyő',
+    play: 'Lejátszás / szünet (szóköz)', pause: 'Szünet (szóköz)', step: 'Léptetés (→)', resetT: 'Újraindítás (R)', full: 'Teljes képernyő (vászon + grafikonok)', fullCanvas: 'Csak a vászon teljes képernyőn', cvExit: 'Kilépés a csak-vászon nézetből', plotSplit: 'Húzd fel vagy le a grafikonok magasságához (dupla kattintás: alapméret)', menu: 'Menü', mCanvas: 'Vászon',
     speed: 'Sebesség', slowmo: 'lassítás', fastmo: 'gyorsítás',
     sceneName: 'Jelenet neve',
     drop: 'Kép feltöltése', dropSub: 'kattints, vagy húzd ide – PNG, JPG, SVG',
@@ -2926,7 +2997,7 @@ const UI = {
     noReadouts: 'Values you pass to show(...) appear here.',
     defaults: 'Reset sliders to defaults',
     run: 'Run', codeDirty: 'Edited – press Ctrl+Enter to run', codeClean: 'This code is running',
-    play: 'Play / pause (Space)', pause: 'Pause (Space)', step: 'Step (→)', resetT: 'Restart (R)', full: 'Full screen',
+    play: 'Play / pause (Space)', pause: 'Pause (Space)', step: 'Step (→)', resetT: 'Restart (R)', full: 'Full screen (canvas + graphs)', fullCanvas: 'Canvas only, full screen', cvExit: 'Leave canvas-only view', plotSplit: 'Drag up or down to resize the graphs (double-click: default size)', menu: 'Menu', mCanvas: 'Canvas',
     speed: 'Speed', slowmo: 'slow motion', fastmo: 'fast motion',
     sceneName: 'Scene name',
     drop: 'Upload an image', dropSub: 'click, or drop files here – PNG, JPG, SVG',
@@ -3920,16 +3991,18 @@ const timeLbl = $('#timeLbl'), recBadge = $('#recBadge');
 const fmtClock = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(Math.floor(s % 60)).padStart(2, '0');
 
 /* ───────────── plots ───────────── */
-let plotCount = -1;
+let plotCount = -1, plotHNow = -1;
+// A grafikonsávok magassága px-ben, a húzható elválasztóval állítható / height of one graph lane in px, set with the drag handle
+let plotLaneH = clamp(+store.get('plotLaneH') || 64, 24, 240);
 function drawPlots() {
   const groups = new Map();
   for (const p of R.plots.values()) { if (!groups.has(p.group)) groups.set(p.group, []); groups.get(p.group).push(p); }
   const lanes = [...groups.values()];
   const wrap = $('#plotsWrap');
-  const laneH = 64, H = lanes.length * laneH + 20;
-  if (lanes.length !== plotCount) {
-    plotCount = lanes.length;
-    wrap.hidden = !lanes.length;
+  const laneH = plotLaneH, H = lanes.length * laneH + 20;
+  if (lanes.length !== plotCount || H !== plotHNow) {
+    plotCount = lanes.length; plotHNow = H;
+    wrap.hidden = !lanes.length; $('#plotSplit').hidden = !lanes.length;
     plotCv.style.height = H + 'px';
     layoutStage();
   }
@@ -4101,12 +4174,19 @@ function layoutStage() {
   if (!R) return;
   dpr = Math.max(1, window.devicePixelRatio || 1);
   const wrap = $('#stageWrap');
-  const availW = wrap.clientWidth - 2;
+  let availW = wrap.clientWidth - 2;
   let availH = Infinity;
-  if (window.innerWidth > 900 || document.fullscreenElement) {
-    const used = (document.fullscreenElement ? 0 : $('.topbar').offsetHeight) + $('.transport').offsetHeight +
-      ($('#plotsWrap').hidden ? 0 : $('#plotsWrap').offsetHeight + 8) + 48;
-    availH = Math.max(200, window.innerHeight - used);
+  const plotsH = $('#plotsWrap').hidden ? 0 : $('#plotsWrap').offsetHeight + 10;
+  if (canvasOnly()) {
+    // csak a vászon: kitölti a képernyőt / canvas only: fills the screen
+    availW = wrap.clientWidth; availH = wrap.clientHeight;
+  } else if (document.fullscreenElement) {
+    availH = Math.max(120, window.innerHeight - $('.transport').offsetHeight - plotsH - 40);
+  } else if (document.body.classList.contains('mobile')) {
+    // mobil vászon nézet: fejléc, alsó sáv, vezérlősor és grafikonok nélküli hely / mobile canvas view: what is left
+    availH = Math.max(140, window.innerHeight - $('.topbar').offsetHeight - $('#mnav').offsetHeight - $('.transport').offsetHeight - plotsH - 34);
+  } else {
+    availH = Math.max(200, window.innerHeight - $('.topbar').offsetHeight - $('.transport').offsetHeight - plotsH - 48);
   }
   const k = Math.max(0.05, Math.min(availW / R.stageW, availH / R.stageH));
   const cw = Math.floor(R.stageW * k), ch = Math.floor(R.stageH * k);
@@ -4143,6 +4223,7 @@ const PAUSE_SVG = '<svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="
 function setPlaying(p) {
   playing = p;
   const b = $('#btPlay'); b.innerHTML = p ? PAUSE_SVG : PLAY_SVG;
+  const cp = $('#cvPlay'); if (cp) cp.innerHTML = p ? PAUSE_SVG : PLAY_SVG;
   b.title = T(p ? 'pause' : 'play'); b.setAttribute('aria-label', b.title);
 }
 function fmtSpeed(s) { return fmt(s, s >= 1 ? 2 : s >= 0.1 ? 2 : 3) + '×'; }
@@ -5344,7 +5425,107 @@ $('#btReset').addEventListener('click', () => { needsRerun = true; });
 $('#btFull').addEventListener('click', async () => {
   try { if (document.fullscreenElement) await document.exitFullscreen(); else await $('#stageCol').requestFullscreen(); } catch (e) { /* refused */ }
 });
-document.addEventListener('fullscreenchange', () => setTimeout(layoutStage, 50));
+
+/* ── nézetek: asztali, mobil, csak-vászon / views: desktop, mobile, canvas only ── */
+// Mobil: keskeny képernyő, vagy érintőképernyő alacsony (fekvő) ablakkal. / Mobile: a narrow screen, or touch with a low (landscape) window.
+const mqMobile = window.matchMedia('(max-width: 900px), (pointer: coarse) and (max-height: 560px)');
+let mview = store.get('mview') || 'canvas';     // mobilon látható képernyő / screen shown on mobile: canvas | controls | code | assets | marks | help
+let pseudoFull = false;                          // csak-vászon CSS-sel, ahol nincs teljes képernyős API (iPhone) / CSS canvas-only where there is no fullscreen API
+let landscapeAuto = true;                        // fekvő telefonon a vászon nézet magától csak-vászon / in landscape the canvas view turns canvas-only by itself
+function isLandscape() { return window.innerWidth > window.innerHeight; }
+function canvasOnly() { return document.fullscreenElement === $('#stageWrap') || document.body.classList.contains('cvonly'); }
+function updateMode() {
+  const b = document.body, mob = mqMobile.matches;
+  b.classList.toggle('mobile', mob);
+  b.dataset.mview = mob ? mview : 'canvas';
+  if (!isLandscape()) landscapeAuto = true;      // álló helyzetben újra élesedik / re-armed in portrait
+  const cv = pseudoFull || (mob && mview === 'canvas' && isLandscape() && landscapeAuto && !document.fullscreenElement);
+  b.classList.toggle('cvonly', cv);
+  $$('.mnav button').forEach(x => x.setAttribute('aria-current', String(x.dataset.view === mview)));
+  if (!mob) $('.topbar').classList.remove('open');
+  if (canvasOnly()) showOverlay();
+  setTimeout(layoutStage, 30);
+}
+function setMview(v) {
+  mview = v; store.set('mview', v);
+  if (v !== 'canvas') selectTab(v);
+  updateMode();
+  const lay = $('.layout'); if (lay) lay.scrollTop = 0;
+}
+$$('.mnav button').forEach(x => x.addEventListener('click', () => setMview(x.dataset.view)));
+$('#btnMore').addEventListener('click', () => {
+  const tb = $('.topbar'), open = !tb.classList.contains('open');
+  tb.classList.toggle('open', open); $('#btnMore').setAttribute('aria-expanded', String(open));
+  setTimeout(layoutStage, 30);
+});
+(mqMobile.addEventListener ? mqMobile.addEventListener('change', updateMode) : mqMobile.addListener(updateMode));
+window.addEventListener('orientationchange', () => setTimeout(updateMode, 200));
+
+// Csak a vászon teljes képernyőn; telefonon fekvő helyzetbe is fordít, ha a böngésző engedi.
+// Ahol nincs teljes képernyős API (iPhone), CSS-sel tölti ki az ablakot.
+// Canvas only, full screen; on a phone it also turns to landscape where the browser allows it.
+// Where there is no fullscreen API (iPhone), CSS fills the window instead.
+async function enterCanvasOnly() {
+  const w = $('#stageWrap');
+  if (w.requestFullscreen && document.fullscreenEnabled !== false) {
+    try {
+      await w.requestFullscreen({navigationUI: 'hide'});
+      if (mqMobile.matches && screen.orientation && screen.orientation.lock) screen.orientation.lock('landscape').catch(() => {});
+      return;
+    } catch (e) { /* refused: fall back to CSS */ }
+  }
+  pseudoFull = true; updateMode();
+}
+async function exitCanvasOnly() {
+  if (document.fullscreenElement) { try { await document.exitFullscreen(); } catch (e) { /* ignore */ } }
+  try { if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); } catch (e) { /* ignore */ }
+  if (pseudoFull) pseudoFull = false;
+  else if (document.body.classList.contains('cvonly')) landscapeAuto = false;   // fekvő telefonon: vissza a normál vászon nézetbe / landscape phone: back to the normal canvas view
+  updateMode();
+}
+$('#btCanvasFull').addEventListener('click', () => { if (canvasOnly()) exitCanvasOnly(); else enterCanvasOnly(); });
+$('#cvExit').addEventListener('click', exitCanvasOnly);
+$('#cvPlay').addEventListener('click', () => { setPlaying(!playing); showOverlay(); });
+$('#cvReset').addEventListener('click', () => { needsRerun = true; showOverlay(); });
+$('#cvMenu').addEventListener('click', async () => {
+  pseudoFull = false; landscapeAuto = false;
+  if (document.fullscreenElement) { try { await document.exitFullscreen(); } catch (e) { /* ignore */ } }
+  if (mqMobile.matches) setMview('controls'); else updateMode();
+});
+// A lebegő gombok érintésre / egérmozgásra előjönnek, 3 s után elhalványulnak
+// The floating buttons appear on touch / mouse movement and fade after 3 s
+let ovTimer = 0;
+function showOverlay() {
+  const o = $('#cvOverlay'); o.classList.add('show');
+  clearTimeout(ovTimer); ovTimer = setTimeout(() => o.classList.remove('show'), 3000);
+}
+['pointerdown', 'pointermove'].forEach(ev => $('#stageWrap').addEventListener(ev, () => { if (canvasOnly()) showOverlay(); }));
+document.addEventListener('fullscreenchange', () => { updateMode(); setTimeout(layoutStage, 80); });
+
+// A grafikonsáv magassága: az elválasztó húzásával (fel = nagyobb grafikonok), nyilakkal, dupla kattintás = alap
+// Graph strip height: drag the handle (up = taller graphs), arrow keys, double-click = default
+(function () {
+  const hs = $('#plotSplit');
+  let y0 = 0, h0 = 0, drag = false;
+  const setLane = h => { plotLaneH = clamp(Math.round(h), 24, 240); drawPlots(); };
+  hs.addEventListener('pointerdown', e => {
+    drag = true; y0 = e.clientY; h0 = plotLaneH; hs.classList.add('drag'); document.body.classList.add('resizing-v');
+    try { hs.setPointerCapture(e.pointerId); } catch (err) { /* old browser */ } e.preventDefault();
+  });
+  hs.addEventListener('pointermove', e => {
+    if (!drag) return;
+    const lanes = Math.max(1, plotCount);
+    setLane(h0 + (y0 - e.clientY) / lanes);
+  });
+  const end = () => { if (!drag) return; drag = false; hs.classList.remove('drag'); document.body.classList.remove('resizing-v'); store.set('plotLaneH', String(plotLaneH)); };
+  hs.addEventListener('pointerup', end); hs.addEventListener('pointercancel', end);
+  hs.addEventListener('dblclick', () => { setLane(64); store.set('plotLaneH', '64'); });
+  hs.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
+    e.preventDefault(); e.stopPropagation();
+    setLane(plotLaneH + (e.key === 'ArrowUp' ? 8 : -8)); store.set('plotLaneH', String(plotLaneH));
+  });
+})();
 $('#speed').addEventListener('input', e => { setSpeed(Math.pow(2, +e.target.value)); scheduleAutosave(); });
 $('#speed').addEventListener('dblclick', () => setSpeed(1));
 
@@ -5452,7 +5633,7 @@ document.addEventListener('keydown', e => {
   if (e.key === ' ') { e.preventDefault(); setPlaying(!playing); }
   else if (e.key === 'r' || e.key === 'R') needsRerun = true;
   else if (e.key === 'ArrowRight' && e.target.type !== 'range') { setPlaying(false); stepReq = true; }
-  else if (e.key === 'Escape') { closeMenu(); if (pathDraft) pathDraft = null; if (pivotFor) { pivotFor = null; updateToolHint(); } }
+  else if (e.key === 'Escape') { if (pseudoFull) exitCanvasOnly(); closeMenu(); if (pathDraft) pathDraft = null; if (pivotFor) { pivotFor = null; updateToolHint(); } }
   else if (e.key === 'Enter' && pathDraft) finishPath();
 });
 
@@ -5464,7 +5645,7 @@ window.addEventListener('drop', async e => {
     else if (/^image\//.test(f.type)) { await addImageFile(f); selectTab('assets'); }
   }
 });
-window.addEventListener('resize', () => { if (window.innerWidth > 900) applySideWidth(sideWidthFor(curTab)); layoutStage(); readTokens(); });
+window.addEventListener('resize', () => { updateMode(); if (!mqMobile.matches) applySideWidth(sideWidthFor(curTab)); layoutStage(); readTokens(); });
 if (window.ResizeObserver) new ResizeObserver(() => layoutStage()).observe($('#stageWrap'));
 try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', readTokens); } catch (e) { /* old browser */ }
 new MutationObserver(readTokens).observe(document.documentElement, {attributes: true, attributeFilter: ['data-theme']});
@@ -5480,6 +5661,8 @@ if (!initial) initial = presetScene('motor');
 applyLang();
 loadScene(initial);
 selectTab(store.get('tab') || 'controls');
+if (mqMobile.matches && mview !== 'canvas') selectTab(mview);
+updateMode();
 requestAnimationFrame(t => { lastNow = t; loop(t); });
 // Link egy jelenetfájlra: index.html?scene=examples/students/pelda.animlab.json – bármelyik üzenetben elküldhető
 // A link to a scene file: index.html?scene=examples/students/example.animlab.json – can be sent in any chat

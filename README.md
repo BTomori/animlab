@@ -39,6 +39,7 @@ Az AnimLab egy böngészőben futó animációs eszköz villamos és fizika tant
 - **Rajzolóeszközök:** alakzatok, nyilak, vektorok, fázorok, mozgó nyilak, erővonal-hurkok, háromfázisú állórész, 3D nézet, fizikai világ (gravitáció, ütközés, rugók), komplex számok.
 - **Képek** feltöltése és animálása (például forgó forgórész), forgásponttal.
 - **Jelölők fül:** nyilak, erővonalak, áramutak, feliratok egérrel; méretük, vastagságuk és színük változóhoz köthető. A `boundArrow` nyilak beállításai a kód és a fül között mindkét irányban szinkronban vannak.
+- **Teljes képernyő és telefonos nézet:** csak a vászon teljes képernyőn (lebegő gombokkal), a grafikonsáv magassága húzással állítható; telefonon alsó sáv vált a vászon, a vezérlők, a kód, a képek, a jelölők és a súgó között, fekvő helyzetben a vászon kitölti a képernyőt.
 - **Mentés és exportálás:** jelenetfájl (`.animlab.json`), önálló HTML-fájl, videó (WebM) és állókép (PNG).
 - **Súgó** lépésenkénti, kommentezett példákkal; részletes [programozási útmutató](docs/programozasi-utmutato.md) és angol [programming guide](docs/programming-guide-en.md).
 
@@ -117,6 +118,7 @@ AnimLab is a browser-based animation tool for electrical engineering and physics
 - **Drawing tools:** shapes, arrows, vectors, phasors, moving arrows, field-line loops, a three-phase stator, 3D view, a physics world (gravity, collisions, springs), complex numbers.
 - **Upload and animate pictures** (e.g. a rotating rotor), with a pivot point.
 - **Markup tab:** arrows, field lines, current paths and labels drawn with the mouse; their size, width and colour can follow variables. `boundArrow` settings stay in sync between the code and the tab in both directions.
+- **Full screen and phone view:** canvas-only full screen (with floating buttons) and a graph strip you resize by dragging; on a phone a bottom bar switches between canvas, controls, code, pictures, markup and help, and turning the phone sideways fills the screen with the canvas.
 - **Save and export:** scene file (`.animlab.json`), standalone HTML file, video (WebM) and snapshot (PNG).
 - **Help** with commented step-by-step examples, the [programming guide](docs/programming-guide-en.md) in English and the detailed [Hungarian guide](docs/programozasi-utmutato.md) covering every model.
 
