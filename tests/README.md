@@ -11,6 +11,15 @@ npx playwright install chromium
 node tests/run-presets.js
 ```
 
+## `ths2-arrows.js` – a Toyota THS-II jelenet teljesítménynyilai / power arrows of the Toyota THS-II scene
+
+Böngésző nélkül lefuttatja a jelenet fizikáját és rajzát 19 üzemállapotban (a teljes bemutató ciklus is), és minden képkockán minden nyílra ellenőrzi: a nyílfej arra mutat, amerre a nyíl halad; ez a fizikai teljesítményáramlás iránya; MG1 és MG2 villamos és mechanikus teljesítményének előjele egyezik; egyik nyíl sem villog oda-vissza.
+Runs the scene's physics and drawing without a browser in 19 operating states (including the full demo cycle) and checks every arrow in every frame: the head points the way the arrow moves; that is the physical power direction; MG1/MG2 electric and mechanical power have the same sign; no arrow flickers back and forth.
+
+```bash
+node tests/ths2-arrows.js
+```
+
 ## `gemini-2026-11-03/` – az AI-utasítások tesztje / test of the AI instructions
 
 2026. november 3-án a Gemini 3.5 Flash-Lite ingyenes változata kapta meg az AI-utasításokat és hat tesztkérést. Minden kódját lefuttattuk az AnimLab-ben egy általunk írt referenciakód mellett, azonos csúszkaállásokkal. Az első változat (v1) hibái alapján javítottuk az utasításokat (v2), és újrateszteltük.

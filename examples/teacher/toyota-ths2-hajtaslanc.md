@@ -63,7 +63,7 @@ Ezek nem szerepelnek a forrásban; a kód megjegyzéseiben „(assumed)” jelz�
 - a kúszó- és a gurulási erő
 - a motor legjobb hatásfokú munkavonala, amelyet a 42. dia jelleggörbéjéről szemmel olvastunk le
 
-A jelenet 633 soros, minden felirata kétnyelvű, a kód megjegyzésekkel ellátott.
+A jelenet 643 soros, minden felirata kétnyelvű, a kód megjegyzésekkel ellátott.
 
 ---
 
@@ -123,4 +123,4 @@ These are not in the source and are marked "(assumed)" in the code comments:
 - creep and coasting forces
 - the engine's best-efficiency operating line, read off the map on slide 42 by eye
 
-The scene has 633 lines, all text is bilingual and the code is commented.
+The scene has 643 lines, all text is bilingual and the code is commented.
