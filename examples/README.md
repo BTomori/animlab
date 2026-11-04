@@ -18,6 +18,7 @@ This folder holds AnimLab scenes: teacher examples in `teacher`, scenes made by 
 | --- | --- |
 | Lengő labda / swinging ball | [megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/lengo-labda.animlab.json) |
 | Változóhoz kötött nyíl / arrow bound to a variable | [megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/valtozo-nyil.animlab.json) |
+| Toyota THS-II (Prius II) hibrid hajtáslánc: teljesítményosztás, minden üzemmód / Toyota THS-II hybrid drivetrain: power split, all operating modes | [megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/toyota-ths2-hajtaslanc.animlab.json) |
 
 ## Új példa beküldése (diákoknak) / Submitting a new example (for students)
 
