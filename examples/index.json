@@ -40,6 +40,17 @@
       "class": "13.D",
       "ai": "Claude Sonnet",
       "added": "2026-11-04"
+    },
+    {
+      "path": "students/13e_B_logikai-kapuk",
+      "group": "students",
+      "title": {"hu": "Logikai kapuk – fényrendszer", "en": "Logic gates – light system"},
+      "description": {"hu": "A hét alapkapu (ÉS, NEM-ÉS, VAGY, NEM-VAGY, KIZÁRÓ VAGY, EGYENLŐSÉG, NEM) lámpákkal, élő igazságtáblával, negálható bemenetekkel és kimenetekkel.", "en": "The seven basic gates (AND, NAND, OR, NOR, XOR, XNOR, NOT) with lamps, a live truth table, and inputs and outputs that can be negated."},
+      "topics": ["digitális technika / digital electronics", "logikai kapuk / logic gates"],
+      "author": "B.",
+      "class": "13.E",
+      "ai": "Claude Sonnet",
+      "added": "2026-11-04"
     }
   ]
 }

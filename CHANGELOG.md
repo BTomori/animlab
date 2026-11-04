@@ -1,5 +1,9 @@
 # Változások / Changelog
 
+## Következő / Unreleased
+
+- Új diákpélda / new student example: Logikai kapuk – fényrendszer / Logic gates – light system (`examples/students/13e_B_logikai-kapuk`, B., 13.E)
+
 ## v0.4 – 2026-11-04
 
 - Csak a vászon teljes képernyőn, lebegő lejátszás / visszaállítás / menü / kilépés gombokkal / canvas-only full screen with floating play, reset, menu and exit buttons
