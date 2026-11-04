@@ -6,6 +6,7 @@
 - Új diákpélda / new student example: Vitorlás a nyílt tengeren / Sailing ship at sea (`examples/students/13e_AD_hajo`, A. D., 13.E)
 - Új diákpélda / new student example: Sugárkövetés: kocka és padló / Ray tracing: cube and floor (`examples/students/13e_AD_raytracing-kocka`, A. D., 13.E)
 - Toyota THS-II példa: szerzők / authors: Tömöri Balázs, Dobi József; AI: Claude
+- Toyota THS-II példa: a teljesítmény-táblázat soronként kiírja az állapotot (pl. „Akku – töltés”, „MG1 – generátor”), a jármű energiamérlege számokkal / Toyota THS-II example: the power chart names each component's state (e.g. "Battery – charging", "MG1 – generator"), with the vehicle's energy balance written out
 - Az Elhagyott ház osztálya javítva 13.E-re, a mappa új neve `13e_AD_elhagyott-haz` / Abandoned house: class corrected to 13.E, folder renamed to `13e_AD_elhagyott-haz`
 
 ## v0.4 – 2026-11-04

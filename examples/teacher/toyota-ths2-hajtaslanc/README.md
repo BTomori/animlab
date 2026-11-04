@@ -32,7 +32,8 @@ A forrás John M. Miller 2005-ös workshop-diasora: *Comparative Assessment of H
 - **Bolygómű:** szemből ábrázolva; a napkerék, a négy bolygókerék, a bolygókar és a gyűrűs kerék helyesen kapcsolódó fogakkal forog.
 - **Teljesítménynyilak:** minden tengelyen és kábelen, kW-ban feliratozva; a sebességük a teljesítmény nagyságát, az irányuk az áramlás irányát mutatja.
 - **Adatkártyák minden elemhez:** a be- és kimenő fordulatszám, nyomaték és teljesítmény a motorra, MG1-re, MG2-re, a bolygóműre, az akkumulátorra és a járműre.
-- **Emelőkar-ábra és teljesítménymérleg:** a 44. dia mintájára, valamint egy teljesítménymérleg, amelynek összegei kijönnek.
+- **Emelőkar-ábra:** a 44. dia mintájára.
+- **Teljesítmények most:** minden sor kiírja az elem pillanatnyi állapotát (pl. „MG1 – generátor”, „Akku – töltés”, „Kerekek – visszatáplálás”) és a teljesítmény nagyságát kW-ban, előjel nélkül. Alatta a jármű energiamérlege számokkal: kerék + fék + út = mozgási energia változása.
 
 ### Csúszkák
 
@@ -71,7 +72,7 @@ Ezek nem szerepelnek a forrásban; a kód megjegyzéseiben „(assumed)” jelz�
 - a kúszó- és a gurulási erő
 - a motor legjobb hatásfokú munkavonala, amelyet a 42. dia jelleggörbéjéről szemmel olvastunk le
 
-A jelenet 643 soros, minden felirata kétnyelvű, a kód megjegyzésekkel ellátott.
+A jelenet 655 soros, minden felirata kétnyelvű, a kód megjegyzésekkel ellátott.
 
 ---
 
@@ -96,7 +97,8 @@ The source is John M. Miller's 2005 workshop slides, *Comparative Assessment of 
 - **Planetary gear set:** shown face-on, with the sun, the four planets, the planet carrier and the ring all rotating with correctly meshing teeth.
 - **Power arrows:** on every shaft and cable, labelled in kW; their speed shows how much power flows and their direction shows which way.
 - **Cards for each component:** speed, torque and power going in and out, for the engine, MG1, MG2, the gear set, battery and vehicle.
-- **Lever diagram and power-balance bars:** as on slide 44, plus a power balance whose figures add up.
+- **Lever diagram:** as on slide 44.
+- **Power right now:** every row names the component's present state (e.g. "MG1 – generator", "Battery – charging", "Wheels – regenerating") and the size of its power in kW, without a sign. Below it, the vehicle's energy balance with numbers: wheels + brakes + road = change of kinetic energy.
 
 ### Sliders
 
@@ -135,4 +137,4 @@ These are not in the source and are marked "(assumed)" in the code comments:
 - creep and coasting forces
 - the engine's best-efficiency operating line, read off the map on slide 42 by eye
 
-The scene has 643 lines, all text is bilingual and the code is commented.
+The scene has 655 lines, all text is bilingual and the code is commented.
