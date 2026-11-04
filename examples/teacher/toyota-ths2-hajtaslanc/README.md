@@ -15,6 +15,10 @@
 
 ### Forrás
 
+> John M. Miller (J-N-J Miller Design Services): *Comparative Assessment of Hybrid Vehicle Power Split Transmissions.* 4th VI Winter Workshop Series, 2005. január 12., 96 dia.
+>
+> Online: [john2211.nl/Hybride_links_files/Miller_W04.pdf](https://john2211.nl/Hybride_links_files/Miller_W04.pdf) (az eredeti, University of Michigan-Dearborn-i cím már nem él) · másolat ebben a mappában: [`Miller_W04.pdf`](Bolyg%C3%B3m%C5%B1-sz%C3%A1m%C3%ADt%C3%A1sok-r%C3%A9szletes-Miller_W04.pdf)
+
 A forrás John M. Miller 2005-ös workshop-diasora: *Comparative Assessment of Hybrid Vehicle Power Split Transmissions* (a hibrid járművek teljesítményosztó hajtásainak összehasonlítása). Ennek a Toyotáról szóló része a THS-I/THS-II rendszert, vagyis a Prius hajtásláncát tárgyalja. A jelenet a THS-II (Prius II) modellje, ebből a forrásból:
 
 - **Prius II adatok:** bolygómű 78/30 (k = 2,6), végáttétel 4,0, gördülési sugár 0,3045 m, motor 57 kW / 111 N·m, MG2 400 N·m / 50 kW, akkumulátor 201,6 V / 6 Ah / 21 kW, hatásfokok 0,82 és 0,855.
@@ -74,6 +78,10 @@ A jelenet 643 soros, minden felirata kétnyelvű, a kód megjegyzésekkel ellát
 ## English
 
 ### Source
+
+> John M. Miller (J-N-J Miller Design Services): *Comparative Assessment of Hybrid Vehicle Power Split Transmissions.* 4th VI Winter Workshop Series, 12 January 2005, 96 slides.
+>
+> Online: [john2211.nl/Hybride_links_files/Miller_W04.pdf](https://john2211.nl/Hybride_links_files/Miller_W04.pdf) (the original University of Michigan-Dearborn address is no longer live) · copy in this folder: [`Miller_W04.pdf`](Bolyg%C3%B3m%C5%B1-sz%C3%A1m%C3%ADt%C3%A1sok-r%C3%A9szletes-Miller_W04.pdf)
 
 The source is John M. Miller's 2005 workshop slides, *Comparative Assessment of Hybrid Vehicle Power Split Transmissions*, and its Toyota section covers THS-I/THS-II, the Prius drive system. The scene models the THS-II (Prius II) from it:
 
