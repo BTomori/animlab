@@ -10,7 +10,7 @@
 
 ### Forrás
 
-A forrás nem Toyota-dokumentum, hanem John M. Miller 2005-ös workshop-diasora: *Comparative Assessment of Hybrid Vehicle Power Split Transmissions* (a hibrid járművek teljesítményosztó hajtásainak összehasonlítása). Ennek a Toyotáról szóló része a THS-I/THS-II rendszert, vagyis a Prius hajtásláncát tárgyalja. A jelenet a THS-II (Prius II) modellje, ebből a forrásból:
+A forrás John M. Miller 2005-ös workshop-diasora: *Comparative Assessment of Hybrid Vehicle Power Split Transmissions* (a hibrid járművek teljesítményosztó hajtásainak összehasonlítása). Ennek a Toyotáról szóló része a THS-I/THS-II rendszert, vagyis a Prius hajtásláncát tárgyalja. A jelenet a THS-II (Prius II) modellje, ebből a forrásból:
 
 - **Prius II adatok:** bolygómű 78/30 (k = 2,6), végáttétel 4,0, gördülési sugár 0,3045 m, motor 57 kW / 111 N·m, MG2 400 N·m / 50 kW, akkumulátor 201,6 V / 6 Ah / 21 kW, hatásfokok 0,82 és 0,855.
 - **Egyenletek:** menetellenállás, a bolygómű fordulatszám- és nyomatékegyenletei, valamint az akkuáram képlete a 71. diáról.
@@ -70,7 +70,7 @@ A jelenet 643 soros, minden felirata kétnyelvű, a kód megjegyzésekkel ellát
 
 ### Source
 
-The source is not a Toyota document. It is John M. Miller's 2005 workshop slides, *Comparative Assessment of Hybrid Vehicle Power Split Transmissions*, and its Toyota section covers THS-I/THS-II, the Prius drive system. The scene models the THS-II (Prius II) from it:
+The source is John M. Miller's 2005 workshop slides, *Comparative Assessment of Hybrid Vehicle Power Split Transmissions*, and its Toyota section covers THS-I/THS-II, the Prius drive system. The scene models the THS-II (Prius II) from it:
 
 - **Prius II figures:** gear set 78/30 (k = 2.6), final drive 4.0, tyre radius 0.3045 m, engine 57 kW / 111 N·m, MG2 400 N·m / 50 kW, battery 201.6 V / 6 Ah / 21 kW, efficiencies 0.82 and 0.855.
 - **Equations:** road load, the planetary speed and torque equations, and the battery current formula from slide 71.
