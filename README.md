@@ -187,6 +187,8 @@ Name the physical model (ideal or with losses), the units and the ranges; the mo
 | `docs/programozasi-utmutato.md` | Programozási útmutató (magyar) / Programming guide (Hungarian) |
 | `docs/programming-guide-en.md` | Programozási útmutató (angol) / Programming guide (English) |
 | `examples/` | Tanári minták és diákmunkák, beküldési útmutató / Teacher examples and student work, how to submit |
+| `docs/dev-notes.md` | Fejlesztői jegyzet: a fájl felépítése, szabályok, tesztelés, kiadás / Developer notes: how the file is built, rules, testing, publishing |
+| `TODO.md` | Teendők és tervek / To-do and plans |
 | `.github/ISSUE_TEMPLATE/uj-pelda.yml` | Űrlap új példa beküldéséhez / Form for submitting a new example |
 | `tests/run-presets.js` | Az összes mintajelenet automatikus tesztje / Automatic test of every example scene |
 | `tests/gemini-2026-11-03/` | Az AI-utasítások tesztje Geminivel: beszélgetések, kódok, képek, jelentés / Test of the AI instructions with Gemini: sessions, codes, screenshots, report |
