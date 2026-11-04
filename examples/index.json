@@ -62,6 +62,17 @@
       "class": "13.E",
       "ai": "Claude",
       "added": "2026-11-04"
+    },
+    {
+      "path": "students/13e_AD_raytracing-kocka",
+      "group": "students",
+      "title": {"hu": "Sugárkövetés: kocka és padló", "en": "Ray tracing: cube and floor"},
+      "description": {"hu": "Saját sugárkövető (ray tracer) a vásznon: forgó színes kocka sakktábla-padló fölött, árnyékkal, tükröződéssel, ködös horizonttal.", "en": "A ray tracer written in a scene: a spinning coloured cube above a checkerboard floor, with shadows, reflections and a hazy horizon."},
+      "topics": ["3D", "sugárkövetés / ray tracing", "fény / light"],
+      "author": "A. D.",
+      "class": "13.E",
+      "ai": "Claude",
+      "added": "2026-11-04"
     }
   ]
 }
