@@ -25,7 +25,7 @@
 - Képforgatás forgásponttal, SVG-javítás, hibajelzés hiányzó képnél / picture rotation with a pivot, SVG repair, warning for a missing picture
 - Mozgó nyilak nem ugrálnak változó sebességnél / moving arrows no longer jump when their speed changes
 - Programozási útmutató magyarul és angolul / programming guide in Hungarian and English
-- Tesztek / tests: `tests/run-presets.js`, `tests/gemini-2026-11-03/`
+- Tesztjelentés / test report: `tests/gemini-2026-11-03/`
 
 ## v0.1 – 2026-11-03
 

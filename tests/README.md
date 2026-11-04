@@ -1,24 +1,6 @@
-# Tesztek / Tests
+# Tesztjelentések / Test reports
 
-## `run-presets.js` – minden mintajelenet betöltése / loads every example scene
-
-Ellenőrzi, hogy mind a 21 mintajelenet hiba nélkül fut, és kiírja az első mért értékeket.
-Checks that all 21 example scenes run without errors and prints their first readouts.
-
-```bash
-npm i playwright
-npx playwright install chromium
-node tests/run-presets.js
-```
-
-## `ths2-arrows.js` – a Toyota THS-II jelenet teljesítménynyilai / power arrows of the Toyota THS-II scene
-
-Böngésző nélkül lefuttatja a jelenet fizikáját és rajzát 19 üzemállapotban (a teljes bemutató ciklus is), és minden képkockán minden nyílra ellenőrzi: a nyílfej arra mutat, amerre a nyíl halad; ez a fizikai teljesítményáramlás iránya; MG1 és MG2 villamos és mechanikus teljesítményének előjele egyezik; egyik nyíl sem villog oda-vissza.
-Runs the scene's physics and drawing without a browser in 19 operating states (including the full demo cycle) and checks every arrow in every frame: the head points the way the arrow moves; that is the physical power direction; MG1/MG2 electric and mechanical power have the same sign; no arrow flickers back and forth.
-
-```bash
-node tests/ths2-arrows.js
-```
+Korábbi tesztek jelentései, nyilvános betekintésre. / Reports of earlier tests, for public insight.
 
 ## `gemini-2026-11-03/` – az AI-utasítások tesztje / test of the AI instructions
 
