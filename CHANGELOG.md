@@ -1,7 +1,18 @@
 # Változások / Changelog
 
-## Következő / Unreleased
+## v0.5 – 2026-11-05
 
+- **Billentyűzetes vezérlés / keyboard control:**
+  - billentyű a csúszkán, kapcsolón, listán, gombon: `param(..., {keys: "q a"})`, `toggle(..., {key: "s"})`, `choice(..., {key: "c"})`, `button(..., {key: "Enter"})`; nyomva tartva folyamatosan állít, Shift = 10×; kis billentyűjel a Vezérlők fülön / keys on sliders, switches, lists and buttons; holding moves smoothly, Shift = 10×; a small key badge on the Controls tab
+  - a jelenet kódjában: `key("ArrowLeft")` (igaz, amíg nyomva van), `onKey(" ", fn)` (lenyomásonként egyszer) / in scene code: `key()` (true while held), `onKey()` (once per press)
+  - telefonon és táblagépen a `key()` / `onKey()` billentyűi gombként jelennek meg a vásznon (`{label}` = felirat) / on phones and tablets the `key()` / `onKey()` keys appear as touch buttons on the canvas (`{label}` = text)
+  - kód nélkül, minden jelenetnél: 1–9 kiválaszt egy csúszkát, a nyilak állítják, Esc / 0 = kész; kiemelés a Vezérlők fülön és a vásznon (csak-vászon módban is) / no code, every scene: 1–9 picks a slider, the arrows move it, Esc / 0 = done; highlighted on the Controls tab and on the canvas (also in canvas-only mode)
+  - ha a jelenet lefoglalja a Szóközt, az R-t vagy a →-t, a jelenet nyer; új tartalék lejátszás / szünet: P / if a scene binds Space, R or →, the scene wins; new backup play / pause: P
+  - billentyűlista: ⌨ gomb a vászon sarkában vagy a ? billentyű, a Vezérlők fülön összecsukható sor; a `key()` / `onKey()` leírása: `{help}` / key list: a ⌨ button in the canvas corner or the ? key, a collapsible line on the Controls tab; describe `key()` / `onKey()` with `{help}`
+  - régi jelenetek, amelyek saját `key` vagy `onKey` változót hoznak létre, továbbra is futnak / older scenes that declare their own `key` or `onKey` variable still run
+- Új minta / new preset: Kocsi nyilakkal (billentyűzet, Newton II.) / Cart with the arrow keys (keyboard, Newton's second law)
+- Aszinkron motor: terhelőnyomaték W / S, forgásirány V, indítás Enter / induction motor: load torque W / S, reverse V, start Enter
+- Súgó: Billentyűzet szakasz és lecke; mindkét útmutató és az AI-utasítások kiegészítve / Help: Keyboard section and lesson; both guides and the AI instructions updated
 - Új diákpélda / new student example: Logikai kapuk – fényrendszer / Logic gates – light system (`examples/students/13e_B_logikai-kapuk`, B., 13.E)
 - Új diákpélda / new student example: Vitorlás a nyílt tengeren / Sailing ship at sea (`examples/students/13e_AD_hajo`, A. D., 13.E)
 - Új diákpélda / new student example: Sugárkövetés: kocka és padló / Ray tracing: cube and floor (`examples/students/13e_AD_raytracing-kocka`, A. D., 13.E)

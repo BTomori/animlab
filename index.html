@@ -299,6 +299,72 @@ body.cvonly #stageWrap {
 }
 body.cvonly .toast { z-index: 60; }
 
+/* billentyűzet: csúszkaszám, billentyűjelek, kiválasztott csúszka, érintőgombok
+   keyboard: slider number, key badges, selected slider, touch buttons */
+.kbn {
+  display: inline-grid; place-items: center; min-width: 17px; height: 17px; padding: 0 3px; margin-right: 6px; vertical-align: 1px;
+  border: 1px solid var(--line); border-radius: 4px; font: 600 11px var(--font-mono); color: var(--muted);
+}
+.kbds { display: inline-flex; gap: 3px; margin-left: 6px; vertical-align: 1px; }
+.kbds kbd {
+  font: 600 11px/15px var(--font-mono); padding: 0 4px; border: 1px solid var(--line); border-bottom-width: 2px;
+  border-radius: 4px; color: var(--muted); background: var(--code-bg);
+}
+.btn .kbds kbd { color: inherit; background: transparent; }
+.ctl.kbsel { background: var(--accent-soft); box-shadow: inset 3px 0 0 var(--accent); padding-left: 8px; padding-right: 6px; border-radius: 6px; }
+.ctl.kbsel .kbn { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.kbhit { animation: kbhit .4s ease-out; }
+@keyframes kbhit { from { box-shadow: 0 0 0 3px var(--accent); } to { box-shadow: 0 0 0 3px transparent; } }
+@media (hover: none) { .kbn { display: none; } }
+body.mobile .kbn { display: none; }
+.kb-hud {
+  position: absolute; left: 50%; top: 12px; transform: translateX(-50%); z-index: 4; display: grid; justify-items: center;
+  max-width: calc(100% - 24px); padding: 6px 14px; border-radius: 9px; background: rgba(20, 26, 36, .84); color: #fff;
+  font: 600 14px var(--font-body); white-space: nowrap; pointer-events: none; transition: opacity .3s;
+}
+.kb-hud b { overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.kb-hud small { font: 500 11px var(--font-body); opacity: .78; }
+.kb-hud.idle { opacity: .55; }
+.kb-hud[hidden], .kb-pad[hidden] { display: none; }
+.kb-pad {
+  position: absolute; left: 10px; right: 10px; bottom: 10px; z-index: 3; display: flex; align-items: flex-end;
+  justify-content: space-between; gap: 10px; pointer-events: none;
+}
+.kb-dpad { display: grid; grid-template-areas: ". u ." "l d r"; gap: 6px; }
+.kb-btns { display: flex; flex-wrap: wrap-reverse; justify-content: flex-end; gap: 8px; margin-left: auto; max-width: 60%; }
+.kb-key {
+  pointer-events: auto; min-width: 54px; height: 54px; padding: 0 12px; border-radius: 14px; cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, .4); background: rgba(20, 26, 36, .55); color: #fff; font: 600 16px var(--font-body);
+  touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+}
+body.mobile .kb-key { min-width: 46px; height: 46px; padding: 0 10px; border-radius: 12px; font-size: 14px; background: rgba(20, 26, 36, .42); }
+.kb-key.down, body.mobile .kb-key.down { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.kb-help-btn {
+  position: absolute; top: 10px; right: 10px; z-index: 4; width: 34px; height: 30px; padding: 0; border-radius: 8px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--panel); color: var(--muted); font-size: 18px; line-height: 1; opacity: .7;
+}
+.kb-help-btn:hover, .kb-help-btn[aria-expanded="true"] { opacity: 1; color: var(--accent); border-color: var(--accent); }
+.kb-help-btn[hidden], .kb-list[hidden] { display: none; }
+#stageWrap:fullscreen .kb-help-btn, body.cvonly .kb-help-btn { top: 62px; background: rgba(20, 26, 36, .72); color: #fff; border-color: rgba(255, 255, 255, .25); }
+.kb-list {
+  position: absolute; top: 46px; right: 10px; z-index: 5; max-width: min(420px, calc(100% - 20px)); max-height: calc(100% - 60px); overflow: auto;
+  padding: 10px 14px; border-radius: 10px; background: rgba(20, 26, 36, .9); color: #fff; font-size: 13px; box-shadow: 0 6px 24px rgba(0, 0, 0, .25);
+}
+#stageWrap:fullscreen .kb-list, body.cvonly .kb-list { top: 98px; }
+.kb-list .kbl-title { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+.kb-list kbd { color: #fff; border-color: rgba(255, 255, 255, .45); background: rgba(255, 255, 255, .08); }
+.kbl-h { margin: 8px 0 2px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; opacity: .7; }
+.kbl { border-collapse: collapse; width: 100%; }
+.kbl td { padding: 3px 0; vertical-align: top; }
+.kbl td:first-child { white-space: nowrap; padding-right: 10px; }
+.kbl kbd { display: inline-block; margin: 0 3px 2px 0; font: 600 11px/16px var(--font-mono); padding: 0 5px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; }
+.kbhelp { padding: 6px 0 2px; border-bottom: 1px solid var(--line); font-size: 13px; }
+.kbhelp[hidden] { display: none; }
+.kbhelp summary { cursor: pointer; color: var(--accent); padding: 4px 0; }
+.kbhelp > div { padding: 2px 0 8px; }
+.kbhelp kbd { background: var(--code-bg); color: var(--ink); }
+.kb-up { grid-area: u; } .kb-left { grid-area: l; } .kb-down { grid-area: d; } .kb-right { grid-area: r; }
+
 /* mobil nézet (keskeny képernyő vagy fekvő telefon): egyszerre egy képernyő, alul váltósáv
    mobile view (narrow screen or a phone in landscape): one screen at a time, switch bar at the bottom */
 .mnav { display: none; }
@@ -380,6 +446,13 @@ body.mobile .toast { bottom: calc(70px + env(safe-area-inset-bottom)); }
         <button class="btn icon" id="cvMenu" type="button" data-i18n-title="tabControls"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 7h14M5 12h14M5 17h14"/><circle cx="9" cy="7" r="2" fill="currentColor"/><circle cx="15" cy="12" r="2" fill="currentColor"/><circle cx="8" cy="17" r="2" fill="currentColor"/></svg></button>
         <button class="btn icon" id="cvExit" type="button" data-i18n-title="cvExit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg></button>
       </div>
+      <!-- Billentyűzet: a kiválasztott csúszka (1–9, majd ← →) és érintőgombok a key() / onKey() jelenetekhez -->
+      <!-- Keyboard: the selected slider (1–9, then ← →) and touch buttons for key() / onKey() scenes -->
+      <div class="kb-hud" id="kbHud" hidden><b></b><small></small></div>
+      <div class="kb-pad" id="kbPad" hidden></div>
+      <!-- A jelenet billentyűparancsai: ⌨ gomb és lenyíló lista / the scene's keyboard commands: ⌨ button and drop-down list -->
+      <button class="kb-help-btn" id="kbHelpBtn" type="button" aria-expanded="false" data-i18n-title="kbListTip" hidden>⌨</button>
+      <div class="kb-list" id="kbList" hidden></div>
       <button class="rec-badge" id="recBadge" type="button" hidden>● REC</button>
       <div class="stage-err" id="stageErr" hidden></div>
     </div>
@@ -412,6 +485,7 @@ body.mobile .toast { bottom: calc(70px + env(safe-area-inset-bottom)); }
     <div class="tab-panel" id="tab-controls" role="tabpanel">
       <div class="panel-h" data-i18n="params"></div>
       <div id="controls"></div>
+      <details class="kbhelp" id="kbHelp" hidden><summary></summary><div></div></details>
       <div class="panel-h" data-i18n="readouts"></div>
       <div id="readouts"></div>
     </div>
@@ -1241,6 +1315,19 @@ Colours: any CSS colour, or `C.red C.blue C.green C.orange C.purple C.teal C.yel
 | `resetOn(id, …)` | Restart the scene when these controls change (use for initial conditions). |
 | `reset()` | Restart the scene from the top. |
 
+### 3.2a Keyboard (optional; only when the user asks for keys or interactive control)
+
+| Call | Meaning |
+| --- | --- |
+| `param(id, label, min, max, value, step, unit, {keys: "q a"})` | Keys on a slider: the first key raises, the second lowers the value. A tap moves one step, holding moves it smoothly (whole range in 10 s; `{rate: 5}` = 5 units/s), Shift = 10× faster. |
+| `toggle(id, label, value, {key: "s"})` | The key turns the switch on and off. |
+| `choice(id, label, options, value, {key: "c"})` | The key selects the next item (Shift: previous). |
+| `button(label, fn, {key: "Enter"})` | The key presses the button. |
+| `key(name, {label, help})` | `true` while the key is held. Read it inside `update` (or `draw`). `key(["a", "ArrowLeft"])` = any of them. |
+| `onKey(name, fn, {label, help})` | `fn` runs once per press, also while paused. `label` (`{hu, en}`) is the text of the touch button, `help` (`{hu, en}`) the description in the key list. |
+
+Key names: `"a"` … `"z"` (letters are case-insensitive), `"0"` … `"9"`, `" "` (Space), `"ArrowLeft"`, `"ArrowRight"`, `"ArrowUp"`, `"ArrowDown"`, `"Enter"`, `"Shift"`. On phones and tablets the keys used with `key()` and `onKey()` automatically appear as buttons on the canvas (`key(" ", {label: {hu: "Fék", en: "Brake"}})` names the button). The app already uses Space = play/pause, R = restart, → = step, 1–9 + arrows = adjust any slider, P = backup play/pause: a key the scene binds overrides these, so prefer letters (W/A/S/D, Q/E) and arrows for scene controls, and never bind P. Give every `key()` / `onKey()` a `help` text (put the options in a constant at the top, e.g. `const H_FWD = {help: {hu: "előre", en: "forward"}}`): the app lists all keys with these texts behind a ⌨ button and the ? key. A short on-canvas hint text is still welcome.
+
 ### 3.3 Readouts (inside draw)
 
 | Call | Meaning |
@@ -1328,8 +1415,8 @@ AnimLab draws it every frame. `angle` in degrees (0 = right, 90 = up). `length`,
 
 ## 4. Rules that prevent errors
 
-1. **Never declare a variable with an API name.** These names are taken: `P C stage title timeScale plotWindow param toggle choice button setParam resetOn reset update draw show plot val vals fmt tr lang circle ellipse rect box ring line polyline polygon arc spring ground grid text image arrow vector phasor current flow fieldLoop push pop translate rotate scale world ball link drawWorld wx wy ws complex cpolar phases fieldVec stator3 wrap boundArrow view3d begin3 end3 box3 wire3 path3 face3 arrow3 flow3 text3 circle3 rot3 p3` and every maths name in 3.9 (`PI sin cos min max sign round …`, `deg todeg clamp lerp mod`). Use names like `cx0`, `r0`, `kScale`, `pts`, `angleNow`, `Mload`.
-2. All `param`, `toggle`, `choice`, `button`, `world`, `ball`, `link`, `boundArrow`, `stage`, `title`, `timeScale` calls go at the **top level**, not inside update/draw.
+1. **Never declare a variable with an API name.** These names are taken: `P C stage title timeScale plotWindow param toggle choice button key onKey setParam resetOn reset update draw show plot val vals fmt tr lang circle ellipse rect box ring line polyline polygon arc spring ground grid text image arrow vector phasor current flow fieldLoop push pop translate rotate scale world ball link drawWorld wx wy ws complex cpolar phases fieldVec stator3 wrap boundArrow view3d begin3 end3 box3 wire3 path3 face3 arrow3 flow3 text3 circle3 rot3 p3` and every maths name in 3.9 (`PI sin cos min max sign round …`, `deg todeg clamp lerp mod`). Use names like `cx0`, `r0`, `kScale`, `pts`, `angleNow`, `Mload`.
+2. All `param`, `toggle`, `choice`, `button`, `onKey`, `world`, `ball`, `link`, `boundArrow`, `stage`, `title`, `timeScale` calls go at the **top level**, not inside update/draw. `key()` is read inside update/draw.
 3. All drawing, `show`, `plot`, `val` calls go **inside draw**.
 4. Slider ids are short identifiers (`U`, `B`, `N`, `m`, `k`, `v0`) and every `P.x` you read must have a matching `param/toggle/choice("x", …)`.
 5. Guard divisions and logs: `x / max(abs(d), 1e-9)`, `sqrt(max(0, v))`.
@@ -1547,6 +1634,7 @@ draw(t => {
 - [ ] Everything visible fits inside the stage and does not overlap the title.
 - [ ] Labels in `{hu, en}`; comments explain every number and unit.
 - [ ] Only functions and options from section 3; no DOM, timers or imports.
+- [ ] Keyboard only when asked: `key()` in update, `onKey()` at the top, keys explained in an on-canvas hint; no `addEventListener`.
 - [ ] Moving arrows with a non-constant speed use `pos` integrated in `update`, and are hidden when their quantity is zero.
 - [ ] Wires stop at components; no arrow runs across a component; components are drawn on top.
 - [ ] Every component the user named is in the physics; values not given are sliders or commented constants.
@@ -1936,16 +2024,17 @@ param("R1", {hu: "Állórész-ellenállás R₁", en: "Stator resistance R₁"},
 param("R2", {hu: "Forgórész-ellenállás R₂'", en: "Rotor resistance R₂'"}, 0.1, 10, 1.2, 0.05, "Ω");
 param("X",  {hu: "Szórási reaktancia X₁ + X₂'", en: "Leakage reactance X₁ + X₂'"}, 0.5, 20, 4.4, 0.1, "Ω");
 param("Xm", {hu: "Mágnesező reaktancia Xₘ", en: "Magnetising reactance Xₘ"}, 10, 200, 60, 1, "Ω");
-param("ML", {hu: "Terhelőnyomaték M_t", en: "Load torque M_L"}, 0, 80, 20, 0.5, "N·m");
+// {keys: "w s"}: a W növeli, az S csökkenti a terhelést (nyomva tartva folyamatosan, Shift = 10×) / W raises, S lowers the load (smoothly while held, Shift = 10×)
+param("ML", {hu: "Terhelőnyomaték M_t", en: "Load torque M_L"}, 0, 80, 20, 0.5, "N·m", {keys: "w s"});
 // Legördülő lista: [érték, felirat] párok / Drop-down list: [value, label] pairs
 choice("load", {hu: "Terhelés jellege", en: "Load type"},
   [["c", {hu: "állandó nyomaték", en: "constant torque"}], ["fan", {hu: "ventilátor (∝ n²)", en: "fan (∝ n²)"}]], "c");
 param("J",  {hu: "Tehetetlenségi nyomaték J", en: "Moment of inertia J"}, 0.01, 1, 0.05, 0.01, "kg·m²");
 // Kapcsolók: értékük true / false / Switches: their value is true / false
-toggle("rev", {hu: "Forgásirány-váltás (L2 ↔ L3)", en: "Reverse rotation (L2 ↔ L3)"}, false);
+toggle("rev", {hu: "Forgásirány-váltás (L2 ↔ L3)", en: "Reverse rotation (L2 ↔ L3)"}, false, {key: "v"});   // V billentyű / V key
 toggle("vec", {hu: "Mágneses mezővektorok", en: "Magnetic field vectors"}, true);
 // Gomb a Vezérlők fülön / Button on the Controls tab
-button({hu: "Indítás álló helyzetből", en: "Start from standstill"}, reset);
+button({hu: "Indítás álló helyzetből", en: "Start from standstill"}, reset, {key: "Enter"});   // Enter billentyű / Enter key
 
 const PH = [C.L1, C.L2, C.L3];
 const sx = 300, sy = 320;   // a gép középpontja / machine centre
@@ -2853,6 +2942,112 @@ draw(t => {
 });
 </script>
 
+<script type="text/plain" id="preset-cart" data-app>// Kocsi billentyűzettel – Newton II. törvénye: F_motor − F_ellenállás = m · a
+// Cart driven from the keyboard – Newton's second law: F_motor − F_resist = m · a
+//   ← → hajtás / drive · Szóköz (nyomva) fék / Space (held) brake · M jelölő / marker · W / S motorerő / motor force
+//   Telefonon ugyanezek gombként jelennek meg a vásznon / on a phone the same keys appear as buttons on the canvas
+
+// Vászon: szélesség, magasság (px), háttérszín / Canvas: width, height (px), background colour
+stage(1000, 600, "#f6f8fb");
+// Felirat a vászon bal felső sarkában / Caption in the top-left corner
+title({hu: "Kocsi nyilakkal", en: "Cart with the arrow keys"});
+// A grafikon időablaka másodpercben / Chart time window in seconds
+plotWindow(15);
+
+// Csúszkák; {keys: "w s"} = az első billentyű növeli, a második csökkenti (nyomva tartva folyamatosan, Shift = 10×)
+// Sliders; {keys: "w s"} = the first key raises, the second lowers the value (smoothly while held, Shift = 10×)
+param("F", {hu: "Motor húzóereje F", en: "Motor force F"}, 0, 3000, 1200, 50, "N", {keys: "w s"});
+param("m", {hu: "Tömeg m", en: "Mass m"}, 200, 2000, 800, 10, "kg", {keys: "e d"});
+param("mu", {hu: "Gördülési ellenállás μ", en: "Rolling resistance μ"}, 0, 0.1, 0.015, 0.001, "");
+// Kapcsoló {key: "l"} = az L billentyű ki-be kapcsolja / Switch {key: "l"} = the L key turns it on and off
+toggle("air", {hu: "Légellenállás", en: "Air drag"}, true, {key: "l"});
+// Gomb {key: "Enter"} = az Enter megnyomja / Button {key: "Enter"} = Enter presses it
+button({hu: "Vissza a startra", en: "Back to the start"}, reset, {key: "Enter"});
+
+const g = 9.81, rho = 1.2, cA = 0.7;      // nehézségi gyorsulás, levegő sűrűsége, cw·A [m²] / gravity, air density, cd·A [m²]
+const SC = 40;                            // lépték: px / m / scale: px per metre
+let x = 0, v = 0, a = 0, Fm = 0, Fres = 0, brake = false;
+let marker = null;                        // utolsó jelölő helye [m] / position of the last marker [m]
+
+// onKey: lenyomásonként egyszer fut; {label} = felirat az érintőgombon, {help} = leírás a billentyűlistában (⌨ gomb, ?)
+// onKey: runs once per press; {label} = text on the touch button, {help} = text in the key list (⌨ button, ?)
+onKey("m", () => { marker = x; }, {label: {hu: "Jelölő", en: "Marker"},
+  help: {hu: "jelölő a mostani helyre (távolságméréshez)", en: "marker at the current position (to measure distance)"}});
+
+// Leírások a billentyűlistához / texts for the key list
+const H_FWD = {help: {hu: "hajtás előre", en: "drive forward"}}, H_BACK = {help: {hu: "hajtás hátra", en: "drive backwards"}};
+const H_BRAKE = {label: {hu: "Fék", en: "Brake"}, help: {hu: "fék (nyomva tartva)", en: "brake (hold)"}};
+
+update(dt => {
+  // key(): igaz, amíg a billentyű le van nyomva / true while the key is held
+  Fm = 0;
+  if (key("ArrowRight", H_FWD)) Fm += P.F;
+  if (key("ArrowLeft", H_BACK)) Fm -= P.F;
+  brake = key(" ", H_BRAKE);
+  // Ellenállások: gördülés, fék, levegő – mindig a mozgással szemben / resistances: rolling, brake, air – always against the motion
+  const Fstat = P.mu * P.m * g + (brake ? 0.7 * P.m * g : 0);
+  const Fair = P.air ? 0.5 * rho * cA * v * abs(v) : 0;
+  if (abs(v) < 1e-3 && abs(Fm) <= Fstat) { v = 0; a = 0; Fres = Fm; return; }   // áll, és az erő nem elég / at rest, the force is not enough
+  Fres = (abs(v) < 1e-3 ? sign(Fm) : sign(v)) * Fstat + Fair;
+  a = (Fm - Fres) / P.m;
+  const v0 = v;
+  v += a * dt;
+  // a fék és a súrlódás megállít, de nem fordít vissza / brakes and friction stop the cart but never reverse it
+  if (v0 !== 0 && sign(v) !== sign(v0) && Fm * v0 <= 0) { v = 0; a = 0; }
+  x += v * dt;
+});
+
+draw(t => {
+  const cam = x - 6;                      // a kamera követi a kocsit / the camera follows the cart
+  const X = m => 120 + (m - cam) * SC;    // méter → képpont / metres → pixels
+  const Y0 = 430;                         // az út szintje / road level
+  ground(Y0);
+  // Távolságjelek 1 m-enként, felirat 5 m-enként / distance ticks every metre, labelled every 5 m
+  for (let m = Math.floor(cam - 4); m < cam + 24; m++) {
+    const px = X(m);
+    line(px, Y0, px, Y0 + (m % 5 === 0 ? 16 : 7), {stroke: C.gray, lw: m % 5 === 0 ? 2 : 1});
+    if (m % 5 === 0) text(m + " m", px, Y0 + 34, {size: 13, color: C.gray, align: "center"});
+  }
+  // Jelölő és a tőle mért távolság / marker and the distance from it
+  if (marker !== null) {
+    line(X(marker), 250, X(marker), Y0, {stroke: C.purple, lw: 2, dash: [6, 5]});
+    text("M", X(marker), 240, {size: 15, bold: true, color: C.purple, align: "center"});
+  }
+
+  // A kocsi / the cart
+  const cx = X(x), r = 22, ang = x / (r / SC);
+  rect(cx - 70, Y0 - 2 * r - 58, 140, 58, {fill: C.blue, stroke: "#173b8f", lw: 2, radius: 8});
+  rect(cx - 40, Y0 - 2 * r - 82, 74, 26, {fill: "#9fb7e8", stroke: "#173b8f", lw: 2, radius: 6});
+  for (const wx0 of [cx - 42, cx + 42]) {
+    circle(wx0, Y0 - r, r, {fill: "#2b3240"});
+    line(wx0, Y0 - r, wx0 + 0.8 * r * cos(ang), Y0 - r + 0.8 * r * sin(ang), {stroke: "#cfd6e2", lw: 3});
+  }
+  if (brake) text({hu: "FÉK", en: "BRAKE"}, cx, Y0 - 2 * r - 22, {size: 16, bold: true, color: "#fff", align: "center"});
+
+  // Erővektorok: 1000 N = 60 px / force vectors: 1000 N = 60 px
+  const k = 60 / 1000, yF = Y0 - 2 * r - 110;
+  if (abs(Fm) > 20) vector(cx, yF, Fm * k, 0, {stroke: C.green, lw: 4}, "F");
+  if (abs(Fres) > 20) vector(cx, yF + 18, -Fres * k, 0, {stroke: C.red, lw: 4}, {hu: "F ell.", en: "F res."});
+  const Fnet = P.m * a;
+  if (abs(Fnet) > 20) vector(cx, yF - 22, Fnet * k, 0, {stroke: C.ink, lw: 2, dash: [6, 4]}, "m·a");
+
+  // Útmutató / hint
+  text({hu: "← → hajtás   ·   Szóköz: fék   ·   M: jelölő   ·   W / S: motorerő   ·   P: szünet",
+        en: "← → drive   ·   Space: brake   ·   M: marker   ·   W / S: motor force   ·   P: pause"}, 500, 560, {size: 15, color: C.gray, align: "center"});
+
+  // Mért értékek és grafikonok / readouts and charts
+  show({hu: "Sebesség v", en: "Speed v"}, v * 3.6, "km/h", 1);
+  show({hu: "Gyorsulás a", en: "Acceleration a"}, a, "m/s²");
+  show({hu: "Motor ereje", en: "Motor force"}, Fm, "N", 0);
+  show({hu: "Ellenállás", en: "Resistance"}, Fres, "N", 0);
+  show({hu: "Helyzet x", en: "Position x"}, x, "m", 1);
+  if (marker !== null) show({hu: "Távolság a jelölőtől", en: "Distance from the marker"}, x - marker, "m", 1);
+  plot({hu: "Sebesség v", en: "Speed v"}, v * 3.6, {unit: "km/h", color: C.blue});
+  plot({hu: "Motor ereje", en: "Motor force"}, Fm, {unit: "N", color: C.green, group: "F"});
+  plot({hu: "Ellenállás", en: "Resistance"}, Fres, {unit: "N", color: C.red, group: "F"});
+});
+</script>
+
 <script type="text/plain" id="preset-template" data-app>// ===== AnimLab sablon / template =====
 // A szkript felülről egyszer fut le (és minden újraindításkor).
 // The script runs once from the top (and again on every reset).
@@ -2940,8 +3135,10 @@ const UI = {
     noParams: 'Ennek a jelenetnek nincsenek csúszkái. A Kód fülön a param(...) sorral adhatsz hozzá.',
     noReadouts: 'A show(...) hívással jeleníthetsz meg itt értékeket.',
     defaults: 'Csúszkák alapértékre',
+    kbList: 'Billentyűparancsok', kbListTip: 'Billentyűparancsok (?)', kbSceneH: 'Ebben a jelenetben', kbAppH: 'Mindig', kbOnOff: 'be / ki', kbNext: 'következő (Shift: előző)', kbScene: 'a jelenet használja', kbPlay: 'lejátszás / szünet', kbRestart: 'újraindítás', kbStep: 'léptetés', kbPick: 'csúszka kiválasztása, utána ← → állítja (Shift = 10×), Esc = kész', kbThis: 'ez a lista',
+    kSpace: 'Szóköz', kbNumTip: 'Billentyűzet: {n}, majd ← → állítja (Shift = gyorsabb)', kbHudHint: '← → állítás · Shift = gyorsabb · Esc = kész',
     run: 'Futtatás', codeDirty: 'Módosítva – Ctrl+Enter a futtatáshoz', codeClean: 'Ez a kód fut',
-    play: 'Lejátszás / szünet (szóköz)', pause: 'Szünet (szóköz)', step: 'Léptetés (→)', resetT: 'Újraindítás (R)', full: 'Teljes képernyő (vászon + grafikonok)', fullCanvas: 'Csak a vászon teljes képernyőn', cvExit: 'Kilépés a csak-vászon nézetből', plotSplit: 'Húzd fel vagy le a grafikonok magasságához (dupla kattintás: alapméret)', menu: 'Menü', mCanvas: 'Vászon',
+    play: 'Lejátszás / szünet (szóköz vagy P)', pause: 'Szünet (szóköz vagy P)', step: 'Léptetés (→)', resetT: 'Újraindítás (R)', full: 'Teljes képernyő (vászon + grafikonok)', fullCanvas: 'Csak a vászon teljes képernyőn', cvExit: 'Kilépés a csak-vászon nézetből', plotSplit: 'Húzd fel vagy le a grafikonok magasságához (dupla kattintás: alapméret)', menu: 'Menü', mCanvas: 'Vászon',
     speed: 'Sebesség', slowmo: 'lassítás', fastmo: 'gyorsítás',
     sceneName: 'Jelenet neve',
     drop: 'Kép feltöltése', dropSub: 'kattints, vagy húzd ide – PNG, JPG, SVG',
@@ -2996,8 +3193,10 @@ const UI = {
     noParams: 'This scene has no sliders. Add one on the Code tab with param(...).',
     noReadouts: 'Values you pass to show(...) appear here.',
     defaults: 'Reset sliders to defaults',
+    kbList: 'Keyboard commands', kbListTip: 'Keyboard commands (?)', kbSceneH: 'In this scene', kbAppH: 'Always', kbOnOff: 'on / off', kbNext: 'next (Shift: previous)', kbScene: 'used by the scene', kbPlay: 'play / pause', kbRestart: 'restart', kbStep: 'step', kbPick: 'pick a slider, then ← → move it (Shift = 10×), Esc = done', kbThis: 'this list',
+    kSpace: 'Space', kbNumTip: 'Keyboard: press {n}, then ← → to move it (Shift = faster)', kbHudHint: '← → adjust · Shift = faster · Esc = done',
     run: 'Run', codeDirty: 'Edited – press Ctrl+Enter to run', codeClean: 'This code is running',
-    play: 'Play / pause (Space)', pause: 'Pause (Space)', step: 'Step (→)', resetT: 'Restart (R)', full: 'Full screen (canvas + graphs)', fullCanvas: 'Canvas only, full screen', cvExit: 'Leave canvas-only view', plotSplit: 'Drag up or down to resize the graphs (double-click: default size)', menu: 'Menu', mCanvas: 'Canvas',
+    play: 'Play / pause (Space or P)', pause: 'Pause (Space or P)', step: 'Step (→)', resetT: 'Restart (R)', full: 'Full screen (canvas + graphs)', fullCanvas: 'Canvas only, full screen', cvExit: 'Leave canvas-only view', plotSplit: 'Drag up or down to resize the graphs (double-click: default size)', menu: 'Menu', mCanvas: 'Canvas',
     speed: 'Speed', slowmo: 'slow motion', fastmo: 'fast motion',
     sceneName: 'Scene name',
     drop: 'Upload an image', dropSub: 'click, or drop files here – PNG, JPG, SVG',
@@ -3081,6 +3280,7 @@ const PRESETS = [
   {id: 'incline', name: {hu: 'Lejtő súrlódással', en: 'Inclined plane with friction'}},
   {id: 'collision', name: {hu: 'Ütközés (lendület, energia)', en: 'Collision (momentum, energy)'}},
   {id: 'pendulum', name: {hu: 'Matematikai inga', en: 'Simple pendulum'}},
+  {id: 'cart', name: {hu: 'Kocsi nyilakkal (billentyűzet)', en: 'Cart with the arrow keys (keyboard)'}},
   {id: 'template', name: {hu: 'Sablon: alakzatok, képek, fizika', en: 'Template: shapes, images, physics'}},
 ];
 const BLANK = `// ${'Új jelenet / New scene'}
@@ -3124,6 +3324,9 @@ function freshRuntime() {
     P: {}, defs: [], updates: [], draws: [], world: null, stageW: 1000, stageH: 600, bg: '#fbfbf8',
     title: null, titleColor: '#1d2430', readouts: new Map(), plots: new Map(), pending: new Map(),
     plotWindow: 10, t: 0, resetOn: new Set(), worldDrawn: false, advanced: false, error: null, depth: 0, vals: {}, bound: new Map(), runId: ++runCounter,
+    // billentyűzet: onKey kezelők, a key()-jel figyelt billentyűk, feliratok az érintőgombokhoz, vezérlők billentyűi
+    // keyboard: onKey handlers, keys polled with key(), labels for the touch buttons, keys of the controls
+    keyOn: new Map(), keyPoll: new Set(), keyLabel: new Map(), keyHelp: new Map(), ctlKeys: new Map(),
   };
 }
 
@@ -3754,31 +3957,69 @@ function makeApi() {
   const M = Math;
   const api = {
     P: R.P, C,
-    param(id, label, min, max, value, step, unit) {
-      if (min && typeof min === 'object') ({min, max, value, step, unit} = min);
+    // Az utolsó objektum-argumentum beállítás: {keys: "q a"} (fel / le), {key: "s"}, {rate} – lásd: billentyűzet
+    // The last object argument holds options: {keys: "q a"} (up / down), {key: "s"}, {rate} – see: keyboard
+    param(id, label, ...rest) {
+      let o = {}, min, max, value, step, unit;
+      if (rest[0] && typeof rest[0] === 'object') { o = rest[0]; ({min, max, value, step, unit} = o); }
+      else {
+        const i = rest.findIndex(isOptObj);
+        if (i >= 0) o = rest[i];
+        [min, max, value, step, unit] = i >= 0 ? rest.slice(0, i) : rest;
+      }
       min = +min; max = +max; value = +value;
       if (!isFinite(min) || !isFinite(max) || max <= min) throw new Error(`param("${id}"): min < max`);
       if (!isFinite(value)) value = min;
       if (!(step > 0)) step = niceStep((max - min) / 200);
       const saved = scene.params[id];
       const v = (typeof saved === 'number' && saved >= min && saved <= max) ? saved : clamp(value, min, max);
-      R.defs.push({kind: 'range', id, label, min, max, step: +step, unit: unit || '', def: value});
+      R.defs.push({kind: 'range', id, label, min, max, step: +step, unit: unit || '', def: value, keys: parseKeys(o.keys ?? o.key), rate: +o.rate > 0 ? +o.rate : 0});
       R.P[id] = v; return v;
     },
-    toggle(id, label, value = false) {
+    toggle(id, label, value = false, o) {
+      if (isOptObj(value)) { o = value; value = o.value ?? false; }
+      o = o || {};
       const saved = scene.params[id];
       const v = typeof saved === 'boolean' ? saved : !!value;
-      R.defs.push({kind: 'toggle', id, label, def: !!value});
+      R.defs.push({kind: 'toggle', id, label, def: !!value, keys: parseKeys(o.key ?? o.keys)});
       R.P[id] = v; return v;
     },
-    choice(id, label, options, value) {
+    choice(id, label, options, value, o) {
+      if (isOptObj(value)) { o = value; value = o.value; }
+      o = o || {};
       const opts = (options || []).map(o => Array.isArray(o) ? [String(o[0]), o[1] ?? o[0]] : [String(o), o]);
       const saved = scene.params[id];
       const v = opts.some(o => o[0] === saved) ? saved : String(value ?? (opts[0] && opts[0][0]));
-      R.defs.push({kind: 'choice', id, label, options: opts, def: v});
+      R.defs.push({kind: 'choice', id, label, options: opts, def: v, keys: parseKeys(o.key ?? o.keys)});
       R.P[id] = v; return v;
     },
-    button(label, fn) { R.defs.push({kind: 'button', label, fn}); },
+    button(label, fn, o) {
+      if (isOptObj(fn)) [fn, o] = [o, fn];
+      o = o || {};
+      R.defs.push({kind: 'button', label, fn, keys: parseKeys(o.key ?? o.keys)});
+    },
+    // Billentyűzet a jelenet kódjában / keyboard in the scene code ({label} = érintőgomb felirata / touch button text, {help} = leírás a billentyűlistában / text in the key list):
+    //   key("ArrowLeft") igaz, amíg nyomva van / is true while held;  onKey(" ", fn) lenyomásonként egyszer fut / runs once per press
+    key(k, o) {
+      const ks = Array.isArray(k) ? k.map(normKey) : [normKey(k)];
+      let down = false;
+      for (const x of ks) {
+        if (!R.keyPoll.has(x)) R.keyPoll.add(x);
+        if (o && o.label != null && !R.keyLabel.has(x)) R.keyLabel.set(x, o.label);
+        if (o && o.help != null && !R.keyHelp.has(x)) R.keyHelp.set(x, o.help);
+        if (keysDown.has(x)) down = true;
+      }
+      return down;
+    },
+    onKey(k, fn, o) {
+      if (typeof fn !== 'function') return;
+      for (const x of (Array.isArray(k) ? k.map(normKey) : [normKey(k)])) {
+        if (!R.keyOn.has(x)) R.keyOn.set(x, []);
+        R.keyOn.get(x).push(fn);
+        if (o && o.label != null && !R.keyLabel.has(x)) R.keyLabel.set(x, o.label);
+        if (o && o.help != null && !R.keyHelp.has(x)) R.keyHelp.set(x, o.help);
+      }
+    },
     setParam(id, v) { setP(id, v); syncControls(); },
     resetOn(...ids) { ids.flat().forEach(i => R.resetOn.add(i)); },
     reset() { needsRerun = true; },
@@ -3890,12 +4131,26 @@ function runScene() {
   R = freshRuntime();
   Object.assign(V3, V3D); batch3 = null;
   const api = makeApi();
-  const names = Object.keys(api);
+  let names = Object.keys(api);
   try {
-    const {fn, offset} = compileScript(names, scene.script);
-    lineOffset = offset;
-    fn(...names.map(n => api[n]));
+    let compiled;
+    // Ha a jelenet saját változót hoz létre egy parancs nevével (pl. const key = …), a saját változója nyer:
+    // így az új parancsok (key, onKey, …) nem rontják el a régi jeleneteket
+    // If the scene declares its own variable with a command's name (e.g. const key = …), its variable wins:
+    // so new commands (key, onKey, …) never break older scenes
+    for (let tries = 0; ; tries++) {
+      try { compiled = compileScript(names, scene.script); break; }
+      catch (e) {
+        const m = tries < 30 && e instanceof SyntaxError && /Identifier '([\w$]+)' has already been declared|redeclaration of (?:formal parameter |let |const |class )?([\w$]+)/.exec(e.message || '');
+        const nm = m && (m[1] || m[2]);
+        if (nm && names.includes(nm)) { names = names.filter(n => n !== nm); continue; }
+        throw e;
+      }
+    }
+    lineOffset = compiled.offset;
+    compiled.fn(...names.map(n => api[n]));
   } catch (e) { fail(e); }
+  R.ctlKeys = buildCtlKeys();
   firstRun = false;
   lastRunScript = scene.script;
   acc = 0;
@@ -3917,6 +4172,7 @@ function loop(now) {
   const real = Math.min(0.1, Math.max(0, (now - lastNow) / 1000));
   lastNow = now;
   if (needsRerun) { needsRerun = false; runScene(); }
+  kbTick(real);
   R.advanced = false;
   if (!R.error) {
     let simT = 0;
@@ -4080,6 +4336,281 @@ function drawPlots() {
   }
 }
 
+/* ───────────── keyboard input ───────────── */
+// Egy bemeneti rendszer, három réteggel / one input system with three layers:
+//  1. billentyű a vezérlőkön / keys on the controls: param(..., {keys: "q a"}), toggle(..., {key: "s"}), choice(..., {key: "c"}), button(..., {key: "Enter"})
+//  2. a jelenet kódjában / in the scene code: key("ArrowLeft") igaz, amíg nyomva van / true while held; onKey(" ", fn) lenyomásonként egyszer / once per press.
+//     Érintős eszközön ezekhez gombok jelennek meg a vásznon / on touch devices these get buttons on the canvas.
+//  3. kód nélkül, minden jelenetnél / no code, every scene: 1–9 kiválaszt egy csúszkát, a nyilak állítják / 1–9 picks a slider, the arrows move it; Esc / 0 = kész / done.
+// Ha a jelenet lefoglal egy billentyűt (Szóköz, R, →), a jelenet nyer; a lejátszás tartalék billentyűje: P
+// If the scene binds a key (Space, R, →), the scene wins; backup key for play / pause: P
+const keysDown = new Set();          // most lenyomott billentyűk (egységes névvel) / keys held now (normalised names)
+const kbHolds = new Set();           // nyomva tartott csúszkabillentyűk / held slider keys: {k, id, dir, acc, t0, nav}
+let kbShift = false, kbSel = null, kbSelAt = 0;
+const KEY_NAMES = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Enter', 'Escape', 'Tab', 'Backspace', 'Delete', 'Insert',
+  'Home', 'End', 'PageUp', 'PageDown', 'Shift', 'Control', 'Alt'];
+const KEY_ALIAS = {space: ' ', spacebar: ' ', left: 'ArrowLeft', right: 'ArrowRight', up: 'ArrowUp', down: 'ArrowDown',
+  '←': 'ArrowLeft', '→': 'ArrowRight', '↑': 'ArrowUp', '↓': 'ArrowDown', esc: 'Escape', del: 'Delete', return: 'Enter', ctrl: 'Control'};
+const keyNameMap = new Map(KEY_NAMES.map(k => [k.toLowerCase(), k]));
+const normCache = new Map();
+// Billentyűnév egységesítése: betű kisbetűvel, "Space" → " ", "left" → "ArrowLeft" / normalise a key name
+function normKey(k) {
+  if (k == null) return '';
+  k = String(k);
+  let r = normCache.get(k);
+  if (r !== undefined) return r;
+  if (k.length === 1) r = k.toLowerCase();
+  else {
+    const l = k.trim().toLowerCase();
+    r = KEY_ALIAS[l] ?? keyNameMap.get(l) ?? (/^f\d{1,2}$/.test(l) ? 'F' + l.slice(1) : l.length === 1 ? l : k.trim());
+  }
+  normCache.set(k, r);
+  return r;
+}
+// A lenyomott billentyű neve; Shift-tel a számsor is számot ad / name of the pressed key; with Shift the digit row still gives digits
+function evKey(e) {
+  let k = e.key;
+  if (!k || k === 'Unidentified' || k === 'Dead') k = e.code || '';
+  if (e.shiftKey && /^(Digit|Numpad)\d$/.test(e.code || '')) k = e.code.slice(-1);
+  return normKey(k);
+}
+// "q a" → ["q", "a"]; " " → szóköz / Space; tömb is jó / an array works too
+function parseKeys(x) {
+  if (x == null || x === '') return [];
+  if (Array.isArray(x)) return x.map(normKey).filter(k => k !== '');
+  x = String(x);
+  if (x.trim() === '') return [' '];
+  return x.trim().split(/\s+/).map(normKey);
+}
+// Beállítás-objektum (nem kétnyelvű felirat) / an options object (not a two-language label)
+function isOptObj(a) { return !!a && typeof a === 'object' && !Array.isArray(a) && !('hu' in a) && !('en' in a); }
+function keyText(k) {
+  return {' ': T('kSpace'), ArrowLeft: '←', ArrowRight: '→', ArrowUp: '↑', ArrowDown: '↓', Escape: 'Esc'}[k] ?? (k.length === 1 ? k.toUpperCase() : k);
+}
+function kbdBadges(keys) {
+  if (!keys || !keys.length) return '';
+  return ' <span class="kbds">' + keys.map(k => `<kbd>${esc(keyText(k))}</kbd>`).join('') + '</span>';
+}
+// Vezérlők billentyűi: billentyű → [{idx, dir}] / keys of the controls: key → [{idx, dir}]
+function buildCtlKeys() {
+  const m = new Map();
+  R.defs.forEach((d, idx) => (d.keys || []).forEach((k, j) => {
+    if (d.kind === 'range' && j > 1) return;
+    if (!m.has(k)) m.set(k, []);
+    m.get(k).push({idx, dir: j === 1 ? -1 : 1});     // csúszka: első = fel, második = le / slider: first = up, second = down
+  }));
+  return m;
+}
+function sceneOwns(k) { return R.ctlKeys.has(k) || R.keyOn.has(k) || R.keyPoll.has(k); }
+function rangeDefs() { return R.defs.filter(d => d.kind === 'range'); }
+function snapRange(d, v) {
+  const s = d.step;
+  return clamp(roundStep(d.min + Math.round((v - d.min) / s) * s, s), d.min, d.max);
+}
+function setRange(d, v) {
+  v = snapRange(d, v);
+  if (v !== R.P[d.id]) { setP(d.id, v); syncControls(); }
+}
+function flashCtl(el) {
+  if (!el) return;
+  el.classList.remove('kbhit'); void el.offsetWidth; el.classList.add('kbhit');
+}
+// Lenyomás: billentyűzetről vagy érintőgombról / a press, from the keyboard or a touch button
+function pressKey(k, shift) {
+  if (keysDown.has(k)) return;
+  keysDown.add(k);
+  if (R.error) return;
+  const now = performance.now();
+  for (const b of R.ctlKeys.get(k) || []) {
+    const d = R.defs[b.idx];
+    if (!d) continue;
+    const el = ctlEls[d.kind === 'button' ? '\u0000b' + b.idx : d.id];
+    flashCtl(el && (el.row || el.b));
+    if (d.kind === 'range') {
+      // egy koppintás = egy lépés (Shift: 10), nyomva tartva folyamatosan / a tap = one step (Shift: 10), holding = smooth
+      setRange(d, R.P[d.id] + b.dir * d.step * (shift ? 10 : 1));
+      kbHolds.add({k, id: d.id, dir: b.dir, acc: R.P[d.id], t0: now});
+    } else if (d.kind === 'toggle') { setP(d.id, !R.P[d.id]); syncControls(); }
+    else if (d.kind === 'choice') {
+      const o = d.options, i = o.findIndex(x => x[0] === R.P[d.id]);
+      if (o.length) { setP(d.id, o[((i + b.dir * (shift ? -1 : 1)) % o.length + o.length) % o.length][0]); syncControls(); }
+    } else if (d.kind === 'button' && d.fn) safeCall(d.fn);
+  }
+  for (const fn of R.keyOn.get(k) || []) safeCall(() => fn(k));
+}
+function releaseKey(k) {
+  keysDown.delete(k);
+  for (const h of kbHolds) if (h.k === k) kbHolds.delete(h);
+}
+function releaseAll() {
+  keysDown.clear(); kbHolds.clear();
+  for (const b of document.querySelectorAll('.kb-key.down')) b.classList.remove('down');
+}
+// 3. réteg: csúszka kiválasztása 1–9-cel / layer 3: pick a slider with 1–9
+function kbSelect(id) {
+  kbSel = id || null; kbSelAt = performance.now();
+  for (const e of Object.values(ctlEls)) if (e.kind === 'range' && e.row) e.row.classList.toggle('kbsel', e.row.dataset.id === kbSel);
+  const e = kbSel && ctlEls[kbSel];
+  if (e && e.row && !$('#tab-controls').hidden) e.row.scrollIntoView({block: 'nearest'});
+  renderHud();
+}
+function pressNav(k, shift) {
+  const d = rangeDefs().find(x => x.id === kbSel);
+  if (!d) { kbSelect(null); return; }
+  keysDown.add(k);
+  const dir = (k === 'ArrowRight' || k === 'ArrowUp') ? 1 : -1;
+  setRange(d, R.P[d.id] + dir * d.step * (shift ? 10 : 1));
+  kbHolds.add({k, id: d.id, dir, acc: R.P[d.id], t0: performance.now(), nav: true});
+  kbSelAt = performance.now();
+  flashCtl(ctlEls[d.id] && ctlEls[d.id].row);
+}
+// Minden képkockán: nyomva tartott billentyűk, kijelzés, érintőgombok / every frame: held keys, display, touch buttons
+function kbTick(real) {
+  if (kbHolds.size) {
+    const now = performance.now();
+    for (const h of kbHolds) {
+      if (!keysDown.has(h.k)) { kbHolds.delete(h); continue; }
+      if (now - h.t0 < 300) continue;
+      const d = rangeDefs().find(x => x.id === h.id);
+      if (!d) { kbHolds.delete(h); continue; }
+      // alapból 10 s alatt fut végig a teljes tartományon, Shift-tel 10× gyorsabban / the whole range in 10 s, 10× faster with Shift
+      h.acc = clamp(h.acc + h.dir * (d.rate || (d.max - d.min) / 10) * real * (kbShift ? 10 : 1), d.min, d.max);
+      setRange(d, h.acc);
+      if (h.nav) kbSelAt = now;
+    }
+  }
+  if (kbSel) renderHud();
+  updatePad();
+  updateKbList();
+}
+function renderHud() {
+  const el = $('#kbHud');
+  const d = kbSel && rangeDefs().find(x => x.id === kbSel);
+  if (!d) {
+    if (kbSel) kbSel = null;
+    if (!el.hidden) el.hidden = true;
+    return;
+  }
+  const n = rangeDefs().indexOf(d) + 1, v = R.P[d.id];
+  const s = `${n} · ${tr(d.label)}: ${typeof v === 'number' ? fmt(v, Math.min(6, stepDecimals(d.step))) : v}${d.unit ? ' ' + d.unit : ''}`;
+  const h = T('kbHudHint');
+  if (el._s !== s) { el.firstChild.textContent = s; el._s = s; }
+  if (el._h !== h) { el.lastChild.textContent = h; el._h = h; }
+  el.classList.toggle('idle', performance.now() - kbSelAt > 2500);
+  if (el.hidden) el.hidden = false;
+}
+// Érintőgombok a key() / onKey() billentyűihez, csak érintős eszközön / touch buttons for the key() / onKey() keys, touch devices only
+const mqCoarse = matchMedia('(pointer: coarse)');
+let padSig = null;
+function updatePad() {
+  const pad = $('#kbPad');
+  const keys = (mqCoarse.matches && !R.error) ? [...new Set([...R.keyPoll, ...R.keyOn.keys()])] : [];
+  const sig = LANG + '|' + keys.map(k => k + '\u0001' + tr(R.keyLabel.get(k) ?? '')).join('\u0002');
+  if (sig === padSig) return;
+  padSig = sig;
+  for (const b of pad.querySelectorAll('.kb-key.down')) releaseKey(b.dataset.key);
+  pad.innerHTML = '';
+  pad.hidden = !keys.length;
+  if (!keys.length) return;
+  const mk = k => {
+    const b = document.createElement('button'), lb = R.keyLabel.get(k);
+    b.type = 'button'; b.className = 'kb-key'; b.dataset.key = k;
+    b.textContent = lb != null ? tr(lb) : keyText(k);
+    b.title = keyText(k);
+    if (/^Arrow/.test(k)) b.classList.add('kb-' + k.slice(5).toLowerCase());
+    return b;
+  };
+  const arrows = ['ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight'].filter(k => keys.includes(k));
+  const rest = keys.filter(k => !arrows.includes(k));
+  if (arrows.length) { const g = document.createElement('div'); g.className = 'kb-dpad'; arrows.forEach(k => g.appendChild(mk(k))); pad.appendChild(g); }
+  if (rest.length) { const g = document.createElement('div'); g.className = 'kb-btns'; rest.forEach(k => g.appendChild(mk(k))); pad.appendChild(g); }
+}
+(() => {
+  const pad = $('#kbPad');
+  pad.addEventListener('pointerdown', e => {
+    const b = e.target.closest('.kb-key'); if (!b) return;
+    e.preventDefault(); e.stopPropagation();
+    try { b.setPointerCapture(e.pointerId); } catch (err) { /* old browser */ }
+    b.classList.add('down'); pressKey(b.dataset.key, false);
+  });
+  const up = e => {
+    const b = e.target.closest && e.target.closest('.kb-key');
+    if (!b || !b.classList.contains('down')) return;
+    b.classList.remove('down'); releaseKey(b.dataset.key);
+  };
+  for (const ev of ['pointerup', 'pointercancel', 'lostpointercapture']) pad.addEventListener(ev, up);
+  pad.addEventListener('contextmenu', e => e.preventDefault());
+})();
+
+// Billentyűparancsok listája: a Vezérlők fülön összecsukható sor, a vásznon ⌨ gomb (vagy ?) – nem foglal helyet, amíg nincs megnyitva
+// List of keyboard commands: a collapsible line on the Controls tab, a ⌨ button on the canvas (or ?) – takes no room until opened
+let kbListOpen = false, kbListSig = '';
+function kbRows() {
+  const scene = [], app = [], covered = new Set();
+  R.defs.forEach(d => {
+    if (!d.keys || !d.keys.length) return;
+    const ks = d.kind === 'range' ? d.keys.slice(0, 2) : d.keys;
+    ks.forEach(k => covered.add(k));
+    const l = tr(d.label);
+    scene.push([ks.map(keyText), d.kind === 'range' ? `${l}: ${ks.length > 1 ? '+ / −' : '+'}` :
+      d.kind === 'toggle' ? `${l}: ${T('kbOnOff')}` : d.kind === 'choice' ? `${l}: ${T('kbNext')}` : l]);
+  });
+  // key() és onKey(): az azonos leírású billentyűk egy sorba kerülnek / keys with the same text share a row
+  const byText = new Map();
+  for (const k of [...R.keyOn.keys(), ...R.keyPoll]) {
+    if (covered.has(k)) continue;
+    covered.add(k);
+    const h = R.keyHelp.get(k) ?? R.keyLabel.get(k);
+    const txt = h != null ? tr(h) : T('kbScene');
+    if (!byText.has(txt)) byText.set(txt, []);
+    byText.get(txt).push(keyText(k));
+  }
+  for (const [txt, ks] of byText) scene.push([ks, txt]);
+  app.push([sceneOwns(' ') ? ['P'] : [T('kSpace'), 'P'], T('kbPlay')]);
+  if (!sceneOwns('r')) app.push([['R'], T('kbRestart')]);
+  if (!sceneOwns('ArrowRight')) app.push([['→'], T('kbStep')]);
+  if (rangeDefs().length) app.push([['1…' + Math.min(9, rangeDefs().length), '← →'], T('kbPick')]);
+  if (!sceneOwns('?')) app.push([['?'], T('kbThis')]);
+  return {scene, app};
+}
+function kbListHtml(rows) {
+  const tbl = rs => '<table class="kbl">' + rs.map(([ks, txt]) => `<tr><td>${ks.map(k => `<kbd>${esc(k)}</kbd>`).join('')}</td><td>${esc(txt)}</td></tr>`).join('') + '</table>';
+  return (rows.scene.length ? `<div class="kbl-h">${esc(T('kbSceneH'))}</div>` + tbl(rows.scene) : '') +
+    `<div class="kbl-h">${esc(T('kbAppH'))}</div>` + tbl(rows.app);
+}
+function updateKbList() {
+  const sig = [R.runId, LANG, R.keyPoll.size, R.keyOn.size, ctlSig, mqCoarse.matches, R.error ? 1 : 0].join('|');
+  if (sig === kbListSig) return;
+  kbListSig = sig;
+  const rows = kbRows(), html = kbListHtml(rows), n = rows.scene.length;
+  const det = $('#kbHelp');
+  // Vezérlők fül: egy összecsukott sor; érintős eszközön csak akkor, ha a jelenetnek vannak billentyűi
+  // Controls tab: one collapsed line; on touch devices only when the scene has keys
+  det.hidden = !!R.error || (mqCoarse.matches && !n);
+  det.querySelector('summary').textContent = '⌨ ' + T('kbList') + (n ? ` (${n})` : '');
+  det.querySelector('div').innerHTML = html;
+  // Vászon: ⌨ gomb, ha a jelenetnek vannak billentyűi (érintős eszközön ott vannak az érintőgombok)
+  // Canvas: ⌨ button when the scene has keys (touch devices have the touch buttons instead)
+  const btn = $('#kbHelpBtn'), show = !!n && !R.error && !mqCoarse.matches;
+  btn.hidden = !show;
+  $('#kbList').innerHTML = `<div class="kbl-title">${esc(T('kbList'))}</div>` + html;
+  if (!show) setKbList(false);
+}
+function setKbList(open) {
+  kbListOpen = !!open && !$('#kbHelpBtn').hidden;
+  $('#kbList').hidden = !kbListOpen;
+  $('#kbHelpBtn').setAttribute('aria-expanded', String(kbListOpen));
+}
+(() => {
+  $('#kbHelpBtn').addEventListener('click', e => { e.stopPropagation(); setKbList(!kbListOpen); });
+  document.addEventListener('pointerdown', e => {
+    if (kbListOpen && !e.target.closest('#kbList, #kbHelpBtn')) setKbList(false);
+  });
+  const det = $('#kbHelp');
+  det.open = store.get('kbHelpOpen') === '1';
+  det.addEventListener('toggle', () => store.set('kbHelpOpen', det.open ? '1' : '0'));
+})();
+
 /* ───────────── controls panel ───────────── */
 function setP(id, v) {
   R.P[id] = v; scene.params[id] = v;
@@ -4087,17 +4618,20 @@ function setP(id, v) {
   scheduleAutosave();
 }
 function buildControls(force) {
-  const sig = LANG + '|' + JSON.stringify(R.defs.map(d => [d.kind, d.id, tr(d.label), d.min, d.max, d.step, d.unit, d.options && d.options.map(o => tr(o[1]))]));
+  const sig = LANG + '|' + JSON.stringify(R.defs.map(d => [d.kind, d.id, tr(d.label), d.min, d.max, d.step, d.unit, d.options && d.options.map(o => tr(o[1])), d.keys]));
   if (!force && sig === ctlSig) { syncControls(); return; }
   ctlSig = sig; ctlEls = {};
   const box = $('#controls'); box.innerHTML = '';
   if (!R.defs.length) { box.innerHTML = `<p class="muted">${esc(T('noParams'))}</p>`; return; }
   const btnRow = document.createElement('div'); btnRow.className = 'ctl-buttons';
+  let nRange = 0;
   R.defs.forEach((d, idx) => {
     const uid = 'ctl_' + idx;
     if (d.kind === 'range') {
-      const row = document.createElement('div'); row.className = 'ctl';
-      row.innerHTML = `<div class="ctl-head"><label for="${uid}">${esc(tr(d.label))}</label><span class="ctl-num"><input type="number" id="${uid}_n" aria-label="${esc(tr(d.label))}" step="${d.step}" min="${d.min}" max="${d.max}"><span class="unit">${esc(d.unit)}</span></span></div><input type="range" id="${uid}" min="${d.min}" max="${d.max}" step="${d.step}">`;
+      const row = document.createElement('div'); row.className = 'ctl'; row.dataset.id = d.id;
+      // 1–9: a csúszka sorszáma billentyűzethez / number of the slider for the keyboard (1–9, then ← →)
+      const n = ++nRange, num = n <= 9 ? `<span class="kbn" title="${esc(T('kbNumTip').replace('{n}', n))}">${n}</span>` : '';
+      row.innerHTML = `<div class="ctl-head"><label for="${uid}">${num}${esc(tr(d.label))}${kbdBadges(d.keys)}</label><span class="ctl-num"><input type="number" id="${uid}_n" aria-label="${esc(tr(d.label))}" step="${d.step}" min="${d.min}" max="${d.max}"><span class="unit">${esc(d.unit)}</span></span></div><input type="range" id="${uid}" min="${d.min}" max="${d.max}" step="${d.step}">`;
       const sl = $('input[type=range]', row), nm = $('input[type=number]', row);
       sl.value = R.P[d.id]; nm.value = roundStep(R.P[d.id], d.step);
       sl.addEventListener('input', () => { const v = +sl.value; setP(d.id, v); nm.value = roundStep(v, d.step); });
@@ -4106,25 +4640,27 @@ function buildControls(force) {
         if (!isFinite(v)) v = R.P[d.id];
         v = clamp(v, d.min, d.max); setP(d.id, v); sl.value = v; nm.value = roundStep(v, d.step);
       });
-      ctlEls[d.id] = {kind: 'range', sl, nm, step: d.step};
+      ctlEls[d.id] = {kind: 'range', sl, nm, step: d.step, row};
+      if (kbSel === d.id) row.classList.add('kbsel');
       box.appendChild(row);
     } else if (d.kind === 'toggle') {
       const row = document.createElement('label'); row.className = 'ctl ctl-toggle'; row.htmlFor = uid;
-      row.innerHTML = `<input type="checkbox" id="${uid}"><span>${esc(tr(d.label))}</span>`;
+      row.innerHTML = `<input type="checkbox" id="${uid}"><span>${esc(tr(d.label))}${kbdBadges(d.keys)}</span>`;
       const cb = $('input', row); cb.checked = !!R.P[d.id];
       cb.addEventListener('change', () => setP(d.id, cb.checked));
-      ctlEls[d.id] = {kind: 'toggle', cb};
+      ctlEls[d.id] = {kind: 'toggle', cb, row};
       box.appendChild(row);
     } else if (d.kind === 'choice') {
       const row = document.createElement('div'); row.className = 'ctl';
-      row.innerHTML = `<div class="ctl-head"><label for="${uid}">${esc(tr(d.label))}</label></div><select id="${uid}">${d.options.map(o => `<option value="${esc(o[0])}">${esc(tr(o[1]))}</option>`).join('')}</select>`;
+      row.innerHTML = `<div class="ctl-head"><label for="${uid}">${esc(tr(d.label))}${kbdBadges(d.keys)}</label></div><select id="${uid}">${d.options.map(o => `<option value="${esc(o[0])}">${esc(tr(o[1]))}</option>`).join('')}</select>`;
       const se = $('select', row); se.value = R.P[d.id];
       se.addEventListener('change', () => setP(d.id, se.value));
-      ctlEls[d.id] = {kind: 'choice', se};
+      ctlEls[d.id] = {kind: 'choice', se, row};
       box.appendChild(row);
     } else if (d.kind === 'button') {
-      const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = tr(d.label);
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.innerHTML = esc(tr(d.label)) + kbdBadges(d.keys);
       b.addEventListener('click', () => { const dd = R.defs[idx]; if (dd && dd.fn) safeCall(dd.fn); });
+      ctlEls['\u0000b' + idx] = {kind: 'button', b};
       btnRow.appendChild(b);
     }
   });
@@ -4306,7 +4842,7 @@ function loadScene(obj, opts = {}) {
   $('#sceneName').value = scene.name;
   setSpeed(scene.timeScale);
   firstRun = !(+obj.timeScale > 0 && obj.timeScale !== 1) ;
-  ctlSig = null;
+  ctlSig = null; kbSel = null;
   renderAssets();
   runScene();
   setPlaying(true);
@@ -5059,6 +5595,15 @@ const HELP = {
       ['boundArrow("név", {x, y, angle, length, width, color, colorBy, colorMin, colorMax, colorTo, label})', 'Változóhoz kötött nyíl. A length, width és colorBy kifejezés (szövegként, pl. "30 * i"); a Jelölők fülön ugyanezek a beállítások látszanak és szerkeszthetők, a változás visszaíródik a kódba.', 'Arrow bound to variables. length, width and colorBy are expressions (as text, e.g. "30 * i"); the Markup tab shows the same settings, lets you edit them and writes changes back into the code.'],
       ['val("e", e) · val({e, I, n})', 'Érték közzététele a Jelölők számára: a nyíl hossza, az áramlás és a „{e:1}” felirat ehhez köthető. A draw-ban hívd.', 'Publishes a value for the Markup tab: arrow length, flow and a “{e:1}” label can follow it. Call it inside draw.'],
     ]},
+    {t: {hu: 'Billentyűzet', en: 'Keyboard'}, items: [
+      ['param(…, "egység", {keys: "q a"})', 'Billentyű a csúszkán: az első növeli, a második csökkenti. Egy koppintás = egy lépés; nyomva tartva folyamatosan állít (10 s alatt a teljes tartomány, {rate: 5} = 5 egység/s), Shift = 10× gyorsabb. A Vezérlők fülön kis billentyűjel mutatja.', 'Keys on a slider: the first raises, the second lowers it. A tap = one step; holding moves it smoothly (the whole range in 10 s, {rate: 5} = 5 units/s), Shift = 10× faster. A small key badge shows it on the Controls tab.'],
+      ['toggle(…, true, {key: "s"}) · choice(…, "a", {key: "c"}) · button(címke, fn, {key: "Enter"})', 'Kapcsoló ki-be, a lista következő eleme (Shift: előző), a gomb megnyomása.', 'Switch on/off, next item of the list (Shift: previous), pressing the button.'],
+      ['key("ArrowLeft")', 'Igaz, amíg a billentyű nyomva van – az update-ben vagy a draw-ban olvasd. Nevek: "a" … "z", "0" … "9", " " (szóköz), "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter", "Shift". Több billentyű: key(["a", "ArrowLeft"]).', 'True while the key is held – read it inside update or draw. Names: "a" … "z", "0" … "9", " " (Space), "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter", "Shift". Several keys: key(["a", "ArrowLeft"]).'],
+      ['onKey(" ", () => { … }, {label: {hu, en}, help: {hu, en}})', 'Lenyomásonként egyszer fut (szünetben is). Telefonon és táblagépen a key() és onKey() billentyűi gombként jelennek meg a vásznon; a label a gomb felirata. A help a billentyűlistában jelenik meg. Mindkettő a key("x", {label, help}) hívásban is megadható.', 'Runs once per press (also while paused). On phones and tablets the keys of key() and onKey() appear as buttons on the canvas; label is the text on the button. help is shown in the key list. Both work with key("x", {label, help}) too.'],
+      ['⌨ · ?', 'Billentyűlista: a jelenet összes billentyűje a leírásukkal. A vásznon a jobb felső ⌨ gombbal vagy a ? billentyűvel nyílik, a Vezérlők fülön egy összecsukható sor; amíg nincs megnyitva, nem foglal helyet.', 'Key list: every key of the scene with its description. On the canvas it opens with the ⌨ button in the top-right corner or the ? key; on the Controls tab it is one collapsible line. It takes no room until opened.'],
+      ['1 … 9, majd ← → ↑ ↓', 'Kód nélkül, minden jelenetnél: a szám kiválasztja a csúszkát (a Vezérlők fülön és a vásznon is látszik), a nyilak állítják, Shift = 10×; Esc vagy 0 = kész.', 'No code needed, every scene: the number picks a slider (highlighted on the Controls tab and on the canvas), the arrows move it, Shift = 10×; Esc or 0 = done.'],
+      ['Szóköz · R · → · P', 'Ha a jelenet lefoglalja a Szóközt, az R-t vagy a →-t, a jelenet nyer. A lejátszás / szünet tartalék billentyűje mindig a P.', 'If the scene binds Space, R or →, the scene wins. P always works as a backup play / pause key.'],
+    ]},
     {t: {hu: 'Rajzolás', en: 'Drawing'}, items: [
       ['circle(x, y, r, stílus)', 'Kör.', 'Circle.'],
       ['rect(x, y, w, h, stílus)', 'Téglalap a bal felső sarkától; {radius: 8} lekerekít.', 'Rectangle from its top-left corner; {radius: 8} rounds it.'],
@@ -5113,8 +5658,8 @@ const HELP = {
     ]},
   ],
   keys: {
-    hu: '<h4>Billentyűk</h4><p><kbd>Szóköz</kbd> lejátszás/szünet · <kbd>→</kbd> léptetés · <kbd>R</kbd> újraindítás · <kbd>Ctrl</kbd>+<kbd>Enter</kbd> kód futtatása · <kbd>Ctrl</kbd>+<kbd>S</kbd> mentés · <kbd>Ctrl</kbd>+<kbd>O</kbd> megnyitás. Képet és jelenetfájlt az ablakra húzva is betölthetsz.</p>',
-    en: '<h4>Keys</h4><p><kbd>Space</kbd> play/pause · <kbd>→</kbd> step · <kbd>R</kbd> restart · <kbd>Ctrl</kbd>+<kbd>Enter</kbd> run code · <kbd>Ctrl</kbd>+<kbd>S</kbd> save · <kbd>Ctrl</kbd>+<kbd>O</kbd> open. You can also drop images and scene files onto the window.</p>',
+    hu: '<h4>Billentyűk</h4><p><kbd>Szóköz</kbd> vagy <kbd>P</kbd> lejátszás/szünet · <kbd>→</kbd> léptetés · <kbd>R</kbd> újraindítás · <kbd>1</kbd>…<kbd>9</kbd> csúszka kiválasztása, utána <kbd>←</kbd> <kbd>→</kbd> állítja, <kbd>Esc</kbd> kész · <kbd>?</kbd> billentyűlista · <kbd>Ctrl</kbd>+<kbd>Enter</kbd> kód futtatása · <kbd>Ctrl</kbd>+<kbd>S</kbd> mentés · <kbd>Ctrl</kbd>+<kbd>O</kbd> megnyitás. Képet és jelenetfájlt az ablakra húzva is betölthetsz.</p>',
+    en: '<h4>Keys</h4><p><kbd>Space</kbd> or <kbd>P</kbd> play/pause · <kbd>→</kbd> step · <kbd>R</kbd> restart · <kbd>1</kbd>…<kbd>9</kbd> pick a slider, then <kbd>←</kbd> <kbd>→</kbd> move it, <kbd>Esc</kbd> done · <kbd>?</kbd> key list · <kbd>Ctrl</kbd>+<kbd>Enter</kbd> run code · <kbd>Ctrl</kbd>+<kbd>S</kbd> save · <kbd>Ctrl</kbd>+<kbd>O</kbd> open. You can also drop images and scene files onto the window.</p>',
   },
 };
 /* ───────────── guide (short lessons with runnable examples) ───────────── */
@@ -5307,6 +5852,39 @@ draw(t => {
        500, 560, {size: 18, align: "center", color: C.gray});
   // ⟨tr() a mostani nyelvű szöveget adja, fmt() a számot a nyelv tizedesjelével (0 tizedes)|tr() gives the text in the current language, fmt() formats the number (0 decimals)⟩
   text(tr({hu: "Szög: ", en: "Angle: "}) + fmt(P.a, 0) + "°", 40, 90, {size: 20});
+});`},
+  {t: {hu: 'Billentyűzet', en: 'Keyboard'},
+   d: {hu: 'A csúszka, a kapcsoló és a gomb billentyűt is kaphat ({keys: "q a"}, {key: "s"}). A key("ArrowLeft") igaz, amíg a billentyű nyomva van, az onKey() lenyomásonként egyszer fut. Telefonon ezekhez gombok jelennek meg a vásznon. Kód nélkül is: 1–9 kiválaszt egy csúszkát, a nyilak állítják.',
+       en: 'A slider, a switch and a button can get keys too ({keys: "q a"}, {key: "s"}). key("ArrowLeft") is true while the key is held, onKey() runs once per press. On a phone these get buttons on the canvas. Without code too: 1–9 picks a slider, the arrows move it.'},
+   code: `// ⟨Csúszka billentyűkkel: Q növeli, A csökkenti; nyomva tartva folyamatosan, Shift = 10× gyorsabb|Slider with keys: Q raises, A lowers it; smoothly while held, Shift = 10× faster⟩
+param("v", {hu: "Sebesség", en: "Speed"}, 50, 600, 250, 10, "px/s", {keys: "q a"});
+// ⟨Kapcsoló: a G billentyű ki-be kapcsolja|Switch: the G key turns it on and off⟩
+toggle("grid", {hu: "Rács", en: "Grid"}, true, {key: "g"});
+
+let x = 500, y = 300, color = C.blue;
+const colors = [C.blue, C.red, C.green, C.orange];
+
+// ⟨Lenyomásonként egyszer: a C billentyű színt vált; a label a telefonos gomb felirata|Once per press: the C key changes the colour; label is the text on the phone button⟩
+onKey("c", () => { color = colors[(colors.indexOf(color) + 1) % colors.length]; }, {label: {hu: "Szín", en: "Colour"}, help: {hu: "szín váltása", en: "change the colour"}});
+
+// ⟨{help}: leírás a billentyűlistában (⌨ gomb a vásznon, ? billentyű, Vezérlők fül)|{help}: text in the key list (⌨ button on the canvas, ? key, Controls tab)⟩
+const MOVE = {help: {hu: "mozgatás", en: "move"}};
+
+update(dt => {
+  // ⟨key(): igaz, amíg nyomva van – a nyilak mozgatják a kört|key(): true while held – the arrow keys move the circle⟩
+  if (key("ArrowLeft", MOVE)) x -= P.v * dt;
+  if (key("ArrowRight", MOVE)) x += P.v * dt;
+  if (key("ArrowUp", MOVE)) y -= P.v * dt;
+  if (key("ArrowDown", MOVE)) y += P.v * dt;
+  // ⟨A vásznon belül tartjuk|Keep it on the canvas⟩
+  x = clamp(x, 40, 960); y = clamp(y, 40, 560);
+});
+
+draw(t => {
+  if (P.grid) grid(50);
+  circle(x, y, 40, {fill: color});
+  text({hu: "Nyilak: mozgatás · C: szín · Q / A: sebesség · G: rács · P: szünet",
+        en: "Arrows: move · C: colour · Q / A: speed · G: grid · P: pause"}, 500, 585, {size: 15, align: "center", color: C.gray});
 });`},
 ];
 const GUIDE_TIPS = {
@@ -5629,13 +6207,30 @@ document.addEventListener('keydown', e => {
   const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) && e.target.type !== 'range' && e.target.type !== 'checkbox';
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') { e.preventDefault(); $('#btnSave').click(); return; }
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'o') { e.preventDefault(); $('#btnOpen').click(); return; }
+  kbShift = e.shiftKey;
   if (typing || e.ctrlKey || e.metaKey || e.altKey) return;
-  if (e.key === ' ') { e.preventDefault(); setPlaying(!playing); }
-  else if (e.key === 'r' || e.key === 'R') needsRerun = true;
-  else if (e.key === 'ArrowRight' && e.target.type !== 'range') { setPlaying(false); stepReq = true; }
-  else if (e.key === 'Escape') { if (pseudoFull) exitCanvasOnly(); closeMenu(); if (pathDraft) pathDraft = null; if (pivotFor) { pivotFor = null; updateToolHint(); } }
-  else if (e.key === 'Enter' && pathDraft) finishPath();
+  const k = evKey(e);
+  // a kijelölt csúszkát és az elválasztókat a nyilak a böngészőben állítják / a focused slider or splitter keeps its own arrow keys
+  if (/^(Arrow|Home$|End$|Page)/.test(k) && (e.target.type === 'range' || (e.target.getAttribute && e.target.getAttribute('role') === 'separator'))) return;
+  if (k === 'Escape') { setKbList(false); if (pseudoFull) exitCanvasOnly(); closeMenu(); if (pathDraft) pathDraft = null; if (pivotFor) { pivotFor = null; updateToolHint(); } if (kbSel) kbSelect(null); }
+  // 1–2. a jelenet billentyűi nyernek / the scene's own keys win
+  if (sceneOwns(k)) { e.preventDefault(); pressKey(k, e.shiftKey); return; }
+  if (k === 'Escape') return;
+  if (k === '?') { if (!e.repeat) setKbList(!kbListOpen); return; }
+  // 3. 1–9 kiválaszt egy csúszkát, a nyilak állítják, 0 = kész / 1–9 picks a slider, the arrows move it, 0 = done
+  if (/^[1-9]$/.test(k)) { const d = rangeDefs()[+k - 1]; if (d) { e.preventDefault(); kbSelect(d.id); } return; }
+  if (k === '0') { if (kbSel) kbSelect(null); return; }
+  if (kbSel && /^Arrow(Left|Right|Up|Down)$/.test(k)) { e.preventDefault(); pressNav(k, e.shiftKey); return; }
+  // lejátszás / transport
+  if (k === ' ') { e.preventDefault(); if (!e.repeat) setPlaying(!playing); }
+  else if (k === 'p') { if (!e.repeat) setPlaying(!playing); }
+  else if (k === 'r') { if (!e.repeat) needsRerun = true; }
+  else if (k === 'ArrowRight') { setPlaying(false); stepReq = true; }
+  else if (k === 'Enter' && pathDraft) finishPath();
 });
+document.addEventListener('keyup', e => { kbShift = e.shiftKey; releaseKey(evKey(e)); if (e.key && e.key.length === 1) releaseKey(normKey(e.key)); });
+window.addEventListener('blur', releaseAll);
+document.addEventListener('visibilitychange', () => { if (document.hidden) releaseAll(); });
 
 window.addEventListener('dragover', e => { e.preventDefault(); });
 window.addEventListener('drop', async e => {

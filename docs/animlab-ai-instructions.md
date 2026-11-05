@@ -107,6 +107,19 @@ Colours: any CSS colour, or `C.red C.blue C.green C.orange C.purple C.teal C.yel
 | `resetOn(id, …)` | Restart the scene when these controls change (use for initial conditions). |
 | `reset()` | Restart the scene from the top. |
 
+### 3.2a Keyboard (optional; only when the user asks for keys or interactive control)
+
+| Call | Meaning |
+| --- | --- |
+| `param(id, label, min, max, value, step, unit, {keys: "q a"})` | Keys on a slider: the first key raises, the second lowers the value. A tap moves one step, holding moves it smoothly (whole range in 10 s; `{rate: 5}` = 5 units/s), Shift = 10× faster. |
+| `toggle(id, label, value, {key: "s"})` | The key turns the switch on and off. |
+| `choice(id, label, options, value, {key: "c"})` | The key selects the next item (Shift: previous). |
+| `button(label, fn, {key: "Enter"})` | The key presses the button. |
+| `key(name, {label, help})` | `true` while the key is held. Read it inside `update` (or `draw`). `key(["a", "ArrowLeft"])` = any of them. |
+| `onKey(name, fn, {label, help})` | `fn` runs once per press, also while paused. `label` (`{hu, en}`) is the text of the touch button, `help` (`{hu, en}`) the description in the key list. |
+
+Key names: `"a"` … `"z"` (letters are case-insensitive), `"0"` … `"9"`, `" "` (Space), `"ArrowLeft"`, `"ArrowRight"`, `"ArrowUp"`, `"ArrowDown"`, `"Enter"`, `"Shift"`. On phones and tablets the keys used with `key()` and `onKey()` automatically appear as buttons on the canvas (`key(" ", {label: {hu: "Fék", en: "Brake"}})` names the button). The app already uses Space = play/pause, R = restart, → = step, 1–9 + arrows = adjust any slider, P = backup play/pause: a key the scene binds overrides these, so prefer letters (W/A/S/D, Q/E) and arrows for scene controls, and never bind P. Give every `key()` / `onKey()` a `help` text (put the options in a constant at the top, e.g. `const H_FWD = {help: {hu: "előre", en: "forward"}}`): the app lists all keys with these texts behind a ⌨ button and the ? key. A short on-canvas hint text is still welcome.
+
 ### 3.3 Readouts (inside draw)
 
 | Call | Meaning |
@@ -194,8 +207,8 @@ AnimLab draws it every frame. `angle` in degrees (0 = right, 90 = up). `length`,
 
 ## 4. Rules that prevent errors
 
-1. **Never declare a variable with an API name.** These names are taken: `P C stage title timeScale plotWindow param toggle choice button setParam resetOn reset update draw show plot val vals fmt tr lang circle ellipse rect box ring line polyline polygon arc spring ground grid text image arrow vector phasor current flow fieldLoop push pop translate rotate scale world ball link drawWorld wx wy ws complex cpolar phases fieldVec stator3 wrap boundArrow view3d begin3 end3 box3 wire3 path3 face3 arrow3 flow3 text3 circle3 rot3 p3` and every maths name in 3.9 (`PI sin cos min max sign round …`, `deg todeg clamp lerp mod`). Use names like `cx0`, `r0`, `kScale`, `pts`, `angleNow`, `Mload`.
-2. All `param`, `toggle`, `choice`, `button`, `world`, `ball`, `link`, `boundArrow`, `stage`, `title`, `timeScale` calls go at the **top level**, not inside update/draw.
+1. **Never declare a variable with an API name.** These names are taken: `P C stage title timeScale plotWindow param toggle choice button key onKey setParam resetOn reset update draw show plot val vals fmt tr lang circle ellipse rect box ring line polyline polygon arc spring ground grid text image arrow vector phasor current flow fieldLoop push pop translate rotate scale world ball link drawWorld wx wy ws complex cpolar phases fieldVec stator3 wrap boundArrow view3d begin3 end3 box3 wire3 path3 face3 arrow3 flow3 text3 circle3 rot3 p3` and every maths name in 3.9 (`PI sin cos min max sign round …`, `deg todeg clamp lerp mod`). Use names like `cx0`, `r0`, `kScale`, `pts`, `angleNow`, `Mload`.
+2. All `param`, `toggle`, `choice`, `button`, `onKey`, `world`, `ball`, `link`, `boundArrow`, `stage`, `title`, `timeScale` calls go at the **top level**, not inside update/draw. `key()` is read inside update/draw.
 3. All drawing, `show`, `plot`, `val` calls go **inside draw**.
 4. Slider ids are short identifiers (`U`, `B`, `N`, `m`, `k`, `v0`) and every `P.x` you read must have a matching `param/toggle/choice("x", …)`.
 5. Guard divisions and logs: `x / max(abs(d), 1e-9)`, `sqrt(max(0, v))`.
@@ -413,6 +426,7 @@ draw(t => {
 - [ ] Everything visible fits inside the stage and does not overlap the title.
 - [ ] Labels in `{hu, en}`; comments explain every number and unit.
 - [ ] Only functions and options from section 3; no DOM, timers or imports.
+- [ ] Keyboard only when asked: `key()` in update, `onKey()` at the top, keys explained in an on-canvas hint; no `addEventListener`.
 - [ ] Moving arrows with a non-constant speed use `pos` integrated in `update`, and are hidden when their quantity is zero.
 - [ ] Wires stop at components; no arrow runs across a component; components are drawn on top.
 - [ ] Every component the user named is in the physics; values not given are sliders or commented constants.

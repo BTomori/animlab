@@ -135,6 +135,32 @@ button({hu: "Újra", en: "Again"}, reset);                       // reset restar
 
 Use `resetOn` for sliders that set starting conditions (launch speed, starting angle). Without it the new value only acts from the current moment on.
 
+### Keyboard
+
+Controls can get keys, the scene code can read keys, and every scene can be adjusted from the keyboard without any code.
+
+``` javascript
+param("F", {hu: "Motorerő F", en: "Motor force F"}, 0, 3000, 1200, 50, "N", {keys: "w s"});  // W raises, S lowers F
+toggle("air", {hu: "Légellenállás", en: "Air drag"}, true, {key: "l"});    // L turns it on and off
+choice("conn", {hu: "Kapcsolás", en: "Connection"}, [["Y", "Y"], ["D", "Δ"]], "Y", {key: "c"});  // C: next item, Shift+C: previous
+button({hu: "Újra", en: "Again"}, reset, {key: "Enter"});                 // Enter presses the button
+
+onKey("m", () => { marker = x; }, {label: {hu: "Jelölő", en: "Marker"}});  // once per press (also while paused)
+update(dt => {
+  if (key("ArrowRight")) x += 2 * dt;                                     // true while the key is held
+  if (key("ArrowLeft")) x -= 2 * dt;
+});
+```
+
+- **Slider keys:** the first key raises, the second lowers the value. A tap moves one step, holding moves it smoothly (the whole range in 10 seconds, or `{rate: 5}` units per second), Shift makes it 10× faster. A small key badge shows on the Controls tab.
+- **Key names:** `"a"` … `"z"` (case does not matter), `"0"` … `"9"`, `" "` (Space), `"ArrowLeft"`, `"ArrowRight"`, `"ArrowUp"`, `"ArrowDown"`, `"Enter"`, `"Shift"`; `key(["a", "ArrowLeft"])` is true if any of them is held.
+- **Phones and tablets:** the keys used with `key()` and `onKey()` appear as buttons on the canvas automatically. `label` sets the text of the button: `key(" ", {label: {hu: "Fék", en: "Brake"}})`.
+- **Without code, in every scene:** press 1–9 to pick a slider (it is highlighted on the Controls tab and named on the canvas, also in canvas-only full screen), then move it with the arrow keys; Shift = 10×, Esc or 0 = done.
+- **Key list:** every key of the scene, with its description, opens with the ⌨ button in the top-right corner of the canvas or the ? key, and is one collapsible line on the Controls tab, so it takes no room until opened. Controls describe themselves; for `key()` and `onKey()` give a `help` text: `key("ArrowRight", {help: {hu: "előre", en: "forward"}})`.
+- **Conflicts:** the app uses Space = play/pause, R = restart, → = step. If the scene binds one of these, the scene wins; P always works as a backup play/pause key. Prefer letters (W/A/S/D) and the arrows for your own controls, and say which keys do what in a `text` hint on the canvas.
+
+The **Cart with the arrow keys** example scene and the **Keyboard** lesson on the Help tab show all of this in action.
+
 ### Readouts, graphs and published values
 
 ``` javascript
@@ -477,6 +503,7 @@ When a scene fails, AnimLab shows the error in red with its line number; click i
 |----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Scene          | `stage` · `title` · `timeScale` · `plotWindow`                                                                                                                  |
 | Controls       | `param` · `toggle` · `choice` · `button` · `setParam` · `resetOn` · `reset`                                                                                     |
+| Keyboard       | `{keys: "q a"}` · `{key: "s"}` · `key(name)` · `onKey(name, fn, {label})` · 1–9 + arrows                                                                        |
 | Running        | `update((dt, t) => …)` · `draw(t => …)`                                                                                                                         |
 | Output         | `show` · `plot` · `val` · `fmt` · `tr` · `lang`                                                                                                                 |
 | Shapes         | `circle` · `rect` · `box` · `ellipse` · `ring` · `line` · `polyline` · `polygon` · `arc` · `spring` · `ground` · `grid`                                         |

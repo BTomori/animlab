@@ -155,6 +155,32 @@ resetOn("v0", "ang");     // ha ezek a csúszkák változnak, a jelenet elölrő
 button({hu: "Újra", en: "Again"}, reset);   // a reset függvény elölről indítja a jelenetet
 ```
 
+### Billentyűzet
+
+A vezérlők billentyűt kaphatnak, a jelenet kódja figyelheti a billentyűket, és kód nélkül is minden jelenet állítható billentyűzetről.
+
+``` javascript
+param("F", {hu: "Motorerő F", en: "Motor force F"}, 0, 3000, 1200, 50, "N", {keys: "w s"});  // W növeli, S csökkenti F-et
+toggle("air", {hu: "Légellenállás", en: "Air drag"}, true, {key: "l"});    // L ki-be kapcsolja
+choice("conn", {hu: "Kapcsolás", en: "Connection"}, [["Y", "Y"], ["D", "Δ"]], "Y", {key: "c"});  // C: következő elem, Shift+C: előző
+button({hu: "Újra", en: "Again"}, reset, {key: "Enter"});                 // az Enter megnyomja a gombot
+
+onKey("m", () => { marker = x; }, {label: {hu: "Jelölő", en: "Marker"}});  // lenyomásonként egyszer fut (szünetben is)
+update(dt => {
+  if (key("ArrowRight")) x += 2 * dt;                                     // igaz, amíg a billentyű nyomva van
+  if (key("ArrowLeft")) x -= 2 * dt;
+});
+```
+
+- **Billentyű a csúszkán:** az első billentyű növeli, a második csökkenti az értéket. Egy koppintás egy lépés, nyomva tartva folyamatosan állít (10 másodperc alatt a teljes tartomány, vagy `{rate: 5}` egység másodpercenként), Shift-tel 10× gyorsabban. A Vezérlők fülön kis billentyűjel mutatja.
+- **Billentyűnevek:** `"a"` … `"z"` (a kis- és nagybetű mindegy), `"0"` … `"9"`, `" "` (szóköz), `"ArrowLeft"`, `"ArrowRight"`, `"ArrowUp"`, `"ArrowDown"`, `"Enter"`, `"Shift"`; a `key(["a", "ArrowLeft"])` igaz, ha bármelyik nyomva van.
+- **Telefon, táblagép:** a `key()` és `onKey()` billentyűi maguktól gombként jelennek meg a vásznon. A `label` a gomb felirata: `key(" ", {label: {hu: "Fék", en: "Brake"}})`.
+- **Kód nélkül, minden jelenetnél:** az 1–9 kiválaszt egy csúszkát (a Vezérlők fülön kiemelve, a vásznon a neve látszik, csak-vászon módban is), a nyilak állítják; Shift = 10×, Esc vagy 0 = kész.
+- **Billentyűlista:** a jelenet összes billentyűje a leírásával a vászon jobb felső sarkában lévő ⌨ gombbal vagy a ? billentyűvel nyílik meg, a Vezérlők fülön pedig egy összecsukható sor; amíg nincs megnyitva, nem foglal helyet. A vezérlők maguktól leírják magukat; a `key()` és `onKey()` billentyűihez `help` szöveget adj: `key("ArrowRight", {help: {hu: "előre", en: "forward"}})`.
+- **Ütközések:** a program a Szóközt lejátszásra, az R-t újraindításra, a →-t léptetésre használja. Ha a jelenet lefoglalja valamelyiket, a jelenet nyer; a P mindig tartalék lejátszás / szünet. Saját vezérléshez a betűk (W/A/S/D) és a nyilak a legjobbak; egy `text` felirat a vásznon mondja meg, melyik billentyű mit csinál.
+
+A **Kocsi nyilakkal** mintajelenet és a Súgó fül **Billentyűzet** leckéje mindezt bemutatja.
+
 ### Fizika: `update`
 
 ``` javascript
@@ -818,6 +844,7 @@ Ha a jelenet nem azt csinálja, amit vársz, a legtöbbször az alábbi hibák e
 |----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Jelenet        | `stage` · `title` · `timeScale` · `plotWindow`                                                                                                            |
 | Kezelőszervek  | `param` · `toggle` · `choice` · `button` · `setParam` · `resetOn` · `reset`                                                                               |
+| Billentyűzet   | `{keys: "q a"}` · `{key: "s"}` · `key(név)` · `onKey(név, fn, {label})` · 1–9 + nyilak                                                                    |
 | Működés        | `update(dt => …)` · `draw(t => …)`                                                                                                                        |
 | Kiírás         | `show` · `plot` · `val` · `fmt` · `tr`                                                                                                                    |
 | Alakzatok      | `circle` · `rect` · `box` · `ellipse` · `line` · `polyline` · `polygon` · `arc` · `spring` · `ground` · `grid` · `ring`                                   |
@@ -829,7 +856,7 @@ Ha a jelenet nem azt csinálja, amit vársz, a legtöbbször az alábbi hibák e
 | Váltakozó áram | `complex` · `cpolar` · `phases` · `fieldVec` · `stator3` · `wrap`                                                                                         |
 | Matematika     | `sin` `cos` `tan` `atan2` `sqrt` `cbrt` `abs` `pow` `exp` `log` `hypot` `min` `max` `sign` `round` `floor` `ceil` `clamp` `lerp` `mod` `deg` `todeg` `PI` |
 
-A Súgó fülön minden parancs leírása megtalálható mindkét nyelven, az Útmutató rész hét lépése pedig a **Kipróbálom** gombbal azonnal betölthető.
+A Súgó fülön minden parancs leírása megtalálható mindkét nyelven, az Útmutató rész nyolc lépése pedig a **Kipróbálom** gombbal azonnal betölthető.
 
 ## 9. Jelenet írása AI segítségével
 

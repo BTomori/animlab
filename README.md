@@ -27,7 +27,7 @@ Az AnimLab egy böngészőben futó animációs eszköz villamos és fizika tant
 | Háromfázisú rendszer (csillag / delta, fázorok) | Sablon: alakzatok, képek, fizika |
 | Forgó mágneses mező | |
 | Aszinkron (kalickás) motor, M(n) jelleggörbe | |
-| Szinkronmotor (terhelési szög, gerjesztés) | |
+| Szinkronmotor (terhelési szög, gerjesztés) | Kocsi nyilakkal (billentyűzet, Newton II.) |
 | 3D: forgó vezetőkeret mágneses térben | |
 | 3D: kalickás forgórész forgó mezőben | |
 
@@ -39,6 +39,7 @@ Az AnimLab egy böngészőben futó animációs eszköz villamos és fizika tant
 - **Rajzolóeszközök:** alakzatok, nyilak, vektorok, fázorok, mozgó nyilak, erővonal-hurkok, háromfázisú állórész, 3D nézet, fizikai világ (gravitáció, ütközés, rugók), komplex számok.
 - **Képek** feltöltése és animálása (például forgó forgórész), forgásponttal.
 - **Jelölők fül:** nyilak, erővonalak, áramutak, feliratok egérrel; méretük, vastagságuk és színük változóhoz köthető. A `boundArrow` nyilak beállításai a kód és a fül között mindkét irányban szinkronban vannak.
+- **Billentyűzetes vezérlés:** a csúszkák, kapcsolók és gombok billentyűt kaphatnak, a jelenet kódja figyelheti a billentyűket (`key`, `onKey`), telefonon ezekhez gombok jelennek meg a vásznon; kód nélkül is: 1–9 kiválaszt egy csúszkát, a nyilak állítják. A jelenet billentyűi a vászon ⌨ gombjával vagy a ? billentyűvel listázhatók.
 - **Teljes képernyő és telefonos nézet:** csak a vászon teljes képernyőn (lebegő gombokkal), a grafikonsáv magassága húzással állítható; telefonon alsó sáv vált a vászon, a vezérlők, a kód, a képek, a jelölők és a súgó között, fekvő helyzetben a vászon kitölti a képernyőt.
 - **Mentés és exportálás:** jelenetfájl (`.animlab.json`), önálló HTML-fájl, videó (WebM) és állókép (PNG).
 - **Súgó** lépésenkénti, kommentezett példákkal; részletes [programozási útmutató](docs/programozasi-utmutato.md) és angol [programming guide](docs/programming-guide-en.md).
@@ -64,7 +65,7 @@ A **Megnyitás** az exportált `.html` fájlt is betölti szerkesztésre, így e
 
 Az [`examples`](examples/) mappában tanári minták és a diákok által készített jelenetek vannak. Minden példának saját mappája van a jelenettel, egy leírással (források, órai használat) és egy `media` almappával a képeknek és videóknak; mindegyik linkkel megnyitható. Diákok az **Issues → New issue → Új példa beküldése** űrlappal küldhetnek be új jelenetet; a részletek az [`examples/README.md`](examples/README.md) fájlban vannak.
 
-Billentyűk: Szóköz – lejátszás/szünet, → – léptetés, R – újraindítás, Ctrl+S – mentés, Ctrl+O – megnyitás.
+Billentyűk: Szóköz vagy P – lejátszás/szünet, → – léptetés, R – újraindítás, 1–9 – csúszka kiválasztása, utána ← → állítja (Shift = gyorsabb, Esc = kész), Ctrl+S – mentés, Ctrl+O – megnyitás. Ha a jelenet saját billentyűt használ (például a nyilakat), az nyer; a P mindig működik.
 
 ### Jelenet írása AI segítségével
 
@@ -108,7 +109,7 @@ AnimLab is a browser-based animation tool for electrical engineering and physics
 ### Example scenes
 
 **Electricity and machines:** DC motor, rotor from a photo (using pictures), generator, Ohm's law with a lamp, charging a capacitor (RC), rotating phasor and sine wave, single-phase transformer with a no-load switch, three-phase system (star/delta, phasors), rotating magnetic field, induction motor with torque–speed curve, synchronous motor (load angle, excitation), two 3D scenes (rotating loop in a magnetic field, cage rotor in a rotating field).
-**Mechanics:** projectile motion (with drag and bouncing), projectile measured vs. theory, bouncing ball, damped spring oscillation, inclined plane, collision, simple pendulum, and a template scene.
+**Mechanics:** projectile motion (with drag and bouncing), projectile measured vs. theory, bouncing ball, damped spring oscillation, inclined plane, collision, simple pendulum, a cart driven with the arrow keys (keyboard, Newton's second law), and a template scene.
 
 ### Main features
 
@@ -118,6 +119,7 @@ AnimLab is a browser-based animation tool for electrical engineering and physics
 - **Drawing tools:** shapes, arrows, vectors, phasors, moving arrows, field-line loops, a three-phase stator, 3D view, a physics world (gravity, collisions, springs), complex numbers.
 - **Upload and animate pictures** (e.g. a rotating rotor), with a pivot point.
 - **Markup tab:** arrows, field lines, current paths and labels drawn with the mouse; their size, width and colour can follow variables. `boundArrow` settings stay in sync between the code and the tab in both directions.
+- **Keyboard control:** sliders, switches and buttons can get keys, scene code can read keys (`key`, `onKey`), and phones show touch buttons for them on the canvas; without code too: 1–9 picks a slider and the arrow keys move it. The ⌨ button on the canvas or the ? key lists the scene's keys.
 - **Full screen and phone view:** canvas-only full screen (with floating buttons) and a graph strip you resize by dragging; on a phone a bottom bar switches between canvas, controls, code, pictures, markup and help, and turning the phone sideways fills the screen with the canvas.
 - **Save and export:** scene file (`.animlab.json`), standalone HTML file, video (WebM) and snapshot (PNG).
 - **Help** with commented step-by-step examples, the [programming guide](docs/programming-guide-en.md) in English and the detailed [Hungarian guide](docs/programozasi-utmutato.md) covering every model.
@@ -142,6 +144,8 @@ AnimLab is a browser-based animation tool for electrical engineering and physics
 ### Examples and student work
 
 The [`examples`](examples/) folder holds teacher examples and scenes made by students. Every example has its own folder with the scene, a description (sources, classroom use) and a `media` subfolder for pictures and videos; each one opens with a link. Students submit new scenes with the **Issues → New issue → New example** form; details are in [`examples/README.md`](examples/README.md).
+
+Keys: Space or P – play/pause, → – step, R – restart, 1–9 – pick a slider, then ← → move it (Shift = faster, Esc = done), Ctrl+S – save, Ctrl+O – open. If a scene uses a key itself (the arrows, for example), the scene wins; P always works.
 
 ### Writing scenes with an AI assistant
 

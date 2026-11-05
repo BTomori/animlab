@@ -32,7 +32,8 @@ Sections in order:
    - `PRESETS`: the preset menu (`{id, name: {hu, en}, assets?: 'other-id'}`). A new preset needs a `preset-ID` script and an entry here.
    - drawing API, animated arrows, 3D, physics world, complex numbers.
    - `scene API` (`makeApi`): every function a scene script can call.
-   - main loop, plots, controls panel, stage layout, errors, transport, files (`saveFile`, `loadScene`, `parseSceneText`), autosave, assets, boundArrow, markup layer, code editor, help, guide, language, side panel, wiring, boot.
+   - main loop, plots, keyboard input, controls panel, stage layout, errors, transport, files (`saveFile`, `loadScene`, `parseSceneText`), autosave, assets, boundArrow, markup layer, code editor, help, guide, language, side panel, wiring, boot.
+   - `keyboard input`: one system for all keys. `pressKey(k)` / `releaseKey(k)` take normalised key names (`normKey`: letters lower-case, `" "` = Space, `"ArrowLeft"` …) from the keyboard and from the touch buttons (`#kbPad`); `R.ctlKeys` (keys on controls), `R.keyOn` (`onKey`) and `R.keyPoll` (keys read with `key()`) decide whether the scene owns a key before Space / R / → / 1–9 are handled; `kbTick` moves held sliders every frame.
 7. At the end of boot: the `?scene=` loader (`sceneLinkCandidates`: folder → `scene.animlab.json`; old `name.animlab.json` links fall back to the folder).
 
 Storage: `store.get/set` wraps `localStorage` with the prefix `animlab.` (language, tab, panel widths, graph height, autosave).
