@@ -123,6 +123,21 @@
       "class": "13.E",
       "ai": "Claude",
       "added": "2026-11-04"
+    },
+    {
+      "path": "students/13e_AD_harc",
+      "group": "students",
+      "title": {"hu": "Körökre osztott harc – paríroz!", "en": "Turn-based combat – parry!"},
+      "description": {"hu": "3D-s körökre osztott harcjáték: a saját körödben képességet választasz, az ellenség körében jó időzítéssel parírozod a 8 féle támadását. Billentyűzettel is játszható.", "en": "A 3D turn-based combat game: on your turn you pick a skill, on the enemy's turn you parry its 8 kinds of attack with good timing. Playable with the keyboard."},
+      "topics": [
+        "játék / game",
+        "3D",
+        "billentyűzet / keyboard"
+      ],
+      "author": "A. D.",
+      "class": "13.E",
+      "ai": "Claude",
+      "added": "2026-11-05"
     }
   ]
 }

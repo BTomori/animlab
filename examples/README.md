@@ -22,6 +22,7 @@ Every example has its own folder: teacher examples in `teacher`, scenes made by 
 | [Logikai kapuk / Logic gates](students/13e_B_logikai-kapuk/) | B., 13.E | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/students/13e_B_logikai-kapuk) |
 | [Vitorlás a tengeren / Sailing ship at sea](students/13e_AD_hajo/) | A. D., 13.E | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/students/13e_AD_hajo) |
 | [Sugárkövetés: kocka / Ray tracing: cube](students/13e_AD_raytracing-kocka/) | A. D., 13.E | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/students/13e_AD_raytracing-kocka) |
+| [Körökre osztott harc / Turn-based combat](students/13e_AD_harc/) | A. D., 13.E | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/students/13e_AD_harc) |
 
 ## Egy példa mappája / The folder of an example
 

@@ -2,6 +2,7 @@
 
 ## Készülő / Unreleased
 
+- Új diákpélda / new student example: Körökre osztott harc – paríroz! / Turn-based combat – parry! (`examples/students/13e_AD_harc`, A. D., 13.E)
 - Új tanári példák kollégáknak / new teacher examples for colleagues: Fogaskerék-áttétel / Gear ratio (`fogaskerek-attetel`), Folyamatábra / Flowchart (`folyamatabra`), Hálózati térkép / Network map (`halozati-terkep`), Bemutató diákkal / Slide presentation (`bemutato-diak`), kiemelve a példák élén / featured at the top of the examples
 - Új bevezető a README-ben: elsősorban STEM-tárgyakhoz, de játék és prezentáció is készíthető vele, így bármely tantárgyban használható / new README introduction: built mainly for STEM subjects, but also for games and presentations, so it fits any subject
 
