@@ -1,7 +1,7 @@
 # AnimLab
 
-**Interaktív fizikai és villamosgép-animációk tanításhoz – egyetlen HTML-fájlban, magyarul és angolul.**
-*Interactive physics and electrical-machine animations for teaching – in a single HTML file, in Hungarian and English.*
+**Interaktív animációk tanításhoz – elsősorban STEM-tárgyakhoz, de játék és prezentáció is készíthető vele. Egyetlen HTML-fájl, magyarul és angolul.**
+*Interactive animations for teaching – built for STEM subjects, and just as good for games and presentations. A single HTML file, in Hungarian and English.*
 
 ▶ **Kipróbálás / Try it:** https://btomori.github.io/animlab/
 
@@ -11,7 +11,14 @@
 
 ## 
 
-Az AnimLab egy böngészőben futó animációs eszköz villamos és fizika tantárgyakhoz. Csúszkákkal állítható modelleket, élő grafikonokat és mért értékeket mutat, és saját jelenetek is írhatók benne néhány sor JavaScripttel – akár egy AI-csevegő segítségével. Telepíteni nem kell semmit, és internet nélkül is működik: elég megnyitni az `index.html` fájlt.
+Az AnimLab egy böngészőben futó animációs eszköz. Elsősorban természettudományos és műszaki (STEM) tárgyakhoz készült: csúszkákkal állítható modelleket, élő grafikonokat és mért értékeket mutat a villamos gépektől a mechanikáig. Mivel minden jelenet néhány sor JavaScript – amelyet akár egy AI-csevegő is megír –, ugyanúgy készíthető benne játék, interaktív prezentáció vagy filmszerű 3D jelenet is, így bármely tantárgyban és területen használható. Telepíteni nem kell semmit, és internet nélkül is működik: elég megnyitni az `index.html` fájlt.
+
+**Mire használható?**
+
+- **Szemléltetés órán:** villamosság, villamos gépek, fizika, digitális technika – kivetítőn vagy a diákok telefonján
+- **Interaktív prezentáció:** kapcsolókkal, billentyűkkel léptethető, lépésenként felépülő ábrák – minta minden tantárgyhoz: [Bemutató diákkal](examples/teacher/bemutato-diak/) ([▶ megnyitás](https://btomori.github.io/animlab/?scene=examples/teacher/bemutato-diak))
+- **Játék és kísérletezés:** billentyűvel vezérelhető jelenetek, fizikai világ (gravitáció, ütközés, rugók)
+- **Diákprojekt:** a diákok AI segítségével saját jelenetet írnak – lásd a logikai kapukat, a 3D filmjeleneteket és a sugárkövetőt a [példák](examples/) között
 
 ### Mintajelenetek
 
@@ -63,7 +70,7 @@ A **Megnyitás** az exportált `.html` fájlt is betölti szerkesztésre, így e
 
 ### Példák és diákmunkák
 
-Az [`examples`](examples/) mappában tanári minták és a diákok által készített jelenetek vannak. Minden példának saját mappája van a jelenettel, egy leírással (források, órai használat) és egy `media` almappával a képeknek és videóknak; mindegyik linkkel megnyitható. Diákok az **Issues → New issue → Új példa beküldése** űrlappal küldhetnek be új jelenetet; a részletek az [`examples/README.md`](examples/README.md) fájlban vannak.
+Az [`examples`](examples/) mappában tanári minták és a diákok által készített jelenetek vannak. Minden példának saját mappája van a jelenettel, egy leírással (források, órai használat) és egy `media` almappával a képeknek és videóknak; mindegyik linkkel megnyitható. Kollégáknak új tanári minták: fogaskerék-áttétel, folyamatábra, hálózati térkép és egy minden tantárgyhoz használható diavetítés. Diákok az **Issues → New issue → Új példa beküldése** űrlappal küldhetnek be új jelenetet; a részletek az [`examples/README.md`](examples/README.md) fájlban vannak.
 
 Billentyűk: Szóköz vagy P – lejátszás/szünet, → – léptetés, R – újraindítás, 1–9 – csúszka kiválasztása, utána ← → állítja (Shift = gyorsabb, Esc = kész), Ctrl+S – mentés, Ctrl+O – megnyitás. Ha a jelenet saját billentyűt használ (például a nyilakat), az nyer; a P mindig működik.
 
@@ -104,7 +111,14 @@ Nevezd meg a fizikai modellt (ideális vagy veszteséges), a mértékegységeket
 
 ## English
 
-AnimLab is a browser-based animation tool for electrical engineering and physics lessons. It shows models you control with sliders, together with live charts and readouts, and you can write your own scenes in a few lines of JavaScript – or let an AI chat write them. Nothing to install, and it works offline: just open `index.html`.
+AnimLab is a browser-based animation tool. It was built mainly for science and engineering (STEM) subjects: models you control with sliders, with live charts and readouts, from electrical machines to mechanics. Because every scene is a few lines of JavaScript – which an AI chat can write for you – you can just as well make a game, an interactive presentation or a cinematic 3D scene, so it fits any subject or field. Nothing to install, and it works offline: just open `index.html`.
+
+**What can you use it for?**
+
+- **Demonstrations in class:** electricity, electrical machines, physics, digital electronics – on a projector or on students' phones
+- **Interactive presentations:** diagrams that build up step by step, driven by switches and keys – a sample for every subject: [Slide presentation](examples/teacher/bemutato-diak/) ([▶ open](https://btomori.github.io/animlab/?scene=examples/teacher/bemutato-diak))
+- **Games and experiments:** keyboard-controlled scenes, a physics world (gravity, collisions, springs)
+- **Student projects:** students write their own scenes with an AI – see the logic gates, the 3D film scenes and the ray tracer in the [examples](examples/)
 
 ### Example scenes
 
@@ -143,7 +157,7 @@ AnimLab is a browser-based animation tool for electrical engineering and physics
 
 ### Examples and student work
 
-The [`examples`](examples/) folder holds teacher examples and scenes made by students. Every example has its own folder with the scene, a description (sources, classroom use) and a `media` subfolder for pictures and videos; each one opens with a link. Students submit new scenes with the **Issues → New issue → New example** form; details are in [`examples/README.md`](examples/README.md).
+The [`examples`](examples/) folder holds teacher examples and scenes made by students. Every example has its own folder with the scene, a description (sources, classroom use) and a `media` subfolder for pictures and videos; each one opens with a link. New teacher examples for colleagues: gear ratio, flowchart, network map and a slide presentation for any subject. Students submit new scenes with the **Issues → New issue → New example** form; details are in [`examples/README.md`](examples/README.md).
 
 Keys: Space or P – play/pause, → – step, R – restart, 1–9 – pick a slider, then ← → move it (Shift = faster, Esc = done), Ctrl+S – save, Ctrl+O – open. If a scene uses a key itself (the arrows, for example), the scene wins; P always works.
 

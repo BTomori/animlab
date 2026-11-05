@@ -4,6 +4,17 @@
   "note": "Az összes példa listája (később galéria a programban). Új példánál adj hozzá egy elemet. / List of all examples (a gallery in the app later). Add an entry for each new example.",
   "examples": [
     {
+      "path": "teacher/bemutato-diak",
+      "group": "teacher",
+      "title": {"hu": "Bemutató diákkal", "en": "Slide presentation"},
+      "description": {"hu": "Kiemelt: minden tantárgyhoz, minden tanárnak. PowerPoint-szerű bemutató ← → lapozással, minden dia egy rövid függvény.", "en": "Featured: for every subject, every teacher. A PowerPoint-like presentation paged with ← →, every slide a short function."},
+      "topics": ["bemutató / presentation", "minden tantárgy / all subjects"],
+      "author": "Tanár / teacher",
+      "ai": "Claude",
+      "added": "2026-11-05",
+      "featured": true
+    },
+    {
       "path": "teacher/lengo-labda",
       "group": "teacher",
       "title": {"hu": "Lengő labda", "en": "Swinging ball"},
@@ -32,6 +43,36 @@
       "added": "2026-11-04"
     },
     {
+      "path": "teacher/fogaskerek-attetel",
+      "group": "teacher",
+      "title": {"hu": "Fogaskerék-áttétel", "en": "Gear ratio"},
+      "description": {"hu": "Két evolvens fogazatú homlokkerék.", "en": "Two involute spur gears."},
+      "topics": ["gépészet / mechanical engineering", "fogaskerék / gears"],
+      "author": "Tanár / teacher",
+      "ai": "Claude",
+      "added": "2026-11-05"
+    },
+    {
+      "path": "teacher/folyamatabra",
+      "group": "teacher",
+      "title": {"hu": "Folyamatábra: összegzés ciklussal", "en": "Flowchart: summing with a loop"},
+      "description": {"hu": "Az 1 + 2 + … + N összeg algoritmusa folyamatábrán, lépésenként.", "en": "The algorithm of 1 + 2 + … + N as a flowchart, step by step."},
+      "topics": ["informatika / IT", "algoritmus / algorithm"],
+      "author": "Tanár / teacher",
+      "ai": "Claude",
+      "added": "2026-11-05"
+    },
+    {
+      "path": "teacher/halozati-terkep",
+      "group": "teacher",
+      "title": {"hu": "Hálózati térkép – egy csomag útja", "en": "Network map – the path of a packet"},
+      "description": {"hu": "Kis helyi hálózat routerrel, két switch-csel és végpontokkal.", "en": "A small local network with a router, two switches and end devices."},
+      "topics": ["informatika / IT", "hálózatok / networks"],
+      "author": "Tanár / teacher",
+      "ai": "Claude",
+      "added": "2026-11-05"
+    },
+    {
       "path": "students/13e_AD_elhagyott-haz",
       "group": "students",
       "title": {"hu": "Elhagyott ház – a szoba", "en": "Abandoned house – the room"},
@@ -58,7 +99,11 @@
       "group": "students",
       "title": {"hu": "Vitorlás a nyílt tengeren", "en": "Sailing ship at sea"},
       "description": {"hu": "60 másodperces 3D-s filmjelenet öt kameraállással: vitorlás hullámzó tengeren, napfényes csillogás, hegyek, felhők, sirályok.", "en": "A 60-second 3D film scene with five camera shots: a sailing ship on a rolling sea, sun glitter, mountains, clouds, gulls."},
-      "topics": ["3D", "jelenetvezérlés / cutscene", "hullámok / waves"],
+      "topics": [
+        "3D",
+        "jelenetvezérlés / cutscene",
+        "hullámok / waves"
+      ],
       "author": "A. D.",
       "class": "13.E",
       "ai": "Claude",
@@ -69,7 +114,11 @@
       "group": "students",
       "title": {"hu": "Sugárkövetés: kocka és padló", "en": "Ray tracing: cube and floor"},
       "description": {"hu": "Saját sugárkövető (ray tracer) a vásznon: forgó színes kocka sakktábla-padló fölött, árnyékkal, tükröződéssel, ködös horizonttal.", "en": "A ray tracer written in a scene: a spinning coloured cube above a checkerboard floor, with shadows, reflections and a hazy horizon."},
-      "topics": ["3D", "sugárkövetés / ray tracing", "fény / light"],
+      "topics": [
+        "3D",
+        "sugárkövetés / ray tracing",
+        "fény / light"
+      ],
       "author": "A. D.",
       "class": "13.E",
       "ai": "Claude",

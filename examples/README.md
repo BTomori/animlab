@@ -3,11 +3,21 @@
 Minden példának saját mappája van: a `teacher` mappában tanári minták, a `students` mappában a diákok által készített jelenetek.
 Every example has its own folder: teacher examples in `teacher`, scenes made by students in `students`.
 
+> ⭐ **Kiemelt példa – minden tantárgyhoz, minden tanárnak / Featured – for every subject, every teacher:** [Bemutató diákkal / Slide presentation](teacher/bemutato-diak/) · [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/bemutato-diak)
+>
+> PowerPoint-szerű bemutató, lapozás a ← → nyilakkal (telefonon gombokkal). Nyolc minta-dia: matematika, fizika, kémia, történelem, földrajz, nyelvek. Minden dia egy rövid függvény, ezért a saját diád egy meglévő másolása és átírása. Hasznos függvények hozzá: `text` (szöveg), `rect` / `circle` / `line` / `polyline` (rajz), `onKey` (billentyű), `fmt` (szám kiírása).
+>
+> A PowerPoint-like presentation paged with ← → (touch buttons on phones). Eight sample slides: maths, physics, chemistry, history, geography, languages. Every slide is a short function, so your own slide is a copy of one, edited. Useful functions for it: `text`, `rect` / `circle` / `line` / `polyline` (drawing), `onKey` (keys), `fmt` (printing a number).
+
 | Példa / Example | Készítette / Made by | Link |
 | --- | --- | --- |
+| ⭐ **[Bemutató diákkal / Slide presentation](teacher/bemutato-diak/)** | Tanár / teacher (Claude) | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/bemutato-diak) |
 | [Lengő labda / Swinging ball](teacher/lengo-labda/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/lengo-labda) |
 | [Változó nyíl / Changing arrow](teacher/valtozo-nyil/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/valtozo-nyil) |
 | [Toyota THS-II (Prius II) hibrid hajtáslánc / hybrid drivetrain](teacher/toyota-ths2-hajtaslanc/) | Tömöri Balázs, Dobi József (Claude) | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/toyota-ths2-hajtaslanc) |
+| [Fogaskerék-áttétel / Gear ratio](teacher/fogaskerek-attetel/) | Tanár / teacher (Claude) | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/fogaskerek-attetel) |
+| [Folyamatábra: összegzés ciklussal / Flowchart: summing with a loop](teacher/folyamatabra/) | Tanár / teacher (Claude) | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/folyamatabra) |
+| [Hálózati térkép – egy csomag útja / Network map – the path of a packet](teacher/halozati-terkep/) | Tanár / teacher (Claude) | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/halozati-terkep) |
 | [Elhagyott ház / Abandoned house](students/13e_AD_elhagyott-haz/) | A. D., 13.E | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/students/13e_AD_elhagyott-haz) |
 | [Logikai kapuk / Logic gates](students/13e_B_logikai-kapuk/) | B., 13.E | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/students/13e_B_logikai-kapuk) |
 | [Vitorlás a tengeren / Sailing ship at sea](students/13e_AD_hajo/) | A. D., 13.E | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/students/13e_AD_hajo) |
