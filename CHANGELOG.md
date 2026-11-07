@@ -1,6 +1,6 @@
 # Változások / Changelog
 
-## Készülő / Unreleased
+## v0.6 – 2026-11-07
 
 - **Példagaléria a programban / example gallery in the app:** a **Galéria** gomb kártyákon mutatja a példákat (`examples/index.json`), téma, tanári / diák, címke és kereső szerint szűrve; kattintásra betölti a példát (visszavonható), a neve a kártya címe az aktuális nyelven. Egy új példa programfrissítés nélkül megjelenik. Internet nélkül a legutóbbi lista és a készüléken már megnyitott példák érhetők el. / The **Gallery** button shows the examples as cards (`examples/index.json`), filtered by topic, teacher / student, tag and search; a click loads an example (undoable), named with the card title in the current language. A new example shows up with no app release. Offline, the last list and the examples already opened on the device are available.
 - **Kisebb program / smaller app:** csak a Sablon maradt beépítve, ezzel indul a program, ha nincs automatikusan mentett jelenet; a Mintajelenetek lista helyett Galéria gomb van. A 21 korábbi mintajelenet az `examples/teacher/` mappába költözött, a kódjuk nem változott; a Sablon a galériából is megnyitható. / Only the Template stays built in, and the app starts with it when there is no autosaved scene; a Gallery button replaces the Example scenes list. The 21 former built-in scenes moved to `examples/teacher/`, with their code unchanged; the Template opens from the gallery too.
