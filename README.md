@@ -5,13 +5,13 @@
 
 ▶ **Kipróbálás / Try it:** https://btomori.github.io/animlab/
 
-> Tesztelésre szánt kiadás: 21 mintajelenet, és saját jelenet írása bármelyik ingyenes AI-csevegővel. / A release for testing: 21 example scenes, and your own scenes written with any free AI chat.
+> Tesztelésre szánt kiadás: példagaléria több mint 30 példával, és saját jelenet írása bármelyik ingyenes AI-csevegővel. / A release for testing: an example gallery with more than 30 examples, and your own scenes written with any free AI chat.
 
 ---
 
 ## 
 
-Az AnimLab egy böngészőben futó animációs eszköz. Elsősorban természettudományos és műszaki (STEM) tárgyakhoz készült: csúszkákkal állítható modelleket, élő grafikonokat és mért értékeket mutat a villamos gépektől a mechanikáig. Mivel minden jelenet néhány sor JavaScript – amelyet akár egy AI-csevegő is megír –, ugyanúgy készíthető benne játék, interaktív prezentáció vagy filmszerű 3D jelenet is, így bármely tantárgyban és területen használható. Telepíteni nem kell semmit, és internet nélkül is működik: elég megnyitni az `index.html` fájlt.
+Az AnimLab egy böngészőben futó animációs eszköz. Elsősorban természettudományos és műszaki (STEM) tárgyakhoz készült: csúszkákkal állítható modelleket, élő grafikonokat és mért értékeket mutat a villamos gépektől a mechanikáig. Mivel minden jelenet néhány sor JavaScript – amelyet akár egy AI-csevegő is megír –, ugyanúgy készíthető benne játék, interaktív prezentáció vagy filmszerű 3D jelenet is, így bármely tantárgyban és területen használható. Telepíteni nem kell semmit, és internet nélkül is működik (csak a példagalériához kell internet): elég megnyitni az `index.html` fájlt.
 
 **Mire használható?**
 
@@ -20,23 +20,9 @@ Az AnimLab egy böngészőben futó animációs eszköz. Elsősorban természett
 - **Játék és kísérletezés:** billentyűvel vezérelhető jelenetek, fizikai világ (gravitáció, ütközés, rugók)
 - **Diákprojekt:** a diákok AI segítségével saját jelenetet írnak – lásd a logikai kapukat, a 3D filmjeleneteket és a sugárkövetőt a [példák](examples/) között
 
-### Mintajelenetek
+### Példagaléria
 
-| Villamosság, villamos gépek | Mechanika |
-| --- | --- |
-| Egyenáramú motor (kommutátor, Lorentz-erő, ellen-EMF) | Ferde hajítás (légellenállással, visszapattanással) |
-| Forgórész fényképről (képhasználat) | Ferde hajítás: mérés és elmélet |
-| Generátor (csúszógyűrű / kommutátor) | Pattogó labda (h₁ = e²·h₀) |
-| Ohm törvénye: soros kör izzóval | Csillapított rugós rezgés |
-| Kondenzátor töltése (RC kör) | Lejtő súrlódással |
-| Forgó fázor és szinuszgörbe | Ütközés (lendület, energia) |
-| Egyfázisú transzformátor (üresjárás-kapcsolóval) | Matematikai inga |
-| Háromfázisú rendszer (csillag / delta, fázorok) | Sablon: alakzatok, képek, fizika |
-| Forgó mágneses mező | |
-| Aszinkron (kalickás) motor, M(n) jelleggörbe | |
-| Szinkronmotor (terhelési szög, gerjesztés) | Kocsi nyilakkal (billentyűzet, Newton II.) |
-| 3D: forgó vezetőkeret mágneses térben | |
-| 3D: kalickás forgórész forgó mezőben | |
+A program **Galéria** gombja kártyákon mutatja a tanári és diákpéldákat, téma, címke és kereső szerint szűrve; egy kattintás betölti a példát (visszavonható). Egy újonnan feltöltött példa programfrissítés nélkül megjelenik. A példák a GitHubról töltődnek le; internet nélkül a legutóbb letöltött lista és a készüléken már megnyitott példák érhetők el. Az összes példa az [`examples`](examples/) mappában van.
 
 ### Főbb funkciók
 
@@ -54,7 +40,7 @@ Az AnimLab egy böngészőben futó animációs eszköz. Elsősorban természett
 ### Használat
 
 1. Nyisd meg a [webes változatot](https://btomori.github.io/animlab/), vagy töltsd le az `index.html` fájlt, és nyisd meg bármely böngészőben.
-2. A **Mintajelenetek** menüből válassz egy modellt, és állítsd a csúszkákat a **Vezérlők** fülön.
+2. A **Galéria** gombbal válassz egy példát, és állítsd a csúszkákat a **Vezérlők** fülön.
 3. A **Kód** fülön a jelenet programja olvasható és átírható; **Ctrl+Enter** futtatja.
 4. A **Mentés** gombbal a jelenet fájlba menthető, az **Exportálás → Önálló HTML-fájl** pedig egy tanulóknak kiadható fájlt készít.
 
@@ -111,7 +97,7 @@ Nevezd meg a fizikai modellt (ideális vagy veszteséges), a mértékegységeket
 
 ## English
 
-AnimLab is a browser-based animation tool. It was built mainly for science and engineering (STEM) subjects: models you control with sliders, with live charts and readouts, from electrical machines to mechanics. Because every scene is a few lines of JavaScript – which an AI chat can write for you – you can just as well make a game, an interactive presentation or a cinematic 3D scene, so it fits any subject or field. Nothing to install, and it works offline: just open `index.html`.
+AnimLab is a browser-based animation tool. It was built mainly for science and engineering (STEM) subjects: models you control with sliders, with live charts and readouts, from electrical machines to mechanics. Because every scene is a few lines of JavaScript – which an AI chat can write for you – you can just as well make a game, an interactive presentation or a cinematic 3D scene, so it fits any subject or field. Nothing to install, and it works offline (only the example gallery needs the internet): just open `index.html`.
 
 **What can you use it for?**
 
@@ -120,10 +106,9 @@ AnimLab is a browser-based animation tool. It was built mainly for science and e
 - **Games and experiments:** keyboard-controlled scenes, a physics world (gravity, collisions, springs)
 - **Student projects:** students write their own scenes with an AI – see the logic gates, the 3D film scenes and the ray tracer in the [examples](examples/)
 
-### Example scenes
+### Example gallery
 
-**Electricity and machines:** DC motor, rotor from a photo (using pictures), generator, Ohm's law with a lamp, charging a capacitor (RC), rotating phasor and sine wave, single-phase transformer with a no-load switch, three-phase system (star/delta, phasors), rotating magnetic field, induction motor with torque–speed curve, synchronous motor (load angle, excitation), two 3D scenes (rotating loop in a magnetic field, cage rotor in a rotating field).
-**Mechanics:** projectile motion (with drag and bouncing), projectile measured vs. theory, bouncing ball, damped spring oscillation, inclined plane, collision, simple pendulum, a cart driven with the arrow keys (keyboard, Newton's second law), and a template scene.
+The app's **Gallery** button shows teacher and student examples as cards, filtered by topic, tag and search; one click loads an example (and can be undone). A newly uploaded example shows up with no app release. Examples download from GitHub; offline, the last downloaded list and the examples already opened on the device are available. All examples are in the [`examples`](examples/) folder.
 
 ### Main features
 
@@ -141,7 +126,7 @@ AnimLab is a browser-based animation tool. It was built mainly for science and e
 ### Usage
 
 1. Open the [web version](https://btomori.github.io/animlab/), or download `index.html` and open it in any browser.
-2. Pick a model from **Example scenes** and adjust the sliders on the **Controls** tab.
+2. Pick an example with the **Gallery** button and adjust the sliders on the **Controls** tab.
 3. The **Code** tab shows the scene's program; edit it and press **Ctrl+Enter** to run.
 4. **Save** writes the scene to a file; **Export → Standalone HTML file** makes a single file you can hand out to students.
 

@@ -159,7 +159,7 @@ update(dt => {
 - **Key list:** every key of the scene, with its description, opens with the ⌨ button in the top-right corner of the canvas or the ? key, and is one collapsible line on the Controls tab, so it takes no room until opened. Controls describe themselves; for `key()` and `onKey()` give a `help` text: `key("ArrowRight", {help: {hu: "előre", en: "forward"}})`.
 - **Conflicts:** the app uses Space = play/pause, R = restart, → = step. If the scene binds one of these, the scene wins; P always works as a backup play/pause key. Prefer letters (W/A/S/D) and the arrows for your own controls, and say which keys do what in a `text` hint on the canvas.
 
-The **Cart with the arrow keys** example scene and the **Keyboard** lesson on the Help tab show all of this in action.
+The **Cart with the arrow keys** example (Gallery button) and the **Keyboard** lesson on the Help tab show all of this in action.
 
 ### Readouts, graphs and published values
 

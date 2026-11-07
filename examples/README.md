@@ -12,12 +12,34 @@ Every example has its own folder: teacher examples in `teacher`, scenes made by 
 | Példa / Example | Készítette / Made by | Link |
 | --- | --- | --- |
 | ⭐ **[Bemutató diákkal / Slide presentation](teacher/bemutato-diak/)** | Tanár / teacher (Claude) | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/bemutato-diak) |
+| [Sablon: alakzatok, képek, fizika / Template: shapes, images, physics](teacher/sablon/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/sablon) |
 | [Lengő labda / Swinging ball](teacher/lengo-labda/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/lengo-labda) |
 | [Változó nyíl / Changing arrow](teacher/valtozo-nyil/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/valtozo-nyil) |
 | [Toyota THS-II (Prius II) hibrid hajtáslánc / hybrid drivetrain](teacher/toyota-ths2-hajtaslanc/) | Tömöri Balázs, Dobi József (Claude) | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/toyota-ths2-hajtaslanc) |
 | [Fogaskerék-áttétel / Gear ratio](teacher/fogaskerek-attetel/) | Tanár / teacher (Claude) | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/fogaskerek-attetel) |
 | [Folyamatábra: összegzés ciklussal / Flowchart: summing with a loop](teacher/folyamatabra/) | Tanár / teacher (Claude) | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/folyamatabra) |
 | [Hálózati térkép – egy csomag útja / Network map – the path of a packet](teacher/halozati-terkep/) | Tanár / teacher (Claude) | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/halozati-terkep) |
+| [Egyenáramú motor / DC motor](teacher/egyenaramu-motor/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/egyenaramu-motor) |
+| [Forgórész fényképről (képhasználat) / Rotor from a photo (using pictures)](teacher/forgoresz-fenykep/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/forgoresz-fenykep) |
+| [Generátor (váltakozó / egyen) / Generator (AC / DC)](teacher/generator/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/generator) |
+| [Ohm törvénye: soros kör izzóval / Ohm's law: series circuit with a lamp](teacher/ohm-torveny/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/ohm-torveny) |
+| [Kondenzátor töltése (RC kör) / Charging a capacitor (RC circuit)](teacher/rc-kor/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/rc-kor) |
+| [Forgó fázor és szinuszgörbe / Rotating phasor and sine wave](teacher/forgo-fazor/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/forgo-fazor) |
+| [Egyfázisú transzformátor / Single-phase transformer](teacher/transzformator/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/transzformator) |
+| [Háromfázisú rendszer (Y / Δ) / Three-phase system (Y / Δ)](teacher/haromfazisu-rendszer/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/haromfazisu-rendszer) |
+| [Forgó mágneses mező / Rotating magnetic field](teacher/forgo-magneses-mezo/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/forgo-magneses-mezo) |
+| [Aszinkron motor / Induction motor](teacher/aszinkron-motor/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/aszinkron-motor) |
+| [Szinkronmotor / Synchronous motor](teacher/szinkronmotor/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/szinkronmotor) |
+| [3D: forgó vezetőkeret mágneses térben / 3D: rotating loop in a magnetic field](teacher/3d-vezetokeret/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/3d-vezetokeret) |
+| [3D: kalickás forgórész forgó mezőben / 3D: cage rotor in a rotating field](teacher/3d-kalickas-forgoresz/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/3d-kalickas-forgoresz) |
+| [Ferde hajítás / Projectile motion](teacher/ferde-hajitas/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/ferde-hajitas) |
+| [Ferde hajítás: mérés és elmélet / Projectile: measured vs. theory](teacher/ferde-hajitas-meres/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/ferde-hajitas-meres) |
+| [Pattogó labda / Bouncing ball](teacher/pattogo-labda/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/pattogo-labda) |
+| [Csillapított rugós rezgés / Damped spring oscillation](teacher/rugos-rezges/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/rugos-rezges) |
+| [Lejtő súrlódással / Inclined plane with friction](teacher/lejto/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/lejto) |
+| [Ütközés (lendület, energia) / Collision (momentum, energy)](teacher/utkozes/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/utkozes) |
+| [Matematikai inga / Simple pendulum](teacher/matematikai-inga/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/matematikai-inga) |
+| [Kocsi nyilakkal (billentyűzet) / Cart with the arrow keys (keyboard)](teacher/kocsi-billentyuzet/) | Tanár / teacher | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/teacher/kocsi-billentyuzet) |
 | [Elhagyott ház / Abandoned house](students/13e_AD_elhagyott-haz/) | A. D., 13.E | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/students/13e_AD_elhagyott-haz) |
 | [Logikai kapuk / Logic gates](students/13e_B_logikai-kapuk/) | B., 13.E | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/students/13e_B_logikai-kapuk) |
 | [Vitorlás a tengeren / Sailing ship at sea](students/13e_AD_hajo/) | A. D., 13.E | [▶ megnyitás / open](https://btomori.github.io/animlab/?scene=examples/students/13e_AD_hajo) |
@@ -37,10 +59,11 @@ examples/teacher/toyota-ths2-hajtaslanc/
 - Képet a README-be így teszel / to put a picture into the README: `![leírás / description](media/kep.png)`
 - **Videók / videos:** a GitHub a 100 MB-nál nagyobb fájlt nem fogadja el, 50 MB felett figyelmeztet. A rövid, tömörített klipek mehetnek a `media/` mappába, a hosszabbakat tedd YouTube-ra vagy Google Drive-ra, és a README-ből linkeld. / GitHub refuses files over 100 MB and warns above 50 MB. Short, compressed clips can go into `media/`; put longer videos on YouTube or Google Drive and link them from the README.
 - A jelenet képei a `scene.animlab.json` fájlban vannak, a `media/` csak a kiegészítő anyagoknak kell. / The scene's own pictures are inside `scene.animlab.json`; `media/` is only for extra material.
-- [`index.json`](index.json): az összes példa listája (cím, szerző, osztály, rövid leírás). Ebből lesz később a programon belüli galéria, ezért új példánál ide is vegyél fel egy elemet. / A list of all examples (title, author, class, short description). It will become the gallery inside the app later, so add an entry here for every new example.
+- [`index.json`](index.json): az összes példa listája (cím, szerző, osztály, rövid leírás, témák, címkék). Ebből épül a program Galéria ablaka, ezért új példánál ide is vegyél fel egy elemet: a példa programfrissítés nélkül megjelenik. / A list of all examples (title, author, class, short description, topics, tags). The app's Gallery window is built from it, so add an entry here for every new example: it shows up with no app release.
 
 ## Megnyitás / Opening a scene
 
+- **A programból / from the app:** **Galéria** gomb → kattints egy kártyára. / **Gallery** button → click a card.
 - **Linkkel (legegyszerűbb) / with a link (easiest):** a mappa elérési útját tedd a `?scene=` után. Ezt a linket bármelyik üzenetben elküldheted, és telefonon is megnyílik. / Put the folder's path after `?scene=`. You can send this link in any chat, and it opens on phones too.
   `https://btomori.github.io/animlab/?scene=examples/teacher/lengo-labda`
 - A fájl teljes útja is működik (`…/lengo-labda/scene.animlab.json`), és a régi, mappák előtti linkek (`…/teacher/lengo-labda.animlab.json`) is továbbra is megnyílnak. / The full file path works too, and old links from before the folders still open.
@@ -79,5 +102,5 @@ A GitHub weboldalán / on the GitHub website:
 2. A GitHubon nyisd meg a `examples/students/` (vagy `teacher/`) mappát → **Add file → Upload files**. / On GitHub, open `examples/students/` (or `teacher/`) → **Add file → Upload files**.
 3. Húzd rá az egész mappát a feltöltő mezőre: a GitHub megtartja a mappaszerkezetet. / Drag the whole folder onto the upload area: GitHub keeps the folder structure.
 4. **Add file → Create new file** → `13e_AD_elhagyott-haz/README.md`: másold be egy meglévő példa README-jét, és írd át (cím, megnyitó link, készítő, AI, leírás, források). / Copy the README of an existing example and edit it (title, open link, author, AI, description, sources).
-5. Vedd fel a példát a fenti táblázatba, a [`students/README.md`](students/README.md) táblázatába és az [`index.json`](index.json) fájlba. / Add the example to the table above, to the table in `students/README.md` and to `index.json`.
+5. Vedd fel a példát a fenti táblázatba, a [`students/README.md`](students/README.md) táblázatába és az [`index.json`](index.json) fájlba, témával (`topics`) és 2–4 címkével (`tags`). / Add the example to the table above, to the table in `students/README.md` and to `index.json`, with topics and 2–4 tags.
 6. A commit üzenetébe írd be az issue számát (pl. `Closes #12`), így az issue magától lezárul. / Put the issue number in the commit message (e.g. `Closes #12`) so the issue closes itself.

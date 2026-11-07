@@ -179,7 +179,7 @@ update(dt => {
 - **Billentyűlista:** a jelenet összes billentyűje a leírásával a vászon jobb felső sarkában lévő ⌨ gombbal vagy a ? billentyűvel nyílik meg, a Vezérlők fülön pedig egy összecsukható sor; amíg nincs megnyitva, nem foglal helyet. A vezérlők maguktól leírják magukat; a `key()` és `onKey()` billentyűihez `help` szöveget adj: `key("ArrowRight", {help: {hu: "előre", en: "forward"}})`.
 - **Ütközések:** a program a Szóközt lejátszásra, az R-t újraindításra, a →-t léptetésre használja. Ha a jelenet lefoglalja valamelyiket, a jelenet nyer; a P mindig tartalék lejátszás / szünet. Saját vezérléshez a betűk (W/A/S/D) és a nyilak a legjobbak; egy `text` felirat a vásznon mondja meg, melyik billentyű mit csinál.
 
-A **Kocsi nyilakkal** mintajelenet és a Súgó fül **Billentyűzet** leckéje mindezt bemutatja.
+A **Kocsi nyilakkal** példa (Galéria gomb) és a Súgó fül **Billentyűzet** leckéje mindezt bemutatja.
 
 ### Fizika: `update`
 
@@ -442,7 +442,7 @@ A kifejezésekben a `val()`-lal közzétett változók (ehhez a `draw`-ban: `val
 
 ## 7. A mintamodellek részletes leírása
 
-Mind a 13 mintamodell a Mintajelenetek menüből tölthető be, és a Kód fülön soronként kommentezve olvasható. Minden modellnél ugyanaz a sorrend: mit mutat, milyen képleteken alapul, melyik csúszka mit jelent, hogyan épül fel a kód, és mit érdemes kipróbálni.
+Mind a 13 mintamodell a Galéria gombbal tölthető be, és a Kód fülön soronként kommentezve olvasható. Minden modellnél ugyanaz a sorrend: mit mutat, milyen képleteken alapul, melyik csúszka mit jelent, hogyan épül fel a kód, és mit érdemes kipróbálni.
 
 ### 7.1 Egyenáramú motor
 
@@ -820,7 +820,7 @@ m_1 v_1 + m_2 v_2 = m_1 v_1' + m_2 v_2' \qquad e = \frac{v_2' - v_1'}{v_1 - v_2}
 
 **A kód:** két csúszka (forgási sebesség, gravitáció) és egy gomb. Az `update` növeli a forgási szöget, és menet közben átírja a világ gravitációját (`W.g = P.grav`). A `draw` sorban megrajzolja az alakzatokat, a képet és a világot, majd kiírja az első labda magasságát.
 
-**Kipróbálható:** tölts fel egy képet a Képek fülön, nevezd „kep”-nek, és nézd, ahogy forog. Ebből a sablonból érdemes saját jelenetet kezdeni (Új gomb vagy Mintajelenetek → Sablon).
+**Kipróbálható:** tölts fel egy képet a Képek fülön, nevezd „kep”-nek, és nézd, ahogy forog. Ebből a sablonból érdemes saját jelenetet kezdeni (Galéria → Sablon). Az Új gomb egy rövidebb, üres jelenetet ad.
 
 ## 8. Gyakori hibák és gyorsreferencia
 
