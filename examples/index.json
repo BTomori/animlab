@@ -372,6 +372,18 @@
       "class": "13.E",
       "ai": "Claude",
       "added": "2026-11-05"
+    },
+    {
+      "path": "students/13e_AD_vonat-szimulator",
+      "group": "students",
+      "title": {"hu":"Vonatszimulátor","en":"Train simulator"},
+      "description": {"hu":"Villamos mozdony vezetőfülkéje műszerekkel: gáz, fék, tapadás, lejtők és sebességkorlátok. Billentyűzettel vezethető.","en":"The cab of an electric locomotive with instruments: throttle, brakes, adhesion, gradients and speed limits. Driven with the keyboard."},
+      "topics": ["physics","games"],
+      "tags": ["billentyűzet / keyboard","vasút / railway","szimulátor / simulator"],
+      "author": "A. D.",
+      "class": "13.E",
+      "ai": "Claude",
+      "added": "2026-11-07"
     }
   ]
 }
