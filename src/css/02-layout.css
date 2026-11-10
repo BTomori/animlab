@@ -1,0 +1,34 @@
+/* main layout */
+.layout {
+  display: grid; grid-template-columns: minmax(0, 1fr) 12px var(--side-w, 400px); gap: 2px; padding: 12px;
+  min-height: 0;
+}
+.splitter { cursor: col-resize; position: relative; touch-action: none; border-radius: 6px; }
+.splitter::after {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 4px; height: 48px; transform: translate(-50%, -50%);
+  border-radius: 3px; background: var(--line);
+}
+.splitter:hover::after, .splitter:focus-visible::after, .splitter.drag::after { background: var(--accent); }
+body.resizing { cursor: col-resize; user-select: none; }
+.stage-col { display: flex; flex-direction: column; gap: 8px; min-width: 0; min-height: 0; }
+.stage-wrap {
+  position: relative; display: flex; justify-content: center; background: var(--panel);
+  border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+}
+#stage { display: block; touch-action: none; }
+.stage-err {
+  position: absolute; left: 12px; right: 12px; bottom: 12px; padding: 10px 12px; border-radius: 8px;
+  background: #fff1f1; color: #8f1d1d; border: 1px solid #f1b9b9; font-size: 13px; cursor: pointer;
+}
+.rec-badge {
+  position: absolute; top: 10px; right: 10px; padding: 4px 10px; border-radius: 99px; cursor: pointer;
+  background: var(--rec); color: #fff; font: 600 12px/1.4 var(--font-mono); border: 0;
+}
+.transport { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.time { font: 500 14px var(--font-mono); font-variant-numeric: tabular-nums; min-width: 112px; padding: 0 6px; }
+.speed { display: flex; align-items: center; gap: 8px; margin-left: auto; color: var(--muted); }
+.speed input { width: 160px; accent-color: var(--accent); }
+.speed output { font: 500 13px var(--font-mono); color: var(--ink); min-width: 54px; font-variant-numeric: tabular-nums; }
+.plots { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 6px 4px; }
+#plot { display: block; width: 100%; }
+

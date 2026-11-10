@@ -1,0 +1,10 @@
+/* grafikonsáv átméretezése: húzd fel vagy le / resizing the graph strip: drag up or down */
+.hsplit { height: 10px; margin: -4px 0; cursor: row-resize; position: relative; touch-action: none; flex: none; }
+.hsplit::after {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 56px; height: 4px; transform: translate(-50%, -50%);
+  border-radius: 3px; background: var(--line);
+}
+.hsplit:hover::after, .hsplit:focus-visible::after, .hsplit.drag::after { background: var(--accent); }
+.hsplit[hidden] { display: none; }
+body.resizing-v { cursor: row-resize; user-select: none; }
+

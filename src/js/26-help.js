@@ -1,0 +1,100 @@
+/* ───────────── help ───────────── */
+const HELP = {
+  intro: {
+    hu: `<p>Minden jelenet egy rövid JavaScript-program. Felülről egyszer fut le (újraindításkor újra): itt hozod létre a csúszkákat és a változókat. Az <code>update</code> a fizikát számolja, a <code>draw</code> rajzol.</p>
+<p><b>Koordináták:</b> a vásznon képpontban, <code>x</code> jobbra, <code>y</code> lefelé nő (alap: 1000×600). A fizikai világ méterben számol, <code>y</code> felfelé; átváltás: <code>wx(m)</code>, <code>wy(m)</code>, <code>ws(m)</code>.</p>
+<p><b>Címkék két nyelven:</b> bárhol, ahol szöveg kell, megadhatsz <code>{hu: "…", en: "…"}</code> objektumot – a HU/EN gomb ezt váltja.</p>
+<p><b>Fájlok:</b> a <i>Mentés</i> egy <code>.animlab.json</code> fájlt ír (kód + csúszkaállások + képek). Az <i>Exportálás → Önálló HTML</i> egyetlen fájlt ad, ami bármelyik böngészőben, internet nélkül is megnyílik ezzel a jelenettel. Az <i>Exportálás → Megosztás üzenetben</i> ugyanezt a fájlt a telefon megosztó menüjével küldi el (Messenger, WhatsApp, Teams, e-mail). A <i>Megnyitás</i> a <code>.json</code> és az exportált <code>.html</code> fájlt is betölti szerkesztésre.</p>`,
+    en: `<p>Every scene is a short JavaScript program. It runs once from the top (and again on every restart): that is where you create sliders and variables. <code>update</code> computes the physics, <code>draw</code> paints.</p>
+<p><b>Coordinates:</b> on the canvas in pixels, <code>x</code> grows right, <code>y</code> grows down (default 1000×600). The physics world works in metres with <code>y</code> up; convert with <code>wx(m)</code>, <code>wy(m)</code>, <code>ws(m)</code>.</p>
+<p><b>Two-language labels:</b> wherever text is expected you can pass <code>{hu: "…", en: "…"}</code> – the HU/EN switch picks one.</p>
+<p><b>Files:</b> <i>Save</i> writes a <code>.animlab.json</code> file (code, slider values, images). <i>Export → Standalone HTML</i> gives one file that opens in any browser, offline, with this scene loaded. <i>Export → Share in a chat</i> sends that file through the phone's share sheet (Messenger, WhatsApp, Teams, e-mail). <i>Open</i> loads both <code>.json</code> files and exported <code>.html</code> files for editing.</p>`,
+  },
+  sections: [
+    {t: {hu: 'Jelenet és vezérlők', en: 'Scene and controls'}, items: [
+      ['stage(w, h, "#fff")', 'Vászon mérete képpontban és háttérszín.', 'Canvas size in pixels and background colour.'],
+      ['title(szöveg)', 'Felirat a vászon bal felső sarkában.', 'Caption in the top-left corner of the canvas.'],
+      ['param(id, címke, min, max, érték, lépés, "egység")', 'Csúszka. Az értéke: P.id – az update/draw belsejében olvasd, úgy élőben követi.', 'Slider. Its value is P.id – read it inside update/draw so it follows live.'],
+      ['toggle(id, címke, true)', 'Kapcsoló, P.id igaz/hamis.', 'Checkbox, P.id is true/false.'],
+      ['choice(id, címke, [["a", "Első"], ["b", "Második"]], "a")', 'Legördülő lista.', 'Drop-down list.'],
+      ['button(címke, () => { … })', 'Gomb. A reset függvényt is átadhatod: button("Újra", reset).', 'Button. You can pass reset directly: button("Again", reset).'],
+      ['setParam(id, érték)', 'Csúszka beállítása kódból.', 'Set a slider from code.'],
+      ['resetOn("v0", "ang")', 'Ezek változásakor a jelenet újraindul (kezdőfeltételekhez).', 'Restart the scene when these change (for initial conditions).'],
+      ['reset()', 'Újraindítás kódból.', 'Restart from code.'],
+      ['timeScale(0.1)', 'Kezdő lassítás (a sebesség-csúszka alatt állítható).', 'Initial slow-motion factor (also on the speed slider).'],
+      ['update((dt, t) => { … })', 'Fizikai lépés; dt a lépés hossza (legfeljebb 1/240 s, lassításnál kisebb), t az eltelt idő.', 'Physics step; dt is the step length (at most 1/240 s, shorter in slow motion), t is the elapsed time.'],
+      ['draw(t => { … })', 'Rajzolás minden képkockán (szünetben is).', 'Drawing on every frame (also while paused).'],
+      ['show(címke, érték, "egység", tizedesek)', 'Érték a Mért értékek listában.', 'Value in the Readouts list.'],
+      ['plot(címke, érték, {unit, color, min, max})', 'Élő grafikon a vászon alatt.', 'Live chart under the canvas.'],
+      ['plot("i₁", i1, {unit: "A", group: "i"})', 'Azonos group-ú görbék egy sávba kerülnek (pl. a három fázisáram).', 'Curves with the same group share one lane (e.g. the three phase currents).'],
+      ['plotWindow(5)', 'A grafikon időablaka másodpercben.', 'Chart time window in seconds.'],
+      ['boundArrow("név", {x, y, angle, length, width, color, colorBy, colorMin, colorMax, colorTo, label})', 'Változóhoz kötött nyíl. A length, width és colorBy kifejezés (szövegként, pl. "30 * i"); a Jelölők fülön ugyanezek a beállítások látszanak és szerkeszthetők, a változás visszaíródik a kódba.', 'Arrow bound to variables. length, width and colorBy are expressions (as text, e.g. "30 * i"); the Markup tab shows the same settings, lets you edit them and writes changes back into the code.'],
+      ['val("e", e) · val({e, I, n})', 'Érték közzététele a Jelölők számára: a nyíl hossza, az áramlás és a „{e:1}” felirat ehhez köthető. A draw-ban hívd.', 'Publishes a value for the Markup tab: arrow length, flow and a “{e:1}” label can follow it. Call it inside draw.'],
+    ]},
+    {t: {hu: 'Billentyűzet', en: 'Keyboard'}, items: [
+      ['param(…, "egység", {keys: "q a"})', 'Billentyű a csúszkán: az első növeli, a második csökkenti. Egy koppintás = egy lépés; nyomva tartva folyamatosan állít (10 s alatt a teljes tartomány, {rate: 5} = 5 egység/s), Shift = 10× gyorsabb. A Vezérlők fülön kis billentyűjel mutatja.', 'Keys on a slider: the first raises, the second lowers it. A tap = one step; holding moves it smoothly (the whole range in 10 s, {rate: 5} = 5 units/s), Shift = 10× faster. A small key badge shows it on the Controls tab.'],
+      ['toggle(…, true, {key: "s"}) · choice(…, "a", {key: "c"}) · button(címke, fn, {key: "Enter"})', 'Kapcsoló ki-be, a lista következő eleme (Shift: előző), a gomb megnyomása.', 'Switch on/off, next item of the list (Shift: previous), pressing the button.'],
+      ['key("ArrowLeft")', 'Igaz, amíg a billentyű nyomva van – az update-ben vagy a draw-ban olvasd. Nevek: "a" … "z", "0" … "9", " " (szóköz), "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter", "Shift". Több billentyű: key(["a", "ArrowLeft"]).', 'True while the key is held – read it inside update or draw. Names: "a" … "z", "0" … "9", " " (Space), "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter", "Shift". Several keys: key(["a", "ArrowLeft"]).'],
+      ['onKey(" ", () => { … }, {label: {hu, en}, help: {hu, en}})', 'Lenyomásonként egyszer fut (szünetben is). Telefonon és táblagépen a key() és onKey() billentyűi gombként jelennek meg a vásznon; a label a gomb felirata. A help a billentyűlistában jelenik meg. Mindkettő a key("x", {label, help}) hívásban is megadható.', 'Runs once per press (also while paused). On phones and tablets the keys of key() and onKey() appear as buttons on the canvas; label is the text on the button. help is shown in the key list. Both work with key("x", {label, help}) too.'],
+      ['⌨ · ?', 'Billentyűlista: a jelenet összes billentyűje a leírásukkal. A vásznon a jobb felső ⌨ gombbal vagy a ? billentyűvel nyílik, a Vezérlők fülön egy összecsukható sor; amíg nincs megnyitva, nem foglal helyet.', 'Key list: every key of the scene with its description. On the canvas it opens with the ⌨ button in the top-right corner or the ? key; on the Controls tab it is one collapsible line. It takes no room until opened.'],
+      ['1 … 9, majd ← → ↑ ↓', 'Kód nélkül, minden jelenetnél: a szám kiválasztja a csúszkát (a Vezérlők fülön és a vásznon is látszik), a nyilak állítják, Shift = 10×; Esc vagy 0 = kész.', 'No code needed, every scene: the number picks a slider (highlighted on the Controls tab and on the canvas), the arrows move it, Shift = 10×; Esc or 0 = done.'],
+      ['Szóköz · R · → · P', 'Ha a jelenet lefoglalja a Szóközt, az R-t vagy a →-t, a jelenet nyer. A lejátszás / szünet tartalék billentyűje mindig a P.', 'If the scene binds Space, R or →, the scene wins. P always works as a backup play / pause key.'],
+    ]},
+    {t: {hu: 'Rajzolás', en: 'Drawing'}, items: [
+      ['circle(x, y, r, stílus)', 'Kör.', 'Circle.'],
+      ['rect(x, y, w, h, stílus)', 'Téglalap a bal felső sarkától; {radius: 8} lekerekít.', 'Rectangle from its top-left corner; {radius: 8} rounds it.'],
+      ['box(cx, cy, w, h, szög, stílus)', 'Középpontja körül elforgatott téglalap (szög radiánban).', 'Rectangle rotated about its centre (angle in radians).'],
+      ['ellipse(x, y, rx, ry, stílus, szög)', 'Ellipszis.', 'Ellipse.'],
+      ['line(x1, y1, x2, y2, stílus)', 'Szakasz.', 'Line segment.'],
+      ['arrow(x1, y1, x2, y2, stílus)', 'Nyíl; {head: 12} a hegy mérete.', 'Arrow; {head: 12} sets the head size.'],
+      ['vector(x, y, dx, dy, stílus, "F")', 'Vektor egy pontból, felirattal a hegyénél.', 'Vector from a point, labelled at its tip.'],
+      ['polygon([[x, y], …], stílus) · polyline(…)', 'Zárt sokszög, nyitott törött vonal.', 'Closed polygon, open polyline.'],
+      ['arc(x, y, r, a0, a1, stílus)', 'Körív (radián, a vászon szerint óramutató irányában).', 'Arc (radians, clockwise on screen).'],
+      ['spring(x1, y1, x2, y2, {coils: 10, width: 12})', 'Rugó.', 'Spring.'],
+      ['current(x, y, irány, r)', 'Áram iránya: irány > 0 → ⊙ (kifelé), < 0 → ⊗ (befelé).', 'Current direction: dir > 0 → ⊙ (out), < 0 → ⊗ (in).'],
+      ['text(szöveg, x, y, {size, color, align, bold, bg})', 'Szöveg; a \\n új sort kezd.', 'Text; \\n starts a new line.'],
+      ['image("név", x, y, {w, h, angle, alpha, flip, pivot: [0.5, 0.5], showPivot})', 'Feltöltött kép. A pivot a kép azon pontja (arányban: 0…1, balról és felülről), amely az (x; y) pontra kerül, és amely körül az angle forgat – alapból a kép közepe. A showPivot: true piros ponttal mutatja. Csak a draw belsejében rajzol.', 'Uploaded picture. pivot is the point of the picture (as fractions 0…1 from the left and top) placed on (x; y) and turned around by angle – the centre by default. showPivot: true marks it with a red dot. Draws only inside draw.'],
+      ['ground(y) · grid(50)', 'Talaj sraffozással, háttérrács.', 'Hatched ground line, background grid.'],
+      ['push() translate(x, y) rotate(a) scale(s) pop()', 'Koordináta-rendszer eltolása, forgatása.', 'Move and rotate the coordinate system.'],
+      ['stílus: {fill, stroke, lw, dash: [6, 4], alpha}', 'Vagy egyetlen szín: "red", "#2f6fd6", C.blue.', 'Or a single colour: "red", "#2f6fd6", C.blue.'],
+      ['C.red C.blue C.green C.orange C.purple C.teal C.yellow C.gray C.ink C.copper C.N C.S C.list[i]', 'Beépített színek.', 'Built-in colours.'],
+    ]},
+    {t: {hu: 'Fizikai világ (Newton)', en: 'Physics world (Newton)'}, items: [
+      ['const W = world({gravity, scale, origin: [x, y], ground, walls, restitution, friction, drag, collide})', 'Méterben számoló világ; scale = px/m. W.g, W.e menet közben is állítható.', 'World in metres; scale = px per metre. W.g and W.e can change while running.'],
+      ['const b = ball({x, y, vx, vy, r, m, color, trail, label, showV, fixed})', 'Golyó. Olvasható: b.x b.y b.vx b.vy b.speed b.onGround.', 'Ball. Readable: b.x b.y b.vx b.vy b.speed b.onGround.'],
+      ['b.applyForce(fx, fy)', 'Erő newtonban, az update-ben hívd (lépésenként törlődik).', 'Force in newtons; call it inside update (cleared every step).'],
+      ['link(b1, b2 vagy [x, y], {k, len, damping})', 'Rugó két test vagy test és rögzített pont között.', 'Spring between two bodies, or a body and a fixed point.'],
+      ['drawWorld()', 'A világ kirajzolása a draw-ban; ha nem hívod, a draw után rajzolódik.', 'Draws the world inside draw; if you skip it, it is drawn after draw.'],
+      ['wx(m) wy(m) ws(m)', 'Méter → képpont átváltás.', 'Metres → pixels.'],
+    ]},
+    {t: {hu: 'Háromfázisú segédek', en: 'Three-phase helpers'}, items: [
+      ['phases(csúcs, szög, φ)', '[i₁, i₂, i₃] = csúcs·sin(szög + φ − k·120°), k = 0, 1, 2.', '[i₁, i₂, i₃] = peak·sin(angle + φ − k·120°), k = 0, 1, 2.'],
+      ['stator3(x, y, {p, i: [i1, i2, i3], imax, axes, ri, ro})', 'Háromfázisú állórész hornyokkal. A vezetőkben ⊙/⊗ az áram iránya; minél kisebb az áram, annál halványabb.', 'Three-phase stator with slots. Conductors show ⊙/⊗ for current direction and fade as the current gets smaller.'],
+      ['fieldVec([i1, i2, i3], axes)', 'A három tekercs eredő mezővektora: {x, y, mag, angle} (villamos szög). p póluspárnál a mechanikai szög angle/p.', 'Resultant field vector of the three coils: {x, y, mag, angle} (electrical angle). With p pole pairs the mechanical angle is angle/p.'],
+      ['phasor(x, y, hossz, szög, stílus, címke)', 'Vektor hosszal és szöggel (radián, 0 = jobbra, pozitív = az óramutatóval ellentétesen).', 'Vector from length and angle (radians, 0 = right, positive = anticlockwise).'],
+      ['complex(re, im) · cpolar(r, szög)', 'Komplex szám fázorokhoz: .add .sub .mul .div .scale(k) .conj() .abs() .arg() .rot(a). Például I = U.div(Z).', 'Complex number for phasors: .add .sub .mul .div .scale(k) .conj() .abs() .arg() .rot(a). For example I = U.div(Z).'],
+      ['ring(x, y, r1, r2, stílus) · wrap(szög)', 'Körgyűrű; szög visszahozása −π … π közé.', 'Annulus; wraps an angle into −π … π.'],
+      ['C.L1 C.L2 C.L3', 'Fázisszínek az IEC szerint: barna, fekete, szürke.', 'IEC phase colours: brown, black, grey.'],
+    ]},
+    {t: {hu: 'Animált nyilak és 3D', en: 'Animated arrows and 3D'}, items: [
+      ['flow([[x, y], …], {speed, spacing, color, lw, closed})', 'Vonal, rajta haladó nyílhegyekkel (áram egy vezetőben). speed px/s, negatív = visszafelé. {pos} megadásával saját, integrált eltolást használ.', 'A line with arrowheads travelling along it (current in a conductor). speed in px/s, negative = backwards. Pass {pos} to use your own integrated offset.'],
+      ['fieldLoop(x, y, rx, ry, szög, {speed, color, arrows})', 'Ellipszis alakú erővonal-hurok mozgó nyilakkal.', 'Elliptical field-line loop with moving arrowheads.'],
+      ['view3d({x, y, scale, yaw, pitch, dist})', '3D nézet: középpont a vásznon, lépték (px / egység), elforgatás és dőlés radiánban, perspektíva távolsága.', '3D view: centre on the canvas, scale (px per unit), turn and tilt in radians, perspective distance.'],
+      ['begin3() … end3()', 'A közte rajzolt 3D elemek mélység szerint rendeződnek: a közelebbi takarja a távolabbit.', '3D items drawn in between are depth-sorted: nearer ones cover farther ones.'],
+      ['wire3(pontok, {color, lw}, zárt) · path3(pontok, stílus, zárt)', 'Fényes cső (tekercs, rúd) vagy vékony vonal 3D pontokon át ([x, y, z], y felfelé).', 'Glossy tube (coil, bar) or thin line through 3D points ([x, y, z], y up).'],
+      ['flow3(pontok, {speed, pos, dir, spacing, size, color}, zárt)', 'Mozgó nyílhegyek egy 3D útvonalon.', 'Moving arrowheads along a 3D path.'],
+      ['arrow3(a, b, stílus) · text3(szöveg, p, stílus)', '3D nyíl és felirat.', '3D arrow and label.'],
+      ['box3(közép, [sx, sy, sz], {fill}) · face3(pontok, stílus)', 'Árnyalt téglatest (pl. mágnes), kitöltött 3D sokszög.', 'Shaded box (e.g. a magnet), filled 3D polygon.'],
+      ['circle3(közép, "x", r) · rot3(p, "z", szög) · p3(p)', 'Kör pontjai egy tengely körül, pont forgatása, vetítés a vászonra [x, y, mélység].', 'Points of a circle around an axis, rotating a point, projecting to the canvas [x, y, depth].'],
+    ]},
+    {t: {hu: 'Matematika', en: 'Maths'}, items: [
+      ['sin cos tan asin acos atan atan2 sqrt cbrt abs pow exp log hypot min max sign round floor ceil random', 'A szokásos függvények, Math. nélkül.', 'The usual functions, without Math.'],
+      ['PI TAU deg(fok) todeg(rad) clamp(v, a, b) lerp(a, b, t) mod(a, n)', 'deg: fok → radián, todeg: radián → fok.', 'deg: degrees → radians, todeg: radians → degrees.'],
+      ['fmt(érték, tizedesek) · tr({hu, en}) · lang()', 'Szám a nyelv szerinti tizedesjellel; aktuális nyelvű szöveg.', 'Number with the language’s decimal mark; text in the current language.'],
+    ]},
+  ],
+  keys: {
+    hu: '<h4>Billentyűk</h4><p><kbd>Szóköz</kbd> vagy <kbd>P</kbd> lejátszás/szünet · <kbd>→</kbd> léptetés · <kbd>R</kbd> újraindítás · <kbd>1</kbd>…<kbd>9</kbd> csúszka kiválasztása, utána <kbd>←</kbd> <kbd>→</kbd> állítja, <kbd>Esc</kbd> kész · <kbd>?</kbd> billentyűlista · <kbd>Ctrl</kbd>+<kbd>Enter</kbd> kód futtatása · <kbd>Ctrl</kbd>+<kbd>S</kbd> mentés · <kbd>Ctrl</kbd>+<kbd>O</kbd> megnyitás. Képet és jelenetfájlt az ablakra húzva is betölthetsz.</p>',
+    en: '<h4>Keys</h4><p><kbd>Space</kbd> or <kbd>P</kbd> play/pause · <kbd>→</kbd> step · <kbd>R</kbd> restart · <kbd>1</kbd>…<kbd>9</kbd> pick a slider, then <kbd>←</kbd> <kbd>→</kbd> move it, <kbd>Esc</kbd> done · <kbd>?</kbd> key list · <kbd>Ctrl</kbd>+<kbd>Enter</kbd> run code · <kbd>Ctrl</kbd>+<kbd>S</kbd> save · <kbd>Ctrl</kbd>+<kbd>O</kbd> open. You can also drop images and scene files onto the window.</p>',
+  },
+};

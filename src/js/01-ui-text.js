@@ -1,0 +1,170 @@
+/* ───────────── UI text ───────────── */
+const UI = {
+  hu: {
+    new: 'Új', open: 'Megnyitás', save: 'Mentés', export: 'Exportálás',
+    exVideo: 'Videó rögzítése', exVideoStop: 'Rögzítés leállítása', exVideoSub: 'WebM-videó a vászonról',
+    exPng: 'Pillanatkép (PNG)', exPngSub: 'az aktuális képkocka',
+    exHtml: 'Önálló HTML-fájl', exHtmlSub: 'bárhol megnyílik, benne ez a jelenet',
+    exShare: 'Megosztás üzenetben', exShareSub: 'Messenger, WhatsApp, Teams, e-mail – önálló HTML-fájlként',
+    shareSaved: 'Elmentve – csatold a fájlt az üzenethez:',
+    gallery: 'Galéria', galleryTitle: 'Példagaléria', gallerySearch: 'Keresés…', galleryAll: 'Mind', galleryTeacher: 'Tanári', galleryStudent: 'Diák',
+    galleryTopics: 'Témák', galleryNoMatch: 'Nincs találat.', galleryLoading: 'Betöltés…',
+    galleryNoList: 'A példalista nem tölthető le. Internetkapcsolat kell hozzá.',
+    galleryOfflineList: 'Nincs internetkapcsolat: a legutóbb letöltött lista látszik.',
+    galleryNotCached: 'Ezt a példát ezen az eszközön még nem nyitottad meg, internet nélkül nem tölthető be.',
+    galleryGithub: 'GitHub', galleryClose: 'Bezárás', galleryLoadError: 'A példa nem tölthető be:',
+    tabControls: 'Vezérlők', tabCode: 'Kód', tabAssets: 'Képek', tabHelp: 'Súgó',
+    params: 'Paraméterek', readouts: 'Mért értékek',
+    noParams: 'Ennek a jelenetnek nincsenek csúszkái. A Kód fülön a param(...) sorral adhatsz hozzá.',
+    noReadouts: 'A show(...) hívással jeleníthetsz meg itt értékeket.',
+    defaults: 'Csúszkák alapértékre',
+    kbList: 'Billentyűparancsok', kbListTip: 'Billentyűparancsok (?)', kbSceneH: 'Ebben a jelenetben', kbAppH: 'Mindig', kbOnOff: 'be / ki', kbNext: 'következő (Shift: előző)', kbScene: 'a jelenet használja', kbPlay: 'lejátszás / szünet', kbRestart: 'újraindítás', kbStep: 'léptetés', kbPick: 'csúszka kiválasztása, utána ← → állítja (Shift = 10×), Esc = kész', kbThis: 'ez a lista',
+    kSpace: 'Szóköz', kbNumTip: 'Billentyűzet: {n}, majd ← → állítja (Shift = gyorsabb)', kbHudHint: '← → állítás · Shift = gyorsabb · Esc = kész',
+    run: 'Futtatás', codeDirty: 'Módosítva – Ctrl+Enter a futtatáshoz', codeClean: 'Ez a kód fut',
+    play: 'Lejátszás / szünet (szóköz vagy P)', pause: 'Szünet (szóköz vagy P)', step: 'Léptetés (→)', resetT: 'Újraindítás (R)', full: 'Teljes képernyő (vászon + grafikonok)', fullCanvas: 'Csak a vászon teljes képernyőn', cvExit: 'Kilépés a csak-vászon nézetből', plotSplit: 'Húzd fel vagy le a grafikonok magasságához (dupla kattintás: alapméret)', menu: 'Menü', mCanvas: 'Vászon',
+    speed: 'Sebesség', slowmo: 'lassítás', fastmo: 'gyorsítás',
+    sceneName: 'Jelenet neve',
+    drop: 'Kép feltöltése', dropSub: 'kattints, vagy húzd ide – PNG, JPG, SVG',
+    copy: 'Kód másolása', del: 'Törlés', noAssets: 'Még nincs kép ebben a jelenetben.',
+    saved: 'Elmentve:', loaded: 'Betöltve:', undo: 'Visszavonás',
+    openFail: 'Ez a fájl nem AnimLab-jelenet (.animlab.json vagy exportált .html).',
+    recUnsupported: 'Ez a böngésző nem tud videót rögzíteni a vászonról.',
+    recStarted: 'A rögzítés elindult. Állítsd le a piros jelvénnyel vagy az Exportálás menüben.',
+    saveDeclined: 'A mentés megszakadt.', saveFail: 'Nem sikerült menteni:',
+    storageFull: 'A jelenet túl nagy az automatikus mentéshez (képek). Mentsd fájlba!',
+    errScript: 'Hiba a szkriptben', errLine: 'sor', errStage: 'Hiba a szkriptben – kattints a részletekért.',
+    copied: 'Vágólapra másolva:', newScene: 'Új jelenet', imgAdded: 'Kép hozzáadva:',
+    imgBad: 'Ez a kép nem tölthető be. SVG-nél nézd meg, hogy hibátlan-e a fájl; más formátumnál próbáld PNG-ként vagy JPG-ként.',
+    tabMarks: 'Jelölők',
+    marksIntro: 'Nyilakat, erővonal-hurkokat, áramutakat és feliratokat rajzolhatsz egérrel a vászonra, például egy feltöltött kép fölé. A nyíl hossza, az áramlás sebessége és a felirat a jelenet változóihoz köthető (a felirat {e:1} része a változó értékét írja ki). A jelölők a jelenettel együtt mentődnek.',
+    tMove: 'Mozgatás', tArrow: 'Nyíl', tLoop: 'Erővonal-hurok', tPath: 'Áramút', tText: 'Felirat', tPick: 'Koordináta',
+    hMove: 'Fogd meg és húzd a jelölőt.', hArrow: 'Húzz a nyíl elejétől a hegyéig.', hLoop: 'Húzz egy téglalapot – ebbe kerül az ellipszis alakú hurok.',
+    hPath: 'Kattints pontonként, dupla kattintás vagy Enter zárja le (Esc: mégse).', hText: 'Kattints oda, ahová a felirat kerüljön.',
+    hPick: 'Kattints: a koordináta a vágólapra kerül.', hPivot: 'Kattints a forgáspontra.',
+    mArrow: 'Nyíl', mLoop: 'Erővonal-hurok', mPath: 'Áramút', mText: 'Felirat',
+    fLabel: 'Felirat', fWidth: 'Vastagság', fSize: 'Méret', fFlow: 'Áramlás (px/s)', fAngle: 'Szög (°)',
+    fSpin: 'Forgás (°/s)', fMode: 'Forgás módja', modePlane: 'síkban', modeAxis: 'tengely körül (3D)', fAxis: 'Tengely (°)', fPivot: 'Forgáspont',
+    mCopy: 'Kód másolása', mToCode: 'Áthelyezés a kódba', mClear: 'Összes törlése', noMarks: 'Még nincs jelölő. Válassz eszközt, és rajzolj a vászonra.',
+    marksMoved: 'A jelölők átkerültek a kódba.', marksCleared: 'Jelölők törölve.', coordCopied: 'Koordináta másolva:',
+    fLenExpr: 'Hossz / méret × (kifejezés, pl. e / P.U)', fFlowExpr: 'Áramlás × (kifejezés, pl. I / 5)',
+    fBind: 'Változóhoz kötés: méret, vastagság, szín', fLwExpr: 'Vastagság × (kifejezés, pl. 1 + abs(I) / 2)',
+    fColorExpr: 'Szín az érték szerint (kifejezés, üres = fix szín)', fCmin: 'Érték: alsó határ', fCmax: 'Érték: felső határ',
+    fC0: 'Szín az alsó határnál', fC1: 'Szín a felső határnál',
+    bTitle: 'Kódban deklarált, változóhoz kötött nyilak',
+    bIntro: 'Ezeket a kód boundArrow(...) sorai írják le. Itt pontosan a kódban szereplő beállítások látszanak; amit átírsz, az azonnal megjelenik a vásznon, és be is íródik a kódba. A kódban átírt értékek Futtatás után itt is frissülnek. A Mozgatás eszközzel a kezdőpontjuk húzható.',
+    bEmpty: 'Ebben a jelenetben nincs ilyen nyíl. Egy sor a kódban, és itt megjelenik:<br><code>boundArrow("i-nyíl", {x: 500, y: 300, length: "30 * i", width: "2 + abs(i)", color: "#2f6fd6", colorBy: "abs(i)", colorMax: 10, colorTo: "#d64045"});</code><br>A kifejezésekben a val()-lal közzétett változók és a P.név csúszkaértékek használhatók.',
+    bX: 'Kezdőpont x (px)', bY: 'Kezdőpont y (px)', bAngle: 'Irány (°, 0 = jobbra, 90 = fel)',
+    bLength: 'Hossz (px, kifejezés)', bWidth: 'Vastagság (px, kifejezés)', bColor: 'Szín (alsó határnál)',
+    bColorBy: 'A szín ettől függ (kifejezés, üres = fix szín)', bColorTo: 'Szín a felső határnál', bColorByPh: 'pl. abs(i)',
+    bNow: 'Most:', bLen: 'hossz', bWid: 'vastagság', bNoCode: 'Ezt a nyilat nem találom a kódban – nézd meg a boundArrow sort.',
+    varsLabel: 'Használható változók:',
+    cmTitle: 'Kódban rajzolt nyilak és jelölők',
+    cmIntro: 'A jelenet kódja rajzolja őket. Itt elrejtheted, átszínezheted, vastagíthatod vagy nyújthatod őket, a feliratot is átírhatod – a kód változatlan marad. Fölé víve a vásznon sárgán kiemelődik.',
+    cmReset: 'Minden testreszabás törlése', cmWidth: 'Vastagság ×', cmScale: 'Hossz / méret ×', cmLabel: 'Felirat (üres = eredeti)',
+    kArrow: 'nyíl', kVector: 'vektor', kLoop: 'erővonal-hurok', kFlow: 'áramlás', kArrow3: '3D nyíl', kFlow3: '3D áramlás',
+    cmOrig: 'eredeti szín', splitter: 'Húzd a panel szélességéhez (dupla kattintás: alapméret)',
+  },
+  en: {
+    new: 'New', open: 'Open', save: 'Save', export: 'Export',
+    exVideo: 'Record video', exVideoStop: 'Stop recording', exVideoSub: 'WebM video of the canvas',
+    exPng: 'Snapshot (PNG)', exPngSub: 'the current frame',
+    exHtml: 'Standalone HTML file', exHtmlSub: 'opens anywhere, with this scene inside',
+    exShare: 'Share in a chat', exShareSub: 'Messenger, WhatsApp, Teams, e-mail – as a standalone HTML file',
+    shareSaved: 'Saved – attach the file to your message:',
+    gallery: 'Gallery', galleryTitle: 'Example gallery', gallerySearch: 'Search…', galleryAll: 'All', galleryTeacher: 'Teacher', galleryStudent: 'Student',
+    galleryTopics: 'Topics', galleryNoMatch: 'No matches.', galleryLoading: 'Loading…',
+    galleryNoList: 'The example list cannot be downloaded. An internet connection is needed.',
+    galleryOfflineList: 'No internet connection: showing the last downloaded list.',
+    galleryNotCached: 'This example has not been opened on this device yet, so it cannot be loaded offline.',
+    galleryGithub: 'GitHub', galleryClose: 'Close', galleryLoadError: 'The example cannot be loaded:',
+    tabControls: 'Controls', tabCode: 'Code', tabAssets: 'Images', tabHelp: 'Help',
+    params: 'Parameters', readouts: 'Readouts',
+    noParams: 'This scene has no sliders. Add one on the Code tab with param(...).',
+    noReadouts: 'Values you pass to show(...) appear here.',
+    defaults: 'Reset sliders to defaults',
+    kbList: 'Keyboard commands', kbListTip: 'Keyboard commands (?)', kbSceneH: 'In this scene', kbAppH: 'Always', kbOnOff: 'on / off', kbNext: 'next (Shift: previous)', kbScene: 'used by the scene', kbPlay: 'play / pause', kbRestart: 'restart', kbStep: 'step', kbPick: 'pick a slider, then ← → move it (Shift = 10×), Esc = done', kbThis: 'this list',
+    kSpace: 'Space', kbNumTip: 'Keyboard: press {n}, then ← → to move it (Shift = faster)', kbHudHint: '← → adjust · Shift = faster · Esc = done',
+    run: 'Run', codeDirty: 'Edited – press Ctrl+Enter to run', codeClean: 'This code is running',
+    play: 'Play / pause (Space or P)', pause: 'Pause (Space or P)', step: 'Step (→)', resetT: 'Restart (R)', full: 'Full screen (canvas + graphs)', fullCanvas: 'Canvas only, full screen', cvExit: 'Leave canvas-only view', plotSplit: 'Drag up or down to resize the graphs (double-click: default size)', menu: 'Menu', mCanvas: 'Canvas',
+    speed: 'Speed', slowmo: 'slow motion', fastmo: 'fast motion',
+    sceneName: 'Scene name',
+    drop: 'Upload an image', dropSub: 'click, or drop files here – PNG, JPG, SVG',
+    copy: 'Copy code', del: 'Delete', noAssets: 'No images in this scene yet.',
+    saved: 'Saved:', loaded: 'Loaded:', undo: 'Undo',
+    openFail: 'This file is not an AnimLab scene (.animlab.json or an exported .html).',
+    recUnsupported: 'This browser cannot record video from the canvas.',
+    recStarted: 'Recording. Stop it with the red badge or from the Export menu.',
+    saveDeclined: 'Saving was cancelled.', saveFail: 'Could not save:',
+    storageFull: 'The scene is too large for autosave (images). Save it to a file!',
+    errScript: 'Script error', errLine: 'line', errStage: 'Script error – click for details.',
+    copied: 'Copied:', newScene: 'New scene', imgAdded: 'Image added:',
+    imgBad: 'This picture cannot be loaded. For an SVG, check that the file is valid; otherwise try saving it as PNG or JPG.',
+    tabMarks: 'Markup',
+    marksIntro: 'Draw arrows, field-line loops, current paths and labels on the canvas with the mouse, for example over an uploaded picture. Arrow length, flow speed and labels can follow the scene’s variables ({e:1} in a label prints the value). Markup is saved with the scene.',
+    tMove: 'Move', tArrow: 'Arrow', tLoop: 'Field loop', tPath: 'Current path', tText: 'Label', tPick: 'Coordinate',
+    hMove: 'Grab a mark and drag it.', hArrow: 'Drag from the tail of the arrow to its tip.', hLoop: 'Drag a rectangle – the elliptical loop fills it.',
+    hPath: 'Click point by point; double-click or Enter finishes (Esc cancels).', hText: 'Click where the label should go.',
+    hPick: 'Click: the coordinate is copied.', hPivot: 'Click the pivot point.',
+    mArrow: 'Arrow', mLoop: 'Field loop', mPath: 'Current path', mText: 'Label',
+    fLabel: 'Label', fWidth: 'Width', fSize: 'Size', fFlow: 'Flow (px/s)', fAngle: 'Angle (°)',
+    fSpin: 'Spin (°/s)', fMode: 'Spin mode', modePlane: 'in the plane', modeAxis: 'about an axis (3D)', fAxis: 'Axis (°)', fPivot: 'Pivot',
+    mCopy: 'Copy as code', mToCode: 'Move into the code', mClear: 'Delete all', noMarks: 'No markup yet. Pick a tool and draw on the canvas.',
+    marksMoved: 'The markup has been moved into the code.', marksCleared: 'Markup deleted.', coordCopied: 'Coordinate copied:',
+    fLenExpr: 'Length / size × (expression, e.g. e / P.U)', fFlowExpr: 'Flow × (expression, e.g. I / 5)',
+    fBind: 'Bind to a variable: size, width, colour', fLwExpr: 'Width × (expression, e.g. 1 + abs(I) / 2)',
+    fColorExpr: 'Colour by value (expression, empty = fixed colour)', fCmin: 'Value: lower limit', fCmax: 'Value: upper limit',
+    fC0: 'Colour at the lower limit', fC1: 'Colour at the upper limit',
+    bTitle: 'Arrows declared in the code, bound to variables',
+    bIntro: 'The code’s boundArrow(...) lines describe these. What you see here is exactly what the code says; anything you change shows on the canvas at once and is written into the code. Values you edit in the code update here after Run. With the Move tool you can drag their start point.',
+    bEmpty: 'This scene has no such arrow. One line in the code and it appears here:<br><code>boundArrow("i-arrow", {x: 500, y: 300, length: "30 * i", width: "2 + abs(i)", color: "#2f6fd6", colorBy: "abs(i)", colorMax: 10, colorTo: "#d64045"});</code><br>Expressions can use values published with val() and slider values P.name.',
+    bX: 'Start x (px)', bY: 'Start y (px)', bAngle: 'Direction (°, 0 = right, 90 = up)',
+    bLength: 'Length (px, expression)', bWidth: 'Width (px, expression)', bColor: 'Colour (at the lower limit)',
+    bColorBy: 'Colour follows (expression, empty = fixed colour)', bColorTo: 'Colour at the upper limit', bColorByPh: 'e.g. abs(i)',
+    bNow: 'Now:', bLen: 'length', bWid: 'width', bNoCode: 'Can’t find this arrow in the code – check its boundArrow line.',
+    varsLabel: 'Variables you can use:',
+    cmTitle: 'Arrows and marks drawn by the code',
+    cmIntro: 'The scene’s code draws these. Here you can hide, recolour, thicken or stretch them and rewrite the label – the code stays unchanged. Hover a row to highlight it in yellow on the canvas.',
+    cmReset: 'Clear all customisations', cmWidth: 'Width ×', cmScale: 'Length / size ×', cmLabel: 'Label (empty = original)',
+    kArrow: 'arrow', kVector: 'vector', kLoop: 'field loop', kFlow: 'flow', kArrow3: '3D arrow', kFlow3: '3D flow',
+    cmOrig: 'original colour', splitter: 'Drag to resize the panel (double-click: default size)',
+  },
+};
+let LANG = store.get('lang') === 'en' ? 'en' : 'hu';
+const T = k => (UI[LANG][k] != null ? UI[LANG][k] : (UI.en[k] != null ? UI.en[k] : k));
+const tr = x => {
+  if (x == null) return '';
+  if (typeof x === 'object' && !Array.isArray(x)) return String(x[LANG] ?? x.en ?? x.hu ?? Object.values(x)[0] ?? '');
+  return String(x);
+};
+
+const FONT = '"IBM Plex Sans", system-ui, sans-serif';
+const FONT_C = '"IBM Plex Sans Condensed", "IBM Plex Sans", system-ui, sans-serif';
+const C = {
+  ink: '#1d2430', red: '#d64045', blue: '#2f6fd6', green: '#2e9e6a', orange: '#e8862a', purple: '#7c5cd6',
+  teal: '#1f9eaa', yellow: '#e6b422', gray: '#8a93a3', light: '#dfe3ea', copper: '#c2703d', white: '#ffffff',
+  N: '#d64045', S: '#2f6fd6',
+  L1: '#9a5b2e', L2: '#1d2430', L3: '#8a93a3',   // IEC 60446 phase colours: brown, black, grey
+};
+C.list = [C.blue, C.orange, C.green, C.red, C.purple, C.teal, C.yellow];
+Object.freeze(C.list); Object.freeze(C);
+
+const TEMPLATE_NAME = {hu: 'Sablon: alakzatok, képek, fizika', en: 'Template: shapes, images, physics'};
+const BLANK = `// ${'Új jelenet / New scene'}
+stage(1000, 600, "#fbfbf8");
+title({hu: "Új jelenet", en: "New scene"});
+
+param("v", {hu: "Sebesség", en: "Speed"}, 0, 400, 150, 1, "px/s");
+
+let x = 100;
+update(dt => {
+  x += P.v * dt;
+  if (x > 950) x = 50;
+});
+
+draw(t => {
+  grid(50);
+  circle(x, 300, 30, {fill: C.blue});
+  show("x", x, "px");
+});
+`;
+

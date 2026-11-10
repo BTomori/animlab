@@ -1,5 +1,9 @@
 # Változások / Changelog
 
+## Kiadás előtt / Unreleased
+
+- **Forrás modulokban / source in modules:** a program forrása a `src/` mappában van (váz, CSS, a főszkript szakaszai egy-egy fájlban), és a `node build.js` állítja össze belőle az `index.html`-t; a beépített Sablon az `examples/teacher/sablon` példából, az AI-utasítások a `docs/animlab-ai-instructions.md` fájlból kerülnek bele. A kész program nem változott. / The app source lives in `src/` (shell, CSS, one file per section of the main script), and `node build.js` assembles `index.html` from it; the built-in Template comes from the `examples/teacher/sablon` example and the AI instructions from `docs/animlab-ai-instructions.md`. The built app is unchanged.
+
 ## v0.6 – 2026-11-07
 
 - **Példagaléria a programban / example gallery in the app:** a **Galéria** gomb kártyákon mutatja a példákat (`examples/index.json`), téma, tanári / diák, címke és kereső szerint szűrve; kattintásra betölti a példát (visszavonható), a neve a kártya címe az aktuális nyelven. Egy új példa programfrissítés nélkül megjelenik. Internet nélkül a legutóbbi lista és a készüléken már megnyitott példák érhetők el. / The **Gallery** button shows the examples as cards (`examples/index.json`), filtered by topic, teacher / student, tag and search; a click loads an example (undoable), named with the card title in the current language. A new example shows up with no app release. Offline, the last list and the examples already opened on the device are available.
