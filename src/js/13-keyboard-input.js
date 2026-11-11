@@ -116,6 +116,25 @@ function kbSelect(id) {
   if (e && e.row && !$('#tab-controls').hidden) e.row.scrollIntoView({block: 'nearest'});
   renderHud();
 }
+// 3. réteg, kapcsolók: a billentyűzet felső betűsora, a Vezérlők sorrendjében. Az R (újraindítás) és a P (lejátszás) kimarad.
+// A hatodik betű kiosztásfüggő (QWERTZ: Z, QWERTY: Y), ezért mindkettő ugyanazt a kapcsolót váltja.
+// Layer 3, switches: the top letter row of the keyboard, in the order of the Controls tab. R (restart) and P (play) are left out.
+// The sixth letter depends on the layout (QWERTZ: Z, QWERTY: Y), so both flip the same switch.
+const TOGGLE_KEYS = [['q'], ['w'], ['e'], ['t'], ['z', 'y'], ['u'], ['i'], ['o']];
+function toggleDefs() { return R.defs.filter(d => d.kind === 'toggle' && !(d.keys && d.keys.length)); }
+function toggleKeyText(i) { const s = TOGGLE_KEYS[i]; return (s.length > 1 ? (LANG === 'hu' ? s[0] : s[1]) : s[0]).toUpperCase(); }
+// A kapcsoló alapbillentyűje, ha a jelenet nem foglalta le / the default key of a switch, unless the scene uses that key itself
+function toggleKeyOf(d) {
+  const i = toggleDefs().indexOf(d);
+  if (i < 0 || i >= TOGGLE_KEYS.length) return '';
+  const own = k => (R.ctlKeys && R.ctlKeys.has(k)) || R.keyOn.has(k) || R.keyPoll.has(k);
+  return TOGGLE_KEYS[i].some(own) ? '' : toggleKeyText(i);
+}
+function toggleForKey(k) {
+  const i = TOGGLE_KEYS.findIndex(s => s.includes(k));
+  const d = i < 0 ? null : toggleDefs()[i];
+  return d && toggleKeyOf(d) ? d : null;
+}
 function pressNav(k, shift) {
   const d = rangeDefs().find(x => x.id === kbSel);
   if (!d) { kbSelect(null); return; }
@@ -232,6 +251,8 @@ function kbRows() {
   if (!sceneOwns('r')) app.push([['R'], T('kbRestart')]);
   if (!sceneOwns('ArrowRight')) app.push([['→'], T('kbStep')]);
   if (rangeDefs().length) app.push([['1…' + Math.min(9, rangeDefs().length), '← →'], T('kbPick')]);
+  const tk = toggleDefs().map(toggleKeyOf).filter(Boolean);
+  if (tk.length) app.push([tk, T('kbToggles')]);
   if (!sceneOwns('?')) app.push([['?'], T('kbThis')]);
   return {scene, app};
 }

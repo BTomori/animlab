@@ -135,7 +135,7 @@ function toggleRecord() {
   if (!playing) setPlaying(true);
 }
 function updateRecUI() {
-  recBadge.hidden = !rec;
+  recBadge.hidden = !rec; recBadge.title = T('exVideoStop');
   $('#exVideoLbl').textContent = rec ? T('exVideoStop') : T('exVideo');
 }
 

@@ -32,7 +32,9 @@ function buildControls(force) {
       box.appendChild(row);
     } else if (d.kind === 'toggle') {
       const row = document.createElement('label'); row.className = 'ctl ctl-toggle'; row.htmlFor = uid;
-      row.innerHTML = `<input type="checkbox" id="${uid}"><span>${esc(tr(d.label))}${kbdBadges(d.keys)}</span>`;
+      // Q W E …: a kapcsoló alapbillentyűje, ha nincs sajátja / default key of the switch when it has none of its own
+      const tk = toggleKeyOf(d), let_ = tk ? `<span class="kbn kbt" title="${esc(T('kbTogTip').replace('{k}', tk))}">${tk}</span>` : '';
+      row.innerHTML = `<input type="checkbox" id="${uid}"><span>${let_}${esc(tr(d.label))}${kbdBadges(d.keys)}</span>`;
       const cb = $('input', row); cb.checked = !!R.P[d.id];
       cb.addEventListener('change', () => setP(d.id, cb.checked));
       ctlEls[d.id] = {kind: 'toggle', cb, row};

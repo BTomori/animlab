@@ -241,21 +241,21 @@ const guideCode = code => code.replace(/⟨([^|⟩]*)\|([^⟩]*)⟩/g, (m, hu, e
 
 function renderHelp() {
   const L = LANG === 'hu';
-  let html = `<nav class="help-nav"><button type="button" class="link-btn" data-jump="guide">${L ? 'Útmutató' : 'Guide'}</button> · <button type="button" class="link-btn" data-jump="ref">${L ? 'Parancsok' : 'Command reference'}</button> · <button type="button" class="link-btn" data-jump="ai">${L ? 'Kód írása AI-jal' : 'Writing code with AI'}</button></nav>`;
+  let html = `<nav class="help-nav"><button type="button" class="link-btn" data-jump="ai">${L ? 'Kód írása AI-jal' : 'Writing code with AI'}</button> · <button type="button" class="link-btn" data-jump="guide">${L ? 'Útmutató' : 'Guide'}</button> · <button type="button" class="link-btn" data-jump="ref">${L ? 'Parancsok' : 'Command reference'}</button></nav>`;
+  // Jelenet írása mesterséges intelligenciával: a beépített utasítások egy kattintással másolhatók
+  // Writing a scene with an AI assistant: the built-in instructions can be copied with one click
+  html += `<h3 id="help-ai">${L ? 'Kód írása AI segítségével' : 'Writing code with an AI assistant'}</h3>`;
+  html += helpAiText(L);
+  html += `<div class="lesson-btns"><button type="button" class="btn primary" data-ai="copy">${L ? 'AI-utasítások másolása' : 'Copy AI instructions'}</button><button type="button" class="btn" data-ai="save">${L ? 'Mentés fájlba (.md)' : 'Save as a file (.md)'}</button></div>`;
+  html += `<textarea id="aiText" class="ai-text" readonly hidden></textarea>`;
+  // Átvezetés az útmutatóhoz / lead-in to the guide
+  html += `<p>${L ? 'Ha magad is szeretnél kódolni, itt van néhány gyakorlat, amit kipróbálhatsz.' : 'If you want to explore coding yourself, here are some exercises to try.'}</p>`;
   html += `<h3 id="help-guide">${L ? 'Útmutató 7 lépésben' : 'Guide in 7 steps'}</h3>`;
   html += `<p class="muted">${L ? 'Minden lépés egy kis, működő példa. A „Kipróbálom” betölti a Kód fülre – ott írd át, és futtasd újra.' : 'Each step is a small working example. “Try it” loads it into the Code tab – change it there and run it again.'}</p>`;
   GUIDE.forEach((s, i) => {
     html += `<section class="lesson"><h4><span class="num">${i + 1}</span>${esc(s.t[LANG])}</h4><p>${esc(s.d[LANG])}</p><pre>${esc(guideCode(s.code))}</pre><div class="lesson-btns"><button type="button" class="btn primary" data-try="${i}">${L ? 'Kipróbálom' : 'Try it'}</button><button type="button" class="btn" data-copyex="${i}">${L ? 'Másolás' : 'Copy'}</button></div></section>`;
   });
   html += `<h4>${L ? 'Ha valami nem megy' : 'When something goes wrong'}</h4><ul class="tips">${GUIDE_TIPS[LANG].map(x => `<li>${x}</li>`).join('')}</ul>`;
-  // Jelenet írása mesterséges intelligenciával: a beépített utasítások egy kattintással másolhatók
-  // Writing a scene with an AI assistant: the built-in instructions can be copied with one click
-  html += `<h3 id="help-ai">${L ? 'Kód írása AI segítségével' : 'Writing code with an AI assistant'}</h3>`;
-  html += L
-    ? `<p>Bármelyik ingyenes AI-csevegő (ChatGPT, Gemini, Copilot, Claude…) megírja a jelenetet, ha előbb elolvassa az AnimLab AI-utasításait. Ezek az alkalmazásba vannak építve, internet nélkül is elérhetők.</p><ol class="tips"><li>Nyomd meg az <b>AI-utasítások másolása</b> gombot.</li><li>Nyiss új csevegést az AI-alkalmazásban, és illeszd be első üzenetként.</li><li>Írd le, milyen animációt szeretnél: mit mutasson, milyen csúszkák, mért értékek és grafikonok legyenek, kinek szól.</li><li>A kapott kódot másold be: <b>Új</b> → <b>Kód</b> fül → Ctrl+Enter.</li><li>Ha hibát látsz, írd le az AI-nak, vagy másold be neki a piros hibaüzenetet a sorszámmal. Egyszerre egy változtatást kérj.</li></ol><p class="muted">Példa kérés:</p><pre>Készíts egy jelenetet Ohm törvényéről: telep, ellenállás és izzó sorosan. Csúszkák: U 0–24 V, R 1–100 Ω. Az izzó fényereje kövesse a teljesítményt, mozgó nyilak mutassák az áramot. Írd ki az I-t és a P-t, és rajzolj grafikont az áramról. Kapcsolási rajz szabványos jelekkel, 9. évfolyamnak.</pre><p class="muted">Ellenőrizd a képleteket és a kiírt értékeket egy kézzel kiszámolt példán, mielőtt órán használod.</p>`
-    : `<p>Any free AI chat (ChatGPT, Gemini, Copilot, Claude…) can write a scene once it has read the AnimLab AI instructions. They are built into the app and work offline.</p><ol class="tips"><li>Press <b>Copy AI instructions</b>.</li><li>Start a new chat in the AI app and paste them as the first message.</li><li>Describe the animation: what it shows, which sliders, readouts and graphs, and who it is for.</li><li>Paste the code you get: <b>New</b> → <b>Code</b> tab → Ctrl+Enter.</li><li>If something is wrong, tell the AI what you see or paste the red error message with its line number. Ask for one change at a time.</li></ol><p class="muted">Example request:</p><pre>Make a scene about Ohm's law: battery, resistor and lamp in series. Sliders: U 0–24 V, R 1–100 Ω. The lamp's brightness follows its power and moving arrows show the current. Show I and P, and plot the current. Schematic with standard symbols, for 9th grade.</pre><p class="muted">Check the formulas and the readouts against a value you calculate by hand before you use the scene in class.</p>`;
-  html += `<div class="lesson-btns"><button type="button" class="btn primary" data-ai="copy">${L ? 'AI-utasítások másolása' : 'Copy AI instructions'}</button><button type="button" class="btn" data-ai="save">${L ? 'Mentés fájlba (.md)' : 'Save as a file (.md)'}</button></div>`;
-  html += `<textarea id="aiText" class="ai-text" readonly hidden></textarea>`;
   html += `<h3 id="help-ref">${L ? 'Parancsok' : 'Command reference'}</h3>`;
   html += HELP.intro[LANG];
   for (const sec of HELP.sections) {
@@ -265,5 +265,12 @@ function renderHelp() {
   }
   html += HELP.keys[LANG];
   $('#help').innerHTML = html;
+}
+
+// A „Kód írása AI segítségével” szakasz szövege / text of the "Writing code with an AI assistant" section
+function helpAiText(L) {
+  return L
+    ? `<p>Bármelyik ingyenes AI-csevegő (ChatGPT, Gemini, Copilot, Claude…) megírja a jelenetet, ha előbb elolvassa az AnimLab AI-utasításait. Ezek az alkalmazásba vannak építve, internet nélkül is elérhetők.</p><ol class="tips"><li>Nyomd meg az <b>AI-utasítások másolása</b> gombot.</li><li>Nyiss új csevegést az AI-alkalmazásban, és illeszd be első üzenetként.</li><li>Írd le, milyen animációt szeretnél: mit mutasson, milyen csúszkák, mért értékek és grafikonok legyenek, kinek szól.</li><li>A kapott kódot másold be: <b>Új</b> → <b>Kód</b> fül → Ctrl+Enter.</li><li>Ha hibát látsz, írd le az AI-nak, vagy másold be neki a piros hibaüzenetet a sorszámmal. Egyszerre egy változtatást kérj.</li></ol><p class="muted">Példa kérés:</p><pre>Készíts egy jelenetet Ohm törvényéről: telep, ellenállás és izzó sorosan. Csúszkák: U 0–24 V, R 1–100 Ω. Az izzó fényereje kövesse a teljesítményt, mozgó nyilak mutassák az áramot. Írd ki az I-t és a P-t, és rajzolj grafikont az áramról. Kapcsolási rajz szabványos jelekkel, 9. évfolyamnak.</pre><p class="muted">Ellenőrizd a képleteket és a kiírt értékeket egy kézzel kiszámolt példán, mielőtt órán használod.</p>`
+    : `<p>Any free AI chat (ChatGPT, Gemini, Copilot, Claude…) can write a scene once it has read the AnimLab AI instructions. They are built into the app and work offline.</p><ol class="tips"><li>Press <b>Copy AI instructions</b>.</li><li>Start a new chat in the AI app and paste them as the first message.</li><li>Describe the animation: what it shows, which sliders, readouts and graphs, and who it is for.</li><li>Paste the code you get: <b>New</b> → <b>Code</b> tab → Ctrl+Enter.</li><li>If something is wrong, tell the AI what you see or paste the red error message with its line number. Ask for one change at a time.</li></ol><p class="muted">Example request:</p><pre>Make a scene about Ohm's law: battery, resistor and lamp in series. Sliders: U 0–24 V, R 1–100 Ω. The lamp's brightness follows its power and moving arrows show the current. Show I and P, and plot the current. Schematic with standard symbols, for 9th grade.</pre><p class="muted">Check the formulas and the readouts against a value you calculate by hand before you use the scene in class.</p>`;
 }
 

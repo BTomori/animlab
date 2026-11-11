@@ -113,9 +113,13 @@ body.resizing { cursor: col-resize; user-select: none; }
   background: #fff1f1; color: #8f1d1d; border: 1px solid #f1b9b9; font-size: 13px; cursor: pointer;
 }
 .rec-badge {
-  position: absolute; top: 10px; right: 10px; padding: 4px 10px; border-radius: 99px; cursor: pointer;
+  position: absolute; top: 10px; right: 10px; padding: 5px 9px 5px 12px; border-radius: 99px; cursor: pointer;
   background: var(--rec); color: #fff; font: 600 12px/1.4 var(--font-mono); border: 0;
+  display: inline-flex; align-items: center; gap: 12px; font-variant-numeric: tabular-nums;
 }
+.rec-badge[hidden] { display: none; }
+/* fehér négyzet a jobb végén: leállítás / white square at the right end: stop */
+.rec-badge::after { content: ""; width: 12px; height: 12px; border-radius: 2px; background: #fff; flex: none; }
 .transport { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .time { font: 500 14px var(--font-mono); font-variant-numeric: tabular-nums; min-width: 112px; padding: 0 6px; }
 .speed { display: flex; align-items: center; gap: 8px; margin-left: auto; color: var(--muted); }
@@ -204,7 +208,13 @@ body.resizing { cursor: col-resize; user-select: none; }
 
 .help h3 { font: 600 18px var(--font-display); margin: 18px 0 6px; text-wrap: balance; }
 .help h3:first-of-type { margin-top: 4px; }
-.help-nav { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+/* a három szakaszlink görgetés közben is fent marad / the three section links stay on top while scrolling */
+.help-nav {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; color: var(--muted);
+  position: sticky; top: -12px; z-index: 2; margin: -12px -14px 8px; padding: 9px 14px;
+  background: var(--panel); border-bottom: 1px solid var(--line);
+}
+.help h3 { scroll-margin-top: 48px; }
 .help-nav .link-btn { padding: 0; }
 .lesson { padding: 10px 0 14px; border-bottom: 1px solid var(--line); }
 .lesson h4 { display: flex; align-items: center; gap: 8px; margin: 6px 0 4px; }
@@ -750,7 +760,7 @@ Colours: any CSS colour, or `C.red C.blue C.green C.orange C.purple C.teal C.yel
 | `key(name, {label, help})` | `true` while the key is held. Read it inside `update` (or `draw`). `key(["a", "ArrowLeft"])` = any of them. |
 | `onKey(name, fn, {label, help})` | `fn` runs once per press, also while paused. `label` (`{hu, en}`) is the text of the touch button, `help` (`{hu, en}`) the description in the key list. |
 
-Key names: `"a"` … `"z"` (letters are case-insensitive), `"0"` … `"9"`, `" "` (Space), `"ArrowLeft"`, `"ArrowRight"`, `"ArrowUp"`, `"ArrowDown"`, `"Enter"`, `"Shift"`. On phones and tablets the keys used with `key()` and `onKey()` automatically appear as buttons on the canvas (`key(" ", {label: {hu: "Fék", en: "Brake"}})` names the button). The app already uses Space = play/pause, R = restart, → = step, 1–9 + arrows = adjust any slider, P = backup play/pause: a key the scene binds overrides these, so prefer letters (W/A/S/D, Q/E) and arrows for scene controls, and never bind P. Give every `key()` / `onKey()` a `help` text (put the options in a constant at the top, e.g. `const H_FWD = {help: {hu: "előre", en: "forward"}}`): the app lists all keys with these texts behind a ⌨ button and the ? key. A short on-canvas hint text is still welcome.
+Key names: `"a"` … `"z"` (letters are case-insensitive), `"0"` … `"9"`, `" "` (Space), `"ArrowLeft"`, `"ArrowRight"`, `"ArrowUp"`, `"ArrowDown"`, `"Enter"`, `"Shift"`. On phones and tablets the keys used with `key()` and `onKey()` automatically appear as buttons on the canvas (`key(" ", {label: {hu: "Fék", en: "Brake"}})` names the button). The app already uses Space = play/pause, R = restart, → = step, 1–9 + arrows = adjust any slider, Q W E T Z/Y U I O = flip the switches that have no key of their own (in order), P = backup play/pause: a key the scene binds overrides these, so prefer letters (W/A/S/D, Q/E) and arrows for scene controls, and never bind P. Give every `key()` / `onKey()` a `help` text (put the options in a constant at the top, e.g. `const H_FWD = {help: {hu: "előre", en: "forward"}}`): the app lists all keys with these texts behind a ⌨ button and the ? key. A short on-canvas hint text is still welcome.
 
 ### 3.3 Readouts (inside draw)
 
@@ -1174,7 +1184,7 @@ const UI = {
     noParams: 'Ennek a jelenetnek nincsenek csúszkái. A Kód fülön a param(...) sorral adhatsz hozzá.',
     noReadouts: 'A show(...) hívással jeleníthetsz meg itt értékeket.',
     defaults: 'Csúszkák alapértékre',
-    kbList: 'Billentyűparancsok', kbListTip: 'Billentyűparancsok (?)', kbSceneH: 'Ebben a jelenetben', kbAppH: 'Mindig', kbOnOff: 'be / ki', kbNext: 'következő (Shift: előző)', kbScene: 'a jelenet használja', kbPlay: 'lejátszás / szünet', kbRestart: 'újraindítás', kbStep: 'léptetés', kbPick: 'csúszka kiválasztása, utána ← → állítja (Shift = 10×), Esc = kész', kbThis: 'ez a lista',
+    kbList: 'Billentyűparancsok', kbListTip: 'Billentyűparancsok (?)', kbSceneH: 'Ebben a jelenetben', kbAppH: 'Mindig', kbOnOff: 'be / ki', kbNext: 'következő (Shift: előző)', kbScene: 'a jelenet használja', kbPlay: 'lejátszás / szünet', kbRestart: 'újraindítás', kbStep: 'léptetés', kbPick: 'csúszka kiválasztása, utána ← → állítja (Shift = 10×), Esc = kész', kbThis: 'ez a lista', kbToggles: 'kapcsolók be / ki (a Vezérlők sorrendjében)', kbTogTip: 'Billentyűzet: {k} be / ki kapcsolja',
     kSpace: 'Szóköz', kbNumTip: 'Billentyűzet: {n}, majd ← → állítja (Shift = gyorsabb)', kbHudHint: '← → állítás · Shift = gyorsabb · Esc = kész',
     run: 'Futtatás', codeDirty: 'Módosítva – Ctrl+Enter a futtatáshoz', codeClean: 'Ez a kód fut',
     play: 'Lejátszás / szünet (szóköz vagy P)', pause: 'Szünet (szóköz vagy P)', step: 'Léptetés (→)', resetT: 'Újraindítás (R)', full: 'Teljes képernyő (vászon + grafikonok)', fullCanvas: 'Csak a vászon teljes képernyőn', cvExit: 'Kilépés a csak-vászon nézetből', plotSplit: 'Húzd fel vagy le a grafikonok magasságához (dupla kattintás: alapméret)', menu: 'Menü', mCanvas: 'Vászon',
@@ -1238,7 +1248,7 @@ const UI = {
     noParams: 'This scene has no sliders. Add one on the Code tab with param(...).',
     noReadouts: 'Values you pass to show(...) appear here.',
     defaults: 'Reset sliders to defaults',
-    kbList: 'Keyboard commands', kbListTip: 'Keyboard commands (?)', kbSceneH: 'In this scene', kbAppH: 'Always', kbOnOff: 'on / off', kbNext: 'next (Shift: previous)', kbScene: 'used by the scene', kbPlay: 'play / pause', kbRestart: 'restart', kbStep: 'step', kbPick: 'pick a slider, then ← → move it (Shift = 10×), Esc = done', kbThis: 'this list',
+    kbList: 'Keyboard commands', kbListTip: 'Keyboard commands (?)', kbSceneH: 'In this scene', kbAppH: 'Always', kbOnOff: 'on / off', kbNext: 'next (Shift: previous)', kbScene: 'used by the scene', kbPlay: 'play / pause', kbRestart: 'restart', kbStep: 'step', kbPick: 'pick a slider, then ← → move it (Shift = 10×), Esc = done', kbThis: 'this list', kbToggles: 'switches on / off (in the order of the Controls tab)', kbTogTip: 'Keyboard: {k} switches it on / off',
     kSpace: 'Space', kbNumTip: 'Keyboard: press {n}, then ← → to move it (Shift = faster)', kbHudHint: '← → adjust · Shift = faster · Esc = done',
     run: 'Run', codeDirty: 'Edited – press Ctrl+Enter to run', codeClean: 'This code is running',
     play: 'Play / pause (Space or P)', pause: 'Pause (Space or P)', step: 'Step (→)', resetT: 'Restart (R)', full: 'Full screen (canvas + graphs)', fullCanvas: 'Canvas only, full screen', cvExit: 'Leave canvas-only view', plotSplit: 'Drag up or down to resize the graphs (double-click: default size)', menu: 'Menu', mCanvas: 'Canvas',
@@ -1306,21 +1316,10 @@ Object.freeze(C.list); Object.freeze(C);
 
 const TEMPLATE_NAME = {hu: 'Sablon: alakzatok, képek, fizika', en: 'Template: shapes, images, physics'};
 const BLANK = `// ${'Új jelenet / New scene'}
-stage(1000, 600, "#fbfbf8");
-title({hu: "Új jelenet", en: "New scene"});
-
-param("v", {hu: "Sebesség", en: "Speed"}, 0, 400, 150, 1, "px/s");
-
-let x = 100;
-update(dt => {
-  x += P.v * dt;
-  if (x > 950) x = 50;
-});
+stage(1000, 600, "#ffffff");
 
 draw(t => {
-  grid(50);
-  circle(x, 300, 30, {fill: C.blue});
-  show("x", x, "px");
+
 });
 `;
 
@@ -2476,6 +2475,25 @@ function kbSelect(id) {
   if (e && e.row && !$('#tab-controls').hidden) e.row.scrollIntoView({block: 'nearest'});
   renderHud();
 }
+// 3. réteg, kapcsolók: a billentyűzet felső betűsora, a Vezérlők sorrendjében. Az R (újraindítás) és a P (lejátszás) kimarad.
+// A hatodik betű kiosztásfüggő (QWERTZ: Z, QWERTY: Y), ezért mindkettő ugyanazt a kapcsolót váltja.
+// Layer 3, switches: the top letter row of the keyboard, in the order of the Controls tab. R (restart) and P (play) are left out.
+// The sixth letter depends on the layout (QWERTZ: Z, QWERTY: Y), so both flip the same switch.
+const TOGGLE_KEYS = [['q'], ['w'], ['e'], ['t'], ['z', 'y'], ['u'], ['i'], ['o']];
+function toggleDefs() { return R.defs.filter(d => d.kind === 'toggle' && !(d.keys && d.keys.length)); }
+function toggleKeyText(i) { const s = TOGGLE_KEYS[i]; return (s.length > 1 ? (LANG === 'hu' ? s[0] : s[1]) : s[0]).toUpperCase(); }
+// A kapcsoló alapbillentyűje, ha a jelenet nem foglalta le / the default key of a switch, unless the scene uses that key itself
+function toggleKeyOf(d) {
+  const i = toggleDefs().indexOf(d);
+  if (i < 0 || i >= TOGGLE_KEYS.length) return '';
+  const own = k => (R.ctlKeys && R.ctlKeys.has(k)) || R.keyOn.has(k) || R.keyPoll.has(k);
+  return TOGGLE_KEYS[i].some(own) ? '' : toggleKeyText(i);
+}
+function toggleForKey(k) {
+  const i = TOGGLE_KEYS.findIndex(s => s.includes(k));
+  const d = i < 0 ? null : toggleDefs()[i];
+  return d && toggleKeyOf(d) ? d : null;
+}
 function pressNav(k, shift) {
   const d = rangeDefs().find(x => x.id === kbSel);
   if (!d) { kbSelect(null); return; }
@@ -2592,6 +2610,8 @@ function kbRows() {
   if (!sceneOwns('r')) app.push([['R'], T('kbRestart')]);
   if (!sceneOwns('ArrowRight')) app.push([['→'], T('kbStep')]);
   if (rangeDefs().length) app.push([['1…' + Math.min(9, rangeDefs().length), '← →'], T('kbPick')]);
+  const tk = toggleDefs().map(toggleKeyOf).filter(Boolean);
+  if (tk.length) app.push([tk, T('kbToggles')]);
   if (!sceneOwns('?')) app.push([['?'], T('kbThis')]);
   return {scene, app};
 }
@@ -2667,7 +2687,9 @@ function buildControls(force) {
       box.appendChild(row);
     } else if (d.kind === 'toggle') {
       const row = document.createElement('label'); row.className = 'ctl ctl-toggle'; row.htmlFor = uid;
-      row.innerHTML = `<input type="checkbox" id="${uid}"><span>${esc(tr(d.label))}${kbdBadges(d.keys)}</span>`;
+      // Q W E …: a kapcsoló alapbillentyűje, ha nincs sajátja / default key of the switch when it has none of its own
+      const tk = toggleKeyOf(d), let_ = tk ? `<span class="kbn kbt" title="${esc(T('kbTogTip').replace('{k}', tk))}">${tk}</span>` : '';
+      row.innerHTML = `<input type="checkbox" id="${uid}"><span>${let_}${esc(tr(d.label))}${kbdBadges(d.keys)}</span>`;
       const cb = $('input', row); cb.checked = !!R.P[d.id];
       cb.addEventListener('change', () => setP(d.id, cb.checked));
       ctlEls[d.id] = {kind: 'toggle', cb, row};
@@ -2929,7 +2951,7 @@ function toggleRecord() {
   if (!playing) setPlaying(true);
 }
 function updateRecUI() {
-  recBadge.hidden = !rec;
+  recBadge.hidden = !rec; recBadge.title = T('exVideoStop');
   $('#exVideoLbl').textContent = rec ? T('exVideoStop') : T('exVideo');
 }
 
@@ -3620,6 +3642,7 @@ const HELP = {
       ['onKey(" ", () => { … }, {label: {hu, en}, help: {hu, en}})', 'Lenyomásonként egyszer fut (szünetben is). Telefonon és táblagépen a key() és onKey() billentyűi gombként jelennek meg a vásznon; a label a gomb felirata. A help a billentyűlistában jelenik meg. Mindkettő a key("x", {label, help}) hívásban is megadható.', 'Runs once per press (also while paused). On phones and tablets the keys of key() and onKey() appear as buttons on the canvas; label is the text on the button. help is shown in the key list. Both work with key("x", {label, help}) too.'],
       ['⌨ · ?', 'Billentyűlista: a jelenet összes billentyűje a leírásukkal. A vásznon a jobb felső ⌨ gombbal vagy a ? billentyűvel nyílik, a Vezérlők fülön egy összecsukható sor; amíg nincs megnyitva, nem foglal helyet.', 'Key list: every key of the scene with its description. On the canvas it opens with the ⌨ button in the top-right corner or the ? key; on the Controls tab it is one collapsible line. It takes no room until opened.'],
       ['1 … 9, majd ← → ↑ ↓', 'Kód nélkül, minden jelenetnél: a szám kiválasztja a csúszkát (a Vezérlők fülön és a vásznon is látszik), a nyilak állítják, Shift = 10×; Esc vagy 0 = kész.', 'No code needed, every scene: the number picks a slider (highlighted on the Controls tab and on the canvas), the arrows move it, Shift = 10×; Esc or 0 = done.'],
+      ['Q W E T Z U I O', 'Kód nélkül, minden jelenetnél: a saját billentyű nélküli kapcsolókat a felső betűsor váltja, a Vezérlők sorrendjében (az R és a P kimarad; a Z helyén angol kiosztáson Y áll, mindkettő működik). A betű a kapcsoló előtt látszik.', 'No code needed, every scene: switches without a key of their own are flipped by the top letter row, in the order of the Controls tab (R and P are left out; Y is Z on a Hungarian or German layout, both work). The letter is shown in front of the switch.'],
       ['Szóköz · R · → · P', 'Ha a jelenet lefoglalja a Szóközt, az R-t vagy a →-t, a jelenet nyer. A lejátszás / szünet tartalék billentyűje mindig a P.', 'If the scene binds Space, R or →, the scene wins. P always works as a backup play / pause key.'],
     ]},
     {t: {hu: 'Rajzolás', en: 'Drawing'}, items: [
@@ -3676,8 +3699,8 @@ const HELP = {
     ]},
   ],
   keys: {
-    hu: '<h4>Billentyűk</h4><p><kbd>Szóköz</kbd> vagy <kbd>P</kbd> lejátszás/szünet · <kbd>→</kbd> léptetés · <kbd>R</kbd> újraindítás · <kbd>1</kbd>…<kbd>9</kbd> csúszka kiválasztása, utána <kbd>←</kbd> <kbd>→</kbd> állítja, <kbd>Esc</kbd> kész · <kbd>?</kbd> billentyűlista · <kbd>Ctrl</kbd>+<kbd>Enter</kbd> kód futtatása · <kbd>Ctrl</kbd>+<kbd>S</kbd> mentés · <kbd>Ctrl</kbd>+<kbd>O</kbd> megnyitás. Képet és jelenetfájlt az ablakra húzva is betölthetsz.</p>',
-    en: '<h4>Keys</h4><p><kbd>Space</kbd> or <kbd>P</kbd> play/pause · <kbd>→</kbd> step · <kbd>R</kbd> restart · <kbd>1</kbd>…<kbd>9</kbd> pick a slider, then <kbd>←</kbd> <kbd>→</kbd> move it, <kbd>Esc</kbd> done · <kbd>?</kbd> key list · <kbd>Ctrl</kbd>+<kbd>Enter</kbd> run code · <kbd>Ctrl</kbd>+<kbd>S</kbd> save · <kbd>Ctrl</kbd>+<kbd>O</kbd> open. You can also drop images and scene files onto the window.</p>',
+    hu: '<h4>Billentyűk</h4><p><kbd>Szóköz</kbd> vagy <kbd>P</kbd> lejátszás/szünet · <kbd>→</kbd> léptetés · <kbd>R</kbd> újraindítás · <kbd>1</kbd>…<kbd>9</kbd> csúszka kiválasztása, utána <kbd>←</kbd> <kbd>→</kbd> állítja, <kbd>Esc</kbd> kész · <kbd>Q</kbd> <kbd>W</kbd> <kbd>E</kbd>… kapcsolók be/ki · <kbd>?</kbd> billentyűlista · <kbd>Ctrl</kbd>+<kbd>Enter</kbd> kód futtatása · <kbd>Ctrl</kbd>+<kbd>S</kbd> mentés · <kbd>Ctrl</kbd>+<kbd>O</kbd> megnyitás. Képet és jelenetfájlt az ablakra húzva is betölthetsz.</p>',
+    en: '<h4>Keys</h4><p><kbd>Space</kbd> or <kbd>P</kbd> play/pause · <kbd>→</kbd> step · <kbd>R</kbd> restart · <kbd>1</kbd>…<kbd>9</kbd> pick a slider, then <kbd>←</kbd> <kbd>→</kbd> move it, <kbd>Esc</kbd> done · <kbd>Q</kbd> <kbd>W</kbd> <kbd>E</kbd>… switches on/off · <kbd>?</kbd> key list · <kbd>Ctrl</kbd>+<kbd>Enter</kbd> run code · <kbd>Ctrl</kbd>+<kbd>S</kbd> save · <kbd>Ctrl</kbd>+<kbd>O</kbd> open. You can also drop images and scene files onto the window.</p>',
   },
 };
 /* ───────────── guide (short lessons with runnable examples) ───────────── */
@@ -3923,21 +3946,21 @@ const guideCode = code => code.replace(/⟨([^|⟩]*)\|([^⟩]*)⟩/g, (m, hu, e
 
 function renderHelp() {
   const L = LANG === 'hu';
-  let html = `<nav class="help-nav"><button type="button" class="link-btn" data-jump="guide">${L ? 'Útmutató' : 'Guide'}</button> · <button type="button" class="link-btn" data-jump="ref">${L ? 'Parancsok' : 'Command reference'}</button> · <button type="button" class="link-btn" data-jump="ai">${L ? 'Kód írása AI-jal' : 'Writing code with AI'}</button></nav>`;
+  let html = `<nav class="help-nav"><button type="button" class="link-btn" data-jump="ai">${L ? 'Kód írása AI-jal' : 'Writing code with AI'}</button> · <button type="button" class="link-btn" data-jump="guide">${L ? 'Útmutató' : 'Guide'}</button> · <button type="button" class="link-btn" data-jump="ref">${L ? 'Parancsok' : 'Command reference'}</button></nav>`;
+  // Jelenet írása mesterséges intelligenciával: a beépített utasítások egy kattintással másolhatók
+  // Writing a scene with an AI assistant: the built-in instructions can be copied with one click
+  html += `<h3 id="help-ai">${L ? 'Kód írása AI segítségével' : 'Writing code with an AI assistant'}</h3>`;
+  html += helpAiText(L);
+  html += `<div class="lesson-btns"><button type="button" class="btn primary" data-ai="copy">${L ? 'AI-utasítások másolása' : 'Copy AI instructions'}</button><button type="button" class="btn" data-ai="save">${L ? 'Mentés fájlba (.md)' : 'Save as a file (.md)'}</button></div>`;
+  html += `<textarea id="aiText" class="ai-text" readonly hidden></textarea>`;
+  // Átvezetés az útmutatóhoz / lead-in to the guide
+  html += `<p>${L ? 'Ha magad is szeretnél kódolni, itt van néhány gyakorlat, amit kipróbálhatsz.' : 'If you want to explore coding yourself, here are some exercises to try.'}</p>`;
   html += `<h3 id="help-guide">${L ? 'Útmutató 7 lépésben' : 'Guide in 7 steps'}</h3>`;
   html += `<p class="muted">${L ? 'Minden lépés egy kis, működő példa. A „Kipróbálom” betölti a Kód fülre – ott írd át, és futtasd újra.' : 'Each step is a small working example. “Try it” loads it into the Code tab – change it there and run it again.'}</p>`;
   GUIDE.forEach((s, i) => {
     html += `<section class="lesson"><h4><span class="num">${i + 1}</span>${esc(s.t[LANG])}</h4><p>${esc(s.d[LANG])}</p><pre>${esc(guideCode(s.code))}</pre><div class="lesson-btns"><button type="button" class="btn primary" data-try="${i}">${L ? 'Kipróbálom' : 'Try it'}</button><button type="button" class="btn" data-copyex="${i}">${L ? 'Másolás' : 'Copy'}</button></div></section>`;
   });
   html += `<h4>${L ? 'Ha valami nem megy' : 'When something goes wrong'}</h4><ul class="tips">${GUIDE_TIPS[LANG].map(x => `<li>${x}</li>`).join('')}</ul>`;
-  // Jelenet írása mesterséges intelligenciával: a beépített utasítások egy kattintással másolhatók
-  // Writing a scene with an AI assistant: the built-in instructions can be copied with one click
-  html += `<h3 id="help-ai">${L ? 'Kód írása AI segítségével' : 'Writing code with an AI assistant'}</h3>`;
-  html += L
-    ? `<p>Bármelyik ingyenes AI-csevegő (ChatGPT, Gemini, Copilot, Claude…) megírja a jelenetet, ha előbb elolvassa az AnimLab AI-utasításait. Ezek az alkalmazásba vannak építve, internet nélkül is elérhetők.</p><ol class="tips"><li>Nyomd meg az <b>AI-utasítások másolása</b> gombot.</li><li>Nyiss új csevegést az AI-alkalmazásban, és illeszd be első üzenetként.</li><li>Írd le, milyen animációt szeretnél: mit mutasson, milyen csúszkák, mért értékek és grafikonok legyenek, kinek szól.</li><li>A kapott kódot másold be: <b>Új</b> → <b>Kód</b> fül → Ctrl+Enter.</li><li>Ha hibát látsz, írd le az AI-nak, vagy másold be neki a piros hibaüzenetet a sorszámmal. Egyszerre egy változtatást kérj.</li></ol><p class="muted">Példa kérés:</p><pre>Készíts egy jelenetet Ohm törvényéről: telep, ellenállás és izzó sorosan. Csúszkák: U 0–24 V, R 1–100 Ω. Az izzó fényereje kövesse a teljesítményt, mozgó nyilak mutassák az áramot. Írd ki az I-t és a P-t, és rajzolj grafikont az áramról. Kapcsolási rajz szabványos jelekkel, 9. évfolyamnak.</pre><p class="muted">Ellenőrizd a képleteket és a kiírt értékeket egy kézzel kiszámolt példán, mielőtt órán használod.</p>`
-    : `<p>Any free AI chat (ChatGPT, Gemini, Copilot, Claude…) can write a scene once it has read the AnimLab AI instructions. They are built into the app and work offline.</p><ol class="tips"><li>Press <b>Copy AI instructions</b>.</li><li>Start a new chat in the AI app and paste them as the first message.</li><li>Describe the animation: what it shows, which sliders, readouts and graphs, and who it is for.</li><li>Paste the code you get: <b>New</b> → <b>Code</b> tab → Ctrl+Enter.</li><li>If something is wrong, tell the AI what you see or paste the red error message with its line number. Ask for one change at a time.</li></ol><p class="muted">Example request:</p><pre>Make a scene about Ohm's law: battery, resistor and lamp in series. Sliders: U 0–24 V, R 1–100 Ω. The lamp's brightness follows its power and moving arrows show the current. Show I and P, and plot the current. Schematic with standard symbols, for 9th grade.</pre><p class="muted">Check the formulas and the readouts against a value you calculate by hand before you use the scene in class.</p>`;
-  html += `<div class="lesson-btns"><button type="button" class="btn primary" data-ai="copy">${L ? 'AI-utasítások másolása' : 'Copy AI instructions'}</button><button type="button" class="btn" data-ai="save">${L ? 'Mentés fájlba (.md)' : 'Save as a file (.md)'}</button></div>`;
-  html += `<textarea id="aiText" class="ai-text" readonly hidden></textarea>`;
   html += `<h3 id="help-ref">${L ? 'Parancsok' : 'Command reference'}</h3>`;
   html += HELP.intro[LANG];
   for (const sec of HELP.sections) {
@@ -3947,6 +3970,13 @@ function renderHelp() {
   }
   html += HELP.keys[LANG];
   $('#help').innerHTML = html;
+}
+
+// A „Kód írása AI segítségével” szakasz szövege / text of the "Writing code with an AI assistant" section
+function helpAiText(L) {
+  return L
+    ? `<p>Bármelyik ingyenes AI-csevegő (ChatGPT, Gemini, Copilot, Claude…) megírja a jelenetet, ha előbb elolvassa az AnimLab AI-utasításait. Ezek az alkalmazásba vannak építve, internet nélkül is elérhetők.</p><ol class="tips"><li>Nyomd meg az <b>AI-utasítások másolása</b> gombot.</li><li>Nyiss új csevegést az AI-alkalmazásban, és illeszd be első üzenetként.</li><li>Írd le, milyen animációt szeretnél: mit mutasson, milyen csúszkák, mért értékek és grafikonok legyenek, kinek szól.</li><li>A kapott kódot másold be: <b>Új</b> → <b>Kód</b> fül → Ctrl+Enter.</li><li>Ha hibát látsz, írd le az AI-nak, vagy másold be neki a piros hibaüzenetet a sorszámmal. Egyszerre egy változtatást kérj.</li></ol><p class="muted">Példa kérés:</p><pre>Készíts egy jelenetet Ohm törvényéről: telep, ellenállás és izzó sorosan. Csúszkák: U 0–24 V, R 1–100 Ω. Az izzó fényereje kövesse a teljesítményt, mozgó nyilak mutassák az áramot. Írd ki az I-t és a P-t, és rajzolj grafikont az áramról. Kapcsolási rajz szabványos jelekkel, 9. évfolyamnak.</pre><p class="muted">Ellenőrizd a képleteket és a kiírt értékeket egy kézzel kiszámolt példán, mielőtt órán használod.</p>`
+    : `<p>Any free AI chat (ChatGPT, Gemini, Copilot, Claude…) can write a scene once it has read the AnimLab AI instructions. They are built into the app and work offline.</p><ol class="tips"><li>Press <b>Copy AI instructions</b>.</li><li>Start a new chat in the AI app and paste them as the first message.</li><li>Describe the animation: what it shows, which sliders, readouts and graphs, and who it is for.</li><li>Paste the code you get: <b>New</b> → <b>Code</b> tab → Ctrl+Enter.</li><li>If something is wrong, tell the AI what you see or paste the red error message with its line number. Ask for one change at a time.</li></ol><p class="muted">Example request:</p><pre>Make a scene about Ohm's law: battery, resistor and lamp in series. Sliders: U 0–24 V, R 1–100 Ω. The lamp's brightness follows its power and moving arrows show the current. Show I and P, and plot the current. Schematic with standard symbols, for 9th grade.</pre><p class="muted">Check the formulas and the readouts against a value you calculate by hand before you use the scene in class.</p>`;
 }
 
 /* ───────────── gallery ───────────── */
@@ -4264,7 +4294,11 @@ document.addEventListener('fullscreenchange', () => { updateMode(); setTimeout(l
 $('#speed').addEventListener('input', e => { setSpeed(Math.pow(2, +e.target.value)); scheduleAutosave(); });
 $('#speed').addEventListener('dblclick', () => setSpeed(1));
 
-$('#btnNew').addEventListener('click', () => loadScene({name: T('newScene'), script: BLANK}, {undo: true}));
+// Új: üres jelenet, és rögtön a Kód fül nyílik / New: an empty scene, and the Code tab opens right away
+$('#btnNew').addEventListener('click', () => {
+  loadScene({name: T('newScene'), script: BLANK}, {undo: true});
+  if (mqMobile.matches) setMview('code'); else selectTab('code');
+});
 $('#btnOpen').addEventListener('click', () => $('#fileOpen').click());
 $('#fileOpen').addEventListener('change', e => { const f = e.target.files[0]; if (f) openFile(f); e.target.value = ''; });
 $('#btnSave').addEventListener('click', () => {
@@ -4374,6 +4408,9 @@ document.addEventListener('keydown', e => {
   // 3. 1–9 kiválaszt egy csúszkát, a nyilak állítják, 0 = kész / 1–9 picks a slider, the arrows move it, 0 = done
   if (/^[1-9]$/.test(k)) { const d = rangeDefs()[+k - 1]; if (d) { e.preventDefault(); kbSelect(d.id); } return; }
   if (k === '0') { if (kbSel) kbSelect(null); return; }
+  // Q W E T Z U I O: a saját billentyű nélküli kapcsolók be / ki / switches without a key of their own, on / off
+  const tg = toggleForKey(k);
+  if (tg) { if (!e.repeat) { setP(tg.id, !R.P[tg.id]); syncControls(); flashCtl(ctlEls[tg.id] && ctlEls[tg.id].row); } return; }
   if (kbSel && /^Arrow(Left|Right|Up|Down)$/.test(k)) { e.preventDefault(); pressNav(k, e.shiftKey); return; }
   // lejátszás / transport
   if (k === ' ') { e.preventDefault(); if (!e.repeat) setPlaying(!playing); }

@@ -18,7 +18,7 @@ const UI = {
     noParams: 'Ennek a jelenetnek nincsenek csúszkái. A Kód fülön a param(...) sorral adhatsz hozzá.',
     noReadouts: 'A show(...) hívással jeleníthetsz meg itt értékeket.',
     defaults: 'Csúszkák alapértékre',
-    kbList: 'Billentyűparancsok', kbListTip: 'Billentyűparancsok (?)', kbSceneH: 'Ebben a jelenetben', kbAppH: 'Mindig', kbOnOff: 'be / ki', kbNext: 'következő (Shift: előző)', kbScene: 'a jelenet használja', kbPlay: 'lejátszás / szünet', kbRestart: 'újraindítás', kbStep: 'léptetés', kbPick: 'csúszka kiválasztása, utána ← → állítja (Shift = 10×), Esc = kész', kbThis: 'ez a lista',
+    kbList: 'Billentyűparancsok', kbListTip: 'Billentyűparancsok (?)', kbSceneH: 'Ebben a jelenetben', kbAppH: 'Mindig', kbOnOff: 'be / ki', kbNext: 'következő (Shift: előző)', kbScene: 'a jelenet használja', kbPlay: 'lejátszás / szünet', kbRestart: 'újraindítás', kbStep: 'léptetés', kbPick: 'csúszka kiválasztása, utána ← → állítja (Shift = 10×), Esc = kész', kbThis: 'ez a lista', kbToggles: 'kapcsolók be / ki (a Vezérlők sorrendjében)', kbTogTip: 'Billentyűzet: {k} be / ki kapcsolja',
     kSpace: 'Szóköz', kbNumTip: 'Billentyűzet: {n}, majd ← → állítja (Shift = gyorsabb)', kbHudHint: '← → állítás · Shift = gyorsabb · Esc = kész',
     run: 'Futtatás', codeDirty: 'Módosítva – Ctrl+Enter a futtatáshoz', codeClean: 'Ez a kód fut',
     play: 'Lejátszás / szünet (szóköz vagy P)', pause: 'Szünet (szóköz vagy P)', step: 'Léptetés (→)', resetT: 'Újraindítás (R)', full: 'Teljes képernyő (vászon + grafikonok)', fullCanvas: 'Csak a vászon teljes képernyőn', cvExit: 'Kilépés a csak-vászon nézetből', plotSplit: 'Húzd fel vagy le a grafikonok magasságához (dupla kattintás: alapméret)', menu: 'Menü', mCanvas: 'Vászon',
@@ -82,7 +82,7 @@ const UI = {
     noParams: 'This scene has no sliders. Add one on the Code tab with param(...).',
     noReadouts: 'Values you pass to show(...) appear here.',
     defaults: 'Reset sliders to defaults',
-    kbList: 'Keyboard commands', kbListTip: 'Keyboard commands (?)', kbSceneH: 'In this scene', kbAppH: 'Always', kbOnOff: 'on / off', kbNext: 'next (Shift: previous)', kbScene: 'used by the scene', kbPlay: 'play / pause', kbRestart: 'restart', kbStep: 'step', kbPick: 'pick a slider, then ← → move it (Shift = 10×), Esc = done', kbThis: 'this list',
+    kbList: 'Keyboard commands', kbListTip: 'Keyboard commands (?)', kbSceneH: 'In this scene', kbAppH: 'Always', kbOnOff: 'on / off', kbNext: 'next (Shift: previous)', kbScene: 'used by the scene', kbPlay: 'play / pause', kbRestart: 'restart', kbStep: 'step', kbPick: 'pick a slider, then ← → move it (Shift = 10×), Esc = done', kbThis: 'this list', kbToggles: 'switches on / off (in the order of the Controls tab)', kbTogTip: 'Keyboard: {k} switches it on / off',
     kSpace: 'Space', kbNumTip: 'Keyboard: press {n}, then ← → to move it (Shift = faster)', kbHudHint: '← → adjust · Shift = faster · Esc = done',
     run: 'Run', codeDirty: 'Edited – press Ctrl+Enter to run', codeClean: 'This code is running',
     play: 'Play / pause (Space or P)', pause: 'Pause (Space or P)', step: 'Step (→)', resetT: 'Restart (R)', full: 'Full screen (canvas + graphs)', fullCanvas: 'Canvas only, full screen', cvExit: 'Leave canvas-only view', plotSplit: 'Drag up or down to resize the graphs (double-click: default size)', menu: 'Menu', mCanvas: 'Canvas',
@@ -150,21 +150,10 @@ Object.freeze(C.list); Object.freeze(C);
 
 const TEMPLATE_NAME = {hu: 'Sablon: alakzatok, képek, fizika', en: 'Template: shapes, images, physics'};
 const BLANK = `// ${'Új jelenet / New scene'}
-stage(1000, 600, "#fbfbf8");
-title({hu: "Új jelenet", en: "New scene"});
-
-param("v", {hu: "Sebesség", en: "Speed"}, 0, 400, 150, 1, "px/s");
-
-let x = 100;
-update(dt => {
-  x += P.v * dt;
-  if (x > 950) x = 50;
-});
+stage(1000, 600, "#ffffff");
 
 draw(t => {
-  grid(50);
-  circle(x, 300, 30, {fill: C.blue});
-  show("x", x, "px");
+
 });
 `;
 

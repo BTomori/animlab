@@ -121,7 +121,11 @@ document.addEventListener('fullscreenchange', () => { updateMode(); setTimeout(l
 $('#speed').addEventListener('input', e => { setSpeed(Math.pow(2, +e.target.value)); scheduleAutosave(); });
 $('#speed').addEventListener('dblclick', () => setSpeed(1));
 
-$('#btnNew').addEventListener('click', () => loadScene({name: T('newScene'), script: BLANK}, {undo: true}));
+// Új: üres jelenet, és rögtön a Kód fül nyílik / New: an empty scene, and the Code tab opens right away
+$('#btnNew').addEventListener('click', () => {
+  loadScene({name: T('newScene'), script: BLANK}, {undo: true});
+  if (mqMobile.matches) setMview('code'); else selectTab('code');
+});
 $('#btnOpen').addEventListener('click', () => $('#fileOpen').click());
 $('#fileOpen').addEventListener('change', e => { const f = e.target.files[0]; if (f) openFile(f); e.target.value = ''; });
 $('#btnSave').addEventListener('click', () => {
@@ -231,6 +235,9 @@ document.addEventListener('keydown', e => {
   // 3. 1–9 kiválaszt egy csúszkát, a nyilak állítják, 0 = kész / 1–9 picks a slider, the arrows move it, 0 = done
   if (/^[1-9]$/.test(k)) { const d = rangeDefs()[+k - 1]; if (d) { e.preventDefault(); kbSelect(d.id); } return; }
   if (k === '0') { if (kbSel) kbSelect(null); return; }
+  // Q W E T Z U I O: a saját billentyű nélküli kapcsolók be / ki / switches without a key of their own, on / off
+  const tg = toggleForKey(k);
+  if (tg) { if (!e.repeat) { setP(tg.id, !R.P[tg.id]); syncControls(); flashCtl(ctlEls[tg.id] && ctlEls[tg.id].row); } return; }
   if (kbSel && /^Arrow(Left|Right|Up|Down)$/.test(k)) { e.preventDefault(); pressNav(k, e.shiftKey); return; }
   // lejátszás / transport
   if (k === ' ') { e.preventDefault(); if (!e.repeat) setPlaying(!playing); }

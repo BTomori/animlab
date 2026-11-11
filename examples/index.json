@@ -384,6 +384,50 @@
       "class": "13.E",
       "ai": "Claude",
       "added": "2026-11-07"
+    },
+    {
+      "path": "teacher/tengelykapcsolo-gumibetet",
+      "group": "teacher",
+      "title": {"hu":"Tengelykapcsoló gumibetéttel","en":"Shaft coupling with rubber elements"},
+      "description": {"hu":"Gumielemes tengelykapcsoló 3D nézetben: tengelyszög- és pozícióhiba, nyomaték, csavarodás és rezgés.","en":"A rubber-element shaft coupling in a 3D view: angle and position error, torque, twist and vibration."},
+      "topics": ["mechanical"],
+      "tags": ["tengelykapcsoló / shaft coupling","tengelyhiba / shaft misalignment","3D"],
+      "author": "Tanár / teacher",
+      "ai": "Claude",
+      "added": "2026-11-11"
+    },
+    {
+      "path": "teacher/teglalap-forgatasa",
+      "group": "teacher",
+      "title": {"hu":"Téglalap forgatása (forgástest)","en":"Rotating a rectangle (solid of revolution)"},
+      "description": {"hu":"A hosszabb oldala körül forgó téglalap hengert ír le, 3D-ben; kiírja a térfogatot és a felszínt.","en":"A rectangle turning around its longer side sweeps out a cylinder in 3D; shows the volume and surface area."},
+      "topics": ["maths"],
+      "tags": ["forgástest / solid of revolution","henger / cylinder","3D"],
+      "author": "Papp Anita",
+      "ai": "Gemini",
+      "added": "2026-11-11"
+    },
+    {
+      "path": "teacher/derekszogu-haromszog-forgatasa",
+      "group": "teacher",
+      "title": {"hu":"Derékszögű háromszög forgatása (kettős kúp)","en":"Rotating a right triangle (double cone)"},
+      "description": {"hu":"Az átfogója körül forgó derékszögű háromszög kettős kúpot ír le, 3D-ben; kiírja a térfogatot és a felszínt.","en":"A right triangle turning around its hypotenuse sweeps out a double cone in 3D; shows the volume and surface area."},
+      "topics": ["maths"],
+      "tags": ["forgástest / solid of revolution","kúp / cone","3D"],
+      "author": "Papp Anita",
+      "ai": "Gemini",
+      "added": "2026-11-11"
+    },
+    {
+      "path": "teacher/agazati-kislampa",
+      "group": "teacher",
+      "title": {"hu":"Ágazati kislámpa","en":"Vocational small LED lamp"},
+      "description": {"hu":"Hat fehér LED-es lámpapanel huzalozási rajza két kapcsolóval és potméterrel; ágáramok, LED-feszültségek, mozgó áramnyilak.","en":"Wiring diagram of a six-LED lamp panel with two switches and a potentiometer; branch currents, LED voltages, moving current arrows."},
+      "topics": ["electronics"],
+      "tags": ["LED-ek / LEDs","potméter / potentiometer","huzalozási rajz / wiring diagram"],
+      "author": "Bíró Zsófia",
+      "ai": "Claude Opus",
+      "added": "2026-11-11"
     }
   ]
 }
